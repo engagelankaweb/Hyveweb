@@ -37,6 +37,8 @@
   h1 { font-size: 2.5rem; }
   .hero h1 { font-size: 3rem; }
   h2 { font-size: 2rem; }
+  .stay-section h2 { font-size: 2rem !important; }
+  .stay-nav-btn { display: none; }
 
   /* Property Details */
   .gallery-container { height: 300px; }
