@@ -366,6 +366,12 @@ p {
 .hero h1 {
   color: #fff;
   margin-bottom: var(--spacing-md);
+  font-family: var(--font-secondary);
+  font-size: 5.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  line-height: 1.1;
 }
 
 .hero p {
