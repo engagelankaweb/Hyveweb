@@ -41,7 +41,7 @@
 
   <!-- Main Content Area (Filters + Grid) -->
   <section class="section container">
-    <div class="grid" style="grid-template-columns: 300px 1fr; gap: var(--spacing-lg);">
+    <div class="grid properties-layout gap-lg">
       
       <!-- Sidebar Filters -->
       <aside class="reveal-hidden delay-200">
@@ -168,17 +168,6 @@
   <script src="js/main.js"></script>
   <script src="js/animations.js"></script>
   <script src="js/filters.js"></script>
-  
-  <style>
-    /* Specific overrides for this page's layout on mobile */
-    @media (max-width: 900px) {
-      .section.container > .grid {
-        grid-template-columns: 1fr !important;
-      }
-      aside {
-        position: static !important;
-      }
-    }
-  </style>
+
 </body>
 </html>

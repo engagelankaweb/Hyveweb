@@ -18,6 +18,15 @@
   }
 }
 
+@media (max-width: 900px) {
+  .properties-layout {
+    grid-template-columns: 1fr !important;
+  }
+  .properties-layout aside {
+    position: static !important;
+  }
+}
+
 @media (max-width: 768px) {
   :root {
     --nav-height: 70px;
@@ -26,6 +35,12 @@
 
   h1 { font-size: 2.5rem; }
   h2 { font-size: 2rem; }
+
+  /* Property Details */
+  .gallery-container { height: 300px; }
+  .pd-stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .pd-layout { grid-template-columns: 1fr !important; }
+  .agent-card-large { position: static; margin-top: var(--spacing-lg); }
 
   /* Navbar */
   .mobile-menu-btn {
@@ -103,7 +118,7 @@
 @media (max-width: 576px) {
   h1 { font-size: 2rem; }
   
-  .grid-2, .grid-3, .grid-4 { 
+  .grid-2, .grid-3, .grid-4, .contact-grid { 
     grid-template-columns: 1fr; 
   }
   
