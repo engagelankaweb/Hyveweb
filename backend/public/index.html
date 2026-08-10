@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HYVE Real Estate - Find a Place You'll Love to Call Home. Premium real estate listings, luxury villas, and modern apartments.">
+  <title>HYVE Real Estate | Premium Properties</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo light-mode">HYVE.</a>
+      
+      <button class="mobile-menu-btn" aria-label="Toggle Menu">
+        <span class="hamburger light-mode"></span>
+      </button>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link light-mode active">Home</a></li>
+        <li><a href="properties.html" class="nav-link light-mode">Properties</a></li>
+        <li><a href="properties.html?purpose=buy" class="nav-link light-mode">Buy</a></li>
+        <li><a href="properties.html?purpose=rent" class="nav-link light-mode">Rent</a></li>
+        <li><a href="about.html" class="nav-link light-mode">About</a></li>
+        <li><a href="agents.html" class="nav-link light-mode">Agents</a></li>
+        <li><a href="contact.html" class="nav-link light-mode">Contact</a></li>
+        <li><a href="contact.html" class="btn btn-primary">List Property</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-slideshow" id="hero-slideshow">
+      <div class="hero-slide active" style="background-image: url('images/Hero/breno-assis-r3WAWU5Fi5Q-unsplash.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('images/Hero/etienne-beauregard-riverin-B0aCvAVSX8E-unsplash.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('images/Hero/sean-pollock-PhYq704ffdA-unsplash.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('images/Hero/tim-schmidbauer-_tEBCVrEnyo-unsplash.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('images/Hero/webaliser-_TPTXZd9mOo-unsplash.jpg');"></div>
+    </div>
+    <div class="container" style="width: 100%;">
+      <div class="hero-content reveal-hidden" data-animation="reveal-slide-up">
+        <h1>Find a Place You'll Love to Call Home</h1>
+        <p>Discover extraordinary homes, luxury apartments, and exclusive commercial properties curated for your lifestyle.</p>
+        
+
+      </div>
+    </div>
+    
+    <!-- Search Box -->
+    <div class="hero-search">
+      <div class="hero-search-tabs">
+        <button class="search-tab active" type="button" onclick="document.getElementById('h-purpose').value='buy'; this.classList.add('active'); this.nextElementSibling.classList.remove('active');">Buy</button>
+        <button class="search-tab" type="button" onclick="document.getElementById('h-purpose').value='rent'; this.classList.add('active'); this.previousElementSibling.classList.remove('active');">Rent</button>
+      </div>
+      <form action="properties.html" method="GET" class="hero-search-fields">
+        <input type="hidden" name="purpose" id="h-purpose" value="buy">
+        <div class="form-group">
+          <label class="form-label">Location</label>
+          <input type="text" name="location" class="form-control" placeholder="City, Neighborhood">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Property Type</label>
+          <select name="type" class="form-control">
+            <option value="">Any</option>
+            <option value="House">House</option>
+            <option value="Apartment">Apartment</option>
+            <option value="Villa">Villa</option>
+            <option value="Condo">Condo</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Search Properties</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Welcome Section -->
+  <section class="section text-center" style="background-color: var(--color-bg-secondary); padding-top: 160px;">
+    <div class="container">
+      <h2 class="reveal-hidden" style="margin-bottom: var(--spacing-sm);">Welcome to Hyve Web</h2>
+      <p class="reveal-hidden delay-100" style="max-width: 800px; margin: 0 auto; line-height: 1.8;">
+        Your ultimate destination for premium real estate. We combine innovative technology with exceptional service to help you find the perfect property. Whether you're looking for a luxury villa, a modern apartment, or a prime commercial space, our curated portfolio offers something extraordinary for every lifestyle.
+      </p>
+    </div>
+  </section>
+
+  <!-- Featured Properties -->
+  <section class="section container">
+    <div class="flex justify-between items-center" style="margin-bottom: var(--spacing-md);">
+      <div>
+        <h2 class="reveal-hidden">Featured Properties</h2>
+        <p class="reveal-hidden delay-100">Hand-picked selection of our most exclusive listings.</p>
+      </div>
+      <a href="properties.html" class="btn btn-outline reveal-hidden delay-200">View All</a>
+    </div>
+    
+    <div class="grid grid-3 gap-md" id="featured-grid">
+      <!-- Injected by filters.js -->
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="section" style="background-color: var(--color-bg-secondary);">
+    <div class="container">
+      <div class="text-center" style="margin-bottom: var(--spacing-lg);">
+        <h2 class="reveal-hidden">Why Choose HYVE</h2>
+        <p class="reveal-hidden delay-100">Experience the standard of excellence in luxury real estate.</p>
+      </div>
+      
+      <div class="grid grid-4 gap-md">
+        <div class="feature-card reveal-hidden delay-100">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <h4>Verified Properties</h4>
+          <p>Every listing is carefully reviewed and verified by our experts.</p>
+        </div>
+        <div class="feature-card reveal-hidden delay-200">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          </div>
+          <h4>Expert Agents</h4>
+          <p>Connect with experienced local real estate professionals.</p>
+        </div>
+        <div class="feature-card reveal-hidden delay-300">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </div>
+          <h4>Smart Search</h4>
+          <p>Find properties that perfectly match your lifestyle and budget.</p>
+        </div>
+        <div class="feature-card reveal-hidden delay-400">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
+          </div>
+          <h4>Trusted Service</h4>
+          <p>Professional support from the first search to closing day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section container">
+    <div class="about-split">
+      <div class="about-image reveal-hidden">
+        <img src="assets/images/agent_office_1786339595128.png" alt="HYVE Real Estate Office">
+      </div>
+      <div class="reveal-hidden delay-200">
+        <span class="eyebrow">About HYVE</span>
+        <h2>Redefining Real Estate Excellence</h2>
+        <p>At HYVE, we believe that finding a home is more than a transactionâ€”it's the beginning of a new chapter. For over a decade, we have been connecting discerning clients with the most extraordinary properties across the globe.</p>
+        <p>Our mission is to provide an unparalleled, seamless experience through expert local knowledge and personalized service.</p>
+        
+        <div class="stats-grid">
+          <div class="stat-item">
+            <h4><span class="stat-number" data-target="10">0</span>+</h4>
+            <p>Years Experience</p>
+          </div>
+          <div class="stat-item">
+            <h4><span class="stat-number" data-target="1250">0</span>+</h4>
+            <p>Properties Listed</p>
+          </div>
+          <div class="stat-item">
+            <h4><span class="stat-number" data-target="850">0</span>+</h4>
+            <p>Happy Clients</p>
+          </div>
+          <div class="stat-item">
+            <h4><span class="stat-number" data-target="45">0</span>+</h4>
+            <p>Expert Agents</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section reveal-hidden">
+    <div class="container">
+      <h2>Ready to Find Your Next Home?</h2>
+      <p style="margin-bottom: var(--spacing-md); font-size: 1.25rem;">Explore our latest properties and find a place that fits your lifestyle.</p>
+      <div class="flex justify-center gap-sm" style="flex-wrap: wrap;">
+        <a href="properties.html" class="btn btn-primary">Explore Properties</a>
+        <a href="contact.html" class="btn btn-outline" style="color: #fff; border-color: #fff;">Contact an Agent</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="footer-logo">HYVE.</a>
+          <p>Premium real estate services connecting clients with extraordinary properties worldwide. Excellence is our standard.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="properties.html">Properties</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="agents.html">Our Agents</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Property Types</h4>
+          <ul class="footer-links">
+            <li><a href="properties.html?type=Villa">Luxury Villas</a></li>
+            <li><a href="properties.html?type=Apartment">Apartments</a></li>
+            <li><a href="properties.html?type=House">Houses</a></li>
+            <li><a href="properties.html?type=Commercial">Commercial</a></li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="footer-bottom">
+        &copy; <span id="current-year"></span> HYVE Real Estate. All rights reserved. | <a href="#" style="color: inherit;">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Utilities -->
+  <button id="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/properties.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/filters.js"></script>
+</body>
+</html>
