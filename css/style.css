@@ -1103,16 +1103,18 @@ p {
 }
 
 .stay-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: transparent;
-  border: 1px solid #777;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  background-color: #d1d5db;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, width 0.3s ease;
 }
 
 .stay-dot.active {
-  background-color: #333;
-  border-color: #333;
+  width: 24px;
+  background-color: #234551;
 }
 
 .stay-nav-btn {

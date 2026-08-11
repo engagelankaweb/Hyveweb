@@ -150,13 +150,28 @@ function initStaySlider() {
   const track = document.querySelector('.stay-slider-track');
   const prevBtn = document.querySelector('.stay-nav-prev');
   const nextBtn = document.querySelector('.stay-nav-next');
+  const dots = document.querySelectorAll('.stay-dot');
   if (!track || !prevBtn || !nextBtn) return;
 
   let isAnimating = false;
+  let currentDot = 0;
+
+  function updateDots() {
+    if (dots.length === 0) return;
+    dots.forEach(dot => dot.classList.remove('active'));
+    if (dots[currentDot]) {
+      dots[currentDot].classList.add('active');
+    }
+  }
   
   prevBtn.addEventListener('click', () => {
     if (isAnimating) return;
     isAnimating = true;
+    
+    if (dots.length > 0) {
+      currentDot = (currentDot - 1 + dots.length) % dots.length;
+      updateDots();
+    }
     
     const card = track.querySelector('.stay-card');
     if (!card) return;
@@ -182,6 +197,11 @@ function initStaySlider() {
   nextBtn.addEventListener('click', () => {
     if (isAnimating) return;
     isAnimating = true;
+    
+    if (dots.length > 0) {
+      currentDot = (currentDot + 1) % dots.length;
+      updateDots();
+    }
     
     const card = track.querySelector('.stay-card');
     if (!card) return;
