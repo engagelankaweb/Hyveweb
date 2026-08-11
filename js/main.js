@@ -233,10 +233,27 @@ function initPremiumTestimonials() {
   if (!track || !prevBtn || !nextBtn) return;
 
   let isAnimating = false;
+  let autoplayInterval;
 
-  prevBtn.addEventListener('click', () => {
+  const startAutoplay = () => {
+    autoplayInterval = setInterval(() => {
+      nextSlide();
+    }, 5000); // 5 seconds
+  };
+
+  const stopAutoplay = () => {
+    clearInterval(autoplayInterval);
+  };
+
+  const resetAutoplay = () => {
+    stopAutoplay();
+    startAutoplay();
+  };
+
+  const prevSlide = () => {
     if (isAnimating) return;
     isAnimating = true;
+    resetAutoplay();
 
     // Instantly move last to front
     track.style.transition = 'none';
@@ -250,11 +267,12 @@ function initPremiumTestimonials() {
     track.style.transform = 'translateX(0)';
 
     setTimeout(() => { isAnimating = false; }, 400);
-  });
+  };
 
-  nextBtn.addEventListener('click', () => {
+  const nextSlide = () => {
     if (isAnimating) return;
     isAnimating = true;
+    resetAutoplay();
 
     track.style.transition = 'transform 0.4s ease-in-out';
     track.style.transform = 'translateX(-100%)';
@@ -266,5 +284,18 @@ function initPremiumTestimonials() {
       void track.offsetWidth;
       isAnimating = false;
     }, 400);
-  });
+  };
+
+  prevBtn.addEventListener('click', prevSlide);
+  nextBtn.addEventListener('click', nextSlide);
+
+  // Pause on hover
+  const container = document.querySelector('.premium-testimonial-block');
+  if (container) {
+    container.addEventListener('mouseenter', stopAutoplay);
+    container.addEventListener('mouseleave', startAutoplay);
+  }
+
+  // Start initial autoplay
+  startAutoplay();
 }
