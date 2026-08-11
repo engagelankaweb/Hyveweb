@@ -6,479 +6,899 @@
   <title>Admin Dashboard | HYVE Real Estate</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
   <link rel="stylesheet" href="{{ asset('css/animations.css') }}">
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  
   <style>
     :root {
-      --color-danger: #e63946;
-      --color-danger-hover: #c81d25;
-      --color-success: #2a9d8f;
+      --sidebar-width: 260px;
+      --color-primary-dark: #12121c;
+      --color-sidebar-bg: #1e1e2d;
+      --color-sidebar-active: rgba(212, 175, 55, 0.15);
+      --color-danger: #ef4444;
+      --color-danger-hover: #dc2626;
+      --color-success: #10b981;
+      --color-bg-main: #f8fafc;
+      --color-card-bg: #ffffff;
+      --color-border-light: #f1f5f9;
+      --shadow-premium: 0 10px 30px rgba(0, 0, 0, 0.03);
     }
 
     body {
-      background-color: #f5f6f8;
-      color: var(--color-text-main);
+      background-color: var(--color-bg-main);
+      color: #1e293b;
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
+      font-family: 'Inter', sans-serif;
     }
 
-    /* Navbar styling for Admin */
-    .admin-navbar {
-      height: 70px;
-      background: #FFFFFF;
-      box-shadow: var(--shadow-sm);
-      display: flex;
-      align-items: center;
-      position: sticky;
+    /* Sidebar Navigation */
+    .sidebar {
+      width: var(--sidebar-width);
+      background-color: var(--color-sidebar-bg);
+      color: #94a3b8;
+      position: fixed;
       top: 0;
-      z-index: 100;
-      border-bottom: 1px solid var(--color-border);
-    }
-
-    .admin-navbar .container {
+      bottom: 0;
+      left: 0;
+      z-index: 101;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      max-width: 1400px;
-    }
-
-    .admin-logo {
-      font-family: var(--font-secondary);
-      font-size: 1.8rem;
-      font-weight: 700;
-    }
-
-    .admin-logo span {
-      color: var(--color-accent);
-    }
-
-    .admin-nav-right {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-
-    .admin-user {
-      font-size: 0.9rem;
-      color: var(--color-text-muted);
-      font-weight: 500;
-    }
-
-    .btn-logout {
-      background: transparent;
-      border: 1px solid var(--color-border-dark);
-      color: var(--color-text-main);
-      padding: 8px 16px;
-      font-family: var(--font-primary);
-      font-size: 0.85rem;
-      font-weight: 500;
-      border-radius: var(--radius-sm);
-      cursor: pointer;
+      flex-direction: column;
+      box-shadow: 4px 0 20px rgba(0,0,0,0.05);
       transition: all 0.3s ease;
     }
 
-    .btn-logout:hover {
-      background: var(--color-text-main);
-      color: #FFFFFF;
-      border-color: var(--color-text-main);
+    .sidebar-brand {
+      padding: 24px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #ffffff;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    /* Main Dashboard Layout */
-    .dashboard-container {
-      max-width: 1400px;
-      margin: 2rem auto;
-      padding: 0 var(--spacing-md);
+    .sidebar-brand span {
+      color: var(--color-accent);
+    }
+
+    .sidebar-menu {
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
       flex: 1;
-      width: 100%;
     }
 
-    .dashboard-grid {
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      color: #94a3b8;
+      font-weight: 500;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: transparent;
+      border: none;
+      width: 100%;
+      text-align: left;
+    }
+
+    .menu-item svg {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-item:hover, .menu-item.active {
+      color: #ffffff;
+      background-color: var(--color-sidebar-active);
+    }
+
+    .menu-item.active {
+      color: var(--color-accent);
+      border-left: 3px solid var(--color-accent);
+    }
+
+    .menu-item:hover svg {
+      transform: translateX(3px);
+    }
+
+    .sidebar-footer {
+      padding: 20px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .btn-sidebar-logout {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      color: #f87171;
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-sidebar-logout:hover {
+      background: var(--color-danger);
+      color: #ffffff;
+      border-color: var(--color-danger);
+    }
+
+    /* Main Content Wrapper */
+    .main-content {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    /* Dashboard Header */
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      background: var(--color-card-bg);
+      padding: 1.5rem 2rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-premium);
+      border: 1px solid var(--color-border-light);
+    }
+
+    .header-title h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: #0f172a;
+      font-family: var(--font-secondary);
+    }
+
+    .header-title p {
+      font-size: 0.9rem;
+      color: #64748b;
+      margin: 0;
+    }
+
+    .header-user-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #f8fafc;
+      padding: 8px 16px;
+      border-radius: 40px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .user-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      color: #121212;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 2rem;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
     }
 
     @media (max-width: 1024px) {
-      .dashboard-grid {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 640px) {
+      .stats-grid {
         grid-template-columns: 1fr;
       }
     }
 
-    /* Card Panels */
-    .dashboard-card {
-      background: #FFFFFF;
+    .stat-card {
+      background: var(--color-card-bg);
       border-radius: var(--radius-md);
-      box-shadow: var(--shadow-sm);
-      border: 1px solid var(--color-border);
-      padding: 2rem;
+      box-shadow: var(--shadow-premium);
+      border: 1px solid var(--color-border-light);
+      padding: 1.5rem;
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+      transition: all 0.3s ease;
     }
 
-    .card-title {
-      font-family: var(--font-secondary);
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid var(--color-accent);
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+      border-color: rgba(212, 175, 55, 0.3);
+    }
+
+    .stat-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon-total { background: rgba(212,175,55,0.1); color: var(--color-accent-hover); }
+    .icon-sale { background: rgba(16,185,129,0.1); color: var(--color-success); }
+    .icon-rent { background: rgba(59,130,246,0.1); color: #3b82f6; }
+    .icon-featured { background: rgba(249,115,22,0.1); color: #f97316; }
+
+    .stat-value {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    /* Views Panels toggles */
+    .view-panel {
+      display: none;
+      animation: viewFadeIn 0.5s ease forwards;
+    }
+
+    .view-panel.active-view {
+      display: block;
+    }
+
+    @keyframes viewFadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Card Panels */
+    .dashboard-panel-card {
+      background: var(--color-card-bg);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-premium);
+      border: 1px solid var(--color-border-light);
+      padding: 2.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .panel-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #f1f5f9;
     }
 
-    .badge-count {
+    .panel-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0;
+    }
+
+    /* Table Filter Bar controls */
+    .table-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      background: #f8fafc;
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid #e2e8f0;
+    }
+
+    .search-wrapper {
+      flex: 1;
+      min-width: 250px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius-sm);
+      padding: 10px 12px 10px 40px;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 12px;
+      color: #94a3b8;
+    }
+
+    .filter-select {
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius-sm);
+      padding: 10px 16px;
+      font-size: 0.9rem;
+      background: #FFFFFF;
+      min-width: 150px;
+      cursor: pointer;
+    }
+
+    .btn-add-action {
       background: var(--color-accent);
       color: #121212;
-      font-size: 0.8rem;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
       font-weight: 600;
-      padding: 2px 8px;
-      border-radius: 20px;
-      font-family: var(--font-primary);
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.3s ease;
     }
 
-    /* Properties Table Listing */
-    .table-responsive {
-      overflow-x: auto;
+    .btn-add-action:hover {
+      background: var(--color-accent-hover);
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
     }
 
+    /* Table Styling */
     .properties-table {
       width: 100%;
       border-collapse: collapse;
-      text-align: left;
-    }
-
-    .properties-table th, .properties-table td {
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--color-border);
-      font-size: 0.9rem;
     }
 
     .properties-table th {
-      background-color: #fafbfc;
+      background: #f8fafc;
+      color: #475569;
       font-weight: 600;
-      color: var(--color-text-main);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 14px 20px;
+      border-bottom: 2px solid #edf2f7;
+    }
+
+    .properties-table td {
+      padding: 16px 20px;
+      border-bottom: 1px solid #edf2f7;
+      vertical-align: middle;
+      font-size: 0.92rem;
     }
 
     .properties-table tr:hover {
       background-color: #fcfdfe;
     }
 
-    .prop-row-info {
+    .prop-info-cell {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
     }
 
-    .prop-thumb {
-      width: 60px;
-      height: 45px;
+    .prop-thumbnail {
+      width: 80px;
+      height: 60px;
       border-radius: var(--radius-sm);
       object-fit: cover;
-      background: #eee;
+      border: 1px solid #e2e8f0;
+      background: #edf2f7;
     }
 
-    .prop-title {
+    .prop-name {
       font-weight: 600;
-      color: var(--color-text-main);
+      color: #0f172a;
+      font-size: 0.98rem;
+      margin-bottom: 4px;
     }
 
-    .prop-loc {
-      font-size: 0.75rem;
-      color: var(--color-text-muted);
-    }
-
-    .badge-tag {
-      font-size: 0.75rem;
-      padding: 2px 6px;
-      border-radius: var(--radius-sm);
-      font-weight: 500;
-    }
-
-    .badge-type {
-      background-color: rgba(212, 175, 55, 0.1);
-      color: var(--color-accent-hover);
-      border: 1px solid rgba(212, 175, 55, 0.2);
-    }
-
-    .badge-purpose {
-      background-color: #e8f5e9;
-      color: #2e7d32;
-    }
-
-    .badge-purpose.rent {
-      background-color: #e3f2fd;
-      color: #1565c0;
-    }
-
-    .badge-featured {
-      background-color: rgba(212, 175, 55, 0.2);
-      color: var(--color-text-main);
-      border: 1px solid var(--color-accent);
-      font-weight: 600;
-    }
-
-    .btn-delete {
-      background: transparent;
-      border: 1px solid var(--color-danger);
-      color: var(--color-danger);
-      padding: 6px 12px;
-      border-radius: var(--radius-sm);
-      cursor: pointer;
+    .prop-address {
       font-size: 0.8rem;
-      font-weight: 500;
-      transition: all 0.3s ease;
+      color: #64748b;
       display: flex;
       align-items: center;
       gap: 4px;
     }
 
-    .btn-delete:hover {
+    .badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    .badge-villa { background: rgba(212, 175, 55, 0.1); color: var(--color-accent-hover); }
+    .badge-house { background: rgba(16, 185, 129, 0.1); color: var(--color-success); }
+    .badge-apt { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+    .badge-condo { background: rgba(139, 92, 246, 0.1); color: #8b5cf6; }
+    .badge-comm { background: rgba(100, 116, 139, 0.1); color: #64748b; }
+
+    .badge-purpose-buy { background: #e0f2fe; color: #0369a1; }
+    .badge-purpose-rent { background: #fef3c7; color: #b45309; }
+    
+    .badge-feat {
+      background: linear-gradient(135deg, var(--color-accent) 0%, #b89010 100%);
+      color: #121212;
+      box-shadow: 0 2px 6px rgba(212,175,55,0.2);
+    }
+
+    .btn-table-delete {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.15);
+      color: var(--color-danger);
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-table-delete:hover {
       background: var(--color-danger);
-      color: #FFFFFF;
+      color: #ffffff;
     }
 
-    /* Form Fields Styling */
-    .form-row {
+    /* Tab Layout for Add Property Form */
+    .form-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 8px;
+    }
+
+    .form-tab-btn {
+      background: transparent;
+      border: none;
+      padding: 10px 20px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #64748b;
+      cursor: pointer;
+      border-radius: var(--radius-sm);
+      transition: all 0.3s ease;
+    }
+
+    .form-tab-btn.active {
+      color: var(--color-accent-hover);
+      background: rgba(212, 175, 55, 0.08);
+    }
+
+    .form-tab-content {
+      display: none;
+    }
+
+    .form-tab-content.active {
+      display: block;
+    }
+
+    /* Modern Drag-and-Drop Image Box */
+    .upload-drag-zone {
+      border: 2px dashed #cbd5e1;
+      border-radius: var(--radius-md);
+      padding: 2.5rem;
+      text-align: center;
+      background: #f8fafc;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 8px;
+    }
+
+    .upload-drag-zone:hover, .upload-drag-zone.dragover {
+      border-color: var(--color-accent);
+      background: rgba(212, 175, 55, 0.02);
+    }
+
+    .upload-drag-zone svg {
+      color: var(--color-accent);
+      margin-bottom: 12px;
+    }
+
+    .upload-drag-zone p {
+      font-size: 0.95rem;
+      color: #475569;
+      margin-bottom: 4px;
+    }
+
+    .upload-drag-zone span {
+      color: var(--color-accent-hover);
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
+    /* Custom form groups styling */
+    .form-grid-layout {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-bottom: 1rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
     }
 
-    @media (max-width: 480px) {
-      .form-row {
+    @media (max-width: 640px) {
+      .form-grid-layout {
         grid-template-columns: 1fr;
-        gap: 0;
+        gap: 1rem;
       }
     }
 
-    .form-group-admin {
-      margin-bottom: 1.2rem;
+    .form-group-custom {
+      margin-bottom: 1.5rem;
       display: flex;
       flex-direction: column;
     }
 
-    .form-group-admin.full-width {
+    .form-group-custom.full-span {
       grid-column: 1 / -1;
     }
 
-    .label-admin {
-      font-size: 0.85rem;
+    .label-custom {
+      font-size: 0.88rem;
       font-weight: 600;
-      margin-bottom: 0.4rem;
-      color: var(--color-text-main);
+      color: #334155;
+      margin-bottom: 6px;
     }
 
-    .input-admin, .select-admin, .textarea-admin {
-      border: 1px solid var(--color-border-dark);
+    .input-custom, .select-custom, .textarea-custom {
+      border: 1px solid #cbd5e1;
       border-radius: var(--radius-sm);
-      padding: 10px 12px;
-      font-family: var(--font-primary);
-      font-size: 0.9rem;
-      background-color: #FFFFFF;
+      padding: 12px 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      background: #FFFFFF;
       transition: all 0.3s ease;
-      width: 100%;
+      color: #1e293b;
     }
 
-    .input-admin:focus, .select-admin:focus, .textarea-admin:focus {
+    .input-custom:focus, .select-custom:focus, .textarea-custom:focus {
       outline: none;
       border-color: var(--color-accent);
-      box-shadow: 0 0 8px rgba(212, 175, 55, 0.15);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
     }
 
-    .textarea-admin {
+    .textarea-custom {
+      min-height: 120px;
       resize: vertical;
-      min-height: 100px;
     }
 
-    /* Image Preview Container */
-    .preview-container {
+    /* Checked status card */
+    .toggle-container-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-sm);
+      padding: 16px;
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 10px;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
     }
 
-    .preview-thumb-wrapper {
+    .toggle-switch {
       position: relative;
-      width: 70px;
-      height: 55px;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #cbd5e1;
+      transition: .4s;
+      border-radius: 24px;
+    }
+
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    .toggle-switch input:checked + .toggle-slider {
+      background-color: var(--color-accent-hover);
+    }
+
+    .toggle-switch input:checked + .toggle-slider:before {
+      transform: translateX(20px);
+    }
+
+    /* Agent custom section styling */
+    .agent-card-selector {
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      padding: 1.5rem;
+      border-radius: var(--radius-sm);
+      margin-top: 1rem;
+    }
+
+    .preview-thumb-box {
+      position: relative;
+      width: 90px;
+      height: 70px;
       border-radius: var(--radius-sm);
       overflow: hidden;
-      border: 1px solid var(--color-border);
+      border: 1px solid #e2e8f0;
     }
 
-    .preview-thumb {
+    .preview-thumb-box img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    /* Agent Custom Fields Section */
-    .agent-custom-fields {
-      display: none;
-      background: #fafafa;
-      padding: 1rem;
-      border-radius: var(--radius-sm);
-      border: 1px dashed var(--color-border-dark);
-      margin-top: 10px;
-      animation: fadeIn 0.4s ease forwards;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-5px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .checkbox-container {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 10px;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .checkbox-container input {
+    .preview-remove-btn {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      background: rgba(239, 68, 68, 0.9);
+      color: #ffffff;
+      border: none;
+      border-radius: 50%;
       width: 18px;
       height: 18px;
-      cursor: pointer;
-    }
-
-    .btn-submit-prop {
-      background: var(--color-accent);
-      color: #121212;
-      border: none;
-      border-radius: var(--radius-sm);
-      padding: 12px;
-      font-family: var(--font-primary);
-      font-weight: 600;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
+      font-size: 0.7rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      margin-top: 1.5rem;
+      cursor: pointer;
     }
 
-    .btn-submit-prop:hover {
-      background: var(--color-accent-hover);
-      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+    .btn-form-action-group {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 1.5rem;
     }
 
-    .btn-submit-prop:disabled {
-      background: #cccccc;
-      color: #888888;
-      cursor: not-allowed;
-    }
-
-    .btn-submit-prop .spinner {
-      width: 16px;
-      height: 16px;
-      border: 2px solid rgba(18, 18, 18, 0.1);
-      border-top-color: #121212;
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-      display: none;
-    }
-
-    /* Helper styling */
-    .form-desc {
-      font-size: 0.75rem;
-      color: var(--color-text-muted);
-      margin-top: 0.25rem;
-    }
-
-    .no-props-text {
-      text-align: center;
-      color: var(--color-text-muted);
-      padding: 3rem 1rem;
+    .btn-secondary-custom {
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-sm);
+      padding: 12px 24px;
       font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary-custom:hover {
+      background: #e2e8f0;
     }
   </style>
 </head>
 <body>
 
-  <!-- Admin Navbar -->
-  <header class="admin-navbar">
-    <div class="container">
-      <a href="{{ url('/') }}" class="admin-logo">HYVE<span>.</span> Admin</a>
-      
-      <div class="admin-nav-right">
-        <span class="admin-user">Welcome, Admin</span>
-        <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
-          @csrf
-        </form>
-        <button class="btn-logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-          Logout
-        </button>
-      </div>
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      HYVE<span>.</span> Admin
     </div>
-  </header>
+    
+    <nav class="sidebar-menu">
+      <button class="menu-item active" id="menu-btn-list" onclick="switchView('list')">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+        All Properties
+      </button>
+      <button class="menu-item" id="menu-btn-add" onclick="switchView('add')">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+        Add Property
+      </button>
+    </nav>
 
-  <!-- Dashboard Main Container -->
-  <main class="dashboard-container">
-    <div class="dashboard-grid">
+    <div class="sidebar-footer">
+      <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+        @csrf
+      </form>
+      <button class="btn-sidebar-logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v1"/></svg>
+        Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content Wrapper -->
+  <main class="main-content">
+    
+    <!-- Top Header -->
+    <header class="dashboard-header">
+      <div class="header-title">
+        <h1 id="page-title-text">All Properties</h1>
+        <p id="page-subtitle-text">Manage and search your real estate catalog</p>
+      </div>
+      <div class="header-user-badge">
+        <div class="user-avatar">A</div>
+        <span style="font-weight: 600; font-size: 0.9rem;">Administrator</span>
+      </div>
+    </header>
+
+    <!-- Metrics Stats Row -->
+    <section class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon icon-total">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        </div>
+        <div>
+          <div class="stat-value" id="stats-total">{{ count($properties) }}</div>
+          <div class="stat-label">Total Listings</div>
+        </div>
+      </div>
       
-      <!-- Left Column: Properties List -->
-      <section class="dashboard-card">
-        <div class="card-title">
-          Properties List
-          <span class="badge-count" id="properties-count">{{ count($properties) }} total</span>
+      <div class="stat-card">
+        <div class="stat-icon icon-sale">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        </div>
+        <div>
+          <div class="stat-value" id="stats-sale">{{ $properties->where('purpose', 'buy')->count() }}</div>
+          <div class="stat-label">For Sale</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon icon-rent">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m-2 4a2 2 0 012 2m-2-6a3 3 0 11-6 0 3 3 0 016 0zm-6 3a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        </div>
+        <div>
+          <div class="stat-value" id="stats-rent">{{ $properties->where('purpose', 'rent')->count() }}</div>
+          <div class="stat-label">Rentals</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon icon-featured">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.907c.961 0 1.36 1.246.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.564-.386-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+        </div>
+        <div>
+          <div class="stat-value" id="stats-featured">{{ $properties->where('featured', true)->count() }}</div>
+          <div class="stat-label">Featured</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PANEL VIEW 1: Properties List View -->
+    <section class="view-panel active-view" id="view-panel-list">
+      <div class="dashboard-panel-card">
+        <div class="panel-header">
+          <h2 class="panel-title">Properties Directory</h2>
+          <button class="btn-add-action" onclick="switchView('add')">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            Add New Property
+          </button>
         </div>
 
-        <div class="table-responsive">
+        <!-- Filter Controls -->
+        <div class="table-filter-bar">
+          <div class="search-wrapper">
+            <svg class="search-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <input type="text" id="table-search" class="search-input" placeholder="Search by title, location, city..." oninput="filterTable()">
+          </div>
+          
+          <select id="filter-city-select" class="filter-select" onchange="filterTable()">
+            <option value="">All Cities</option>
+            <option value="Los Angeles">Los Angeles</option>
+            <option value="New York">New York</option>
+            <option value="Miami">Miami</option>
+            <option value="Austin">Austin</option>
+            <option value="Chicago">Chicago</option>
+            <option value="San Francisco">San Francisco</option>
+            <option value="Seattle">Seattle</option>
+            <option value="Boston">Boston</option>
+            <option value="Phoenix">Phoenix</option>
+            <option value="Aspen">Aspen</option>
+          </select>
+
+          <select id="filter-type-select" class="filter-select" onchange="filterTable()">
+            <option value="">All Types</option>
+            <option value="Villa">Villa</option>
+            <option value="House">House</option>
+            <option value="Apartment">Apartment</option>
+            <option value="Condo">Condo</option>
+            <option value="Commercial">Commercial</option>
+          </select>
+        </div>
+
+        <!-- Table Listing -->
+        <div style="overflow-x: auto;">
           @if(count($properties) > 0)
             <table class="properties-table">
               <thead>
                 <tr>
-                  <th>Property</th>
-                  <th>Type / Purpose</th>
+                  <th>Property Info</th>
+                  <th>Type & Purpose</th>
                   <th>Price</th>
                   <th>Specs</th>
-                  <th>Actions</th>
+                  <th style="text-align: right;">Action</th>
                 </tr>
               </thead>
               <tbody id="properties-table-body">
                 @foreach($properties as $prop)
-                  <tr id="prop-row-{{ $prop->id }}">
+                  <tr id="prop-row-{{ $prop->id }}" data-city="{{ $prop->city }}" data-type="{{ $prop->type }}">
                     <td>
-                      <div class="prop-row-info">
+                      <div class="prop-info-cell">
                         @if(is_array($prop->images) && count($prop->images) > 0)
-                          <img class="prop-thumb" src="{{ asset($prop->images[0]) }}" alt="{{ $prop->title }}">
+                          <img class="prop-thumbnail" src="{{ asset($prop->images[0]) }}" alt="{{ $prop->title }}">
                         @else
-                          <div class="prop-thumb" style="background:#eee;"></div>
+                          <div class="prop-thumbnail"></div>
                         @endif
                         <div>
-                          <div class="prop-title">{{ $prop->title }}</div>
-                          <div class="prop-loc">{{ $prop->location }}, {{ $prop->city }}</div>
+                          <div class="prop-name">{{ $prop->title }}</div>
+                          <div class="prop-address">
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            {{ $prop->location }}, {{ $prop->city }}
+                          </div>
                         </div>
                       </div>
                     </td>
                     <td>
-                      <span class="badge-tag badge-type">{{ $prop->type }}</span>
-                      <span class="badge-tag badge-purpose {{ $prop->purpose }}">{{ ucfirst($prop->purpose) }}</span>
+                      <span class="badge badge-{{ strtolower(substr($prop->type, 0, 5)) }}">{{ $prop->type }}</span>
+                      <span class="badge badge-purpose-{{ $prop->purpose }}">{{ $prop->purpose === 'buy' ? 'For Sale' : 'For Rent' }}</span>
                       @if($prop->featured)
-                        <span class="badge-tag badge-featured">Featured</span>
+                        <span class="badge badge-feat">Featured</span>
                       @endif
                     </td>
-                    <td style="font-weight: 600;">
-                      ${{ number_format($prop->price) }}
+                    <td style="font-weight: 700; color: #0f172a;">
+                      ${{ number_format($prop->price) }}{{ $prop->purpose === 'rent' ? '/mo' : '' }}
                     </td>
-                    <td style="color: var(--color-text-muted); font-size: 0.85rem;">
-                      {{ $prop->bedrooms }}b / {{ $prop->bathrooms }}b / {{ $prop->area }}sqft
+                    <td style="color: #64748b; font-size: 0.85rem; font-weight: 500;">
+                      <span style="color:#0f172a; font-weight:600;">{{ $prop->bedrooms }}</span> Bed &nbsp;•&nbsp; 
+                      <span style="color:#0f172a; font-weight:600;">{{ $prop->bathrooms }}</span> Bath &nbsp;•&nbsp; 
+                      <span style="color:#0f172a; font-weight:600;">{{ $prop->area }}</span> sqft
                     </td>
-                    <td>
-                      <button class="btn-delete" onclick="deleteProperty({{ $prop->id }})">
+                    <td style="text-align: right;">
+                      <button class="btn-table-delete" onclick="deleteProperty({{ $prop->id }})">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                        Delete
+                        Remove
                       </button>
                     </td>
                   </tr>
@@ -486,205 +906,394 @@
               </tbody>
             </table>
           @else
-            <div class="no-props-text" id="no-props-placeholder">
-              No properties in the database. Use the form to add one.
+            <div style="text-align: center; color: #64748b; padding: 4rem 1rem;">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="48" height="48" style="margin-bottom: 12px; color: #cbd5e1;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+              <h3>No properties in catalog</h3>
+              <p>Add your first real estate listing to display it in the frontend directory.</p>
+              <button class="btn-add-action" style="margin: 1.5rem auto 0;" onclick="switchView('add')">Add Property</button>
             </div>
           @endif
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Right Column: Add Property Form -->
-      <section class="dashboard-card">
-        <div class="card-title">Add Real Estate Property</div>
-        
+    <!-- PANEL VIEW 2: Add Property View -->
+    <section class="view-panel" id="view-panel-add">
+      <div class="dashboard-panel-card" style="max-width: 900px; margin: 0 auto 2rem;">
+        <div class="panel-header">
+          <h2 class="panel-title">Add Property Listing</h2>
+          <button class="btn-secondary-custom" style="padding: 6px 12px; font-size: 0.8rem;" onclick="switchView('list')">Back to Directory</button>
+        </div>
+
         <form id="add-property-form" enctype="multipart/form-data">
           
-          <div class="form-group-admin">
-            <label class="label-admin" for="title">Property Title *</label>
-            <input class="input-admin" type="text" id="title" name="title" placeholder="e.g. Modern Luxury Villa" required>
+          <!-- Tab Links -->
+          <div class="form-tabs">
+            <button type="button" class="form-tab-btn active" id="tab-btn-basic" onclick="switchFormTab('basic')">1. Basic Info</button>
+            <button type="button" class="form-tab-btn" id="tab-btn-specs" onclick="switchFormTab('specs')">2. Specs & Location</button>
+            <button type="button" class="form-tab-btn" id="tab-btn-media" onclick="switchFormTab('media')">3. Media & Agent</button>
           </div>
 
-          <div class="form-row">
-            <div class="form-group-admin">
-              <label class="label-admin" for="location">Location Address *</label>
-              <input class="input-admin" type="text" id="location" name="location" placeholder="e.g. 102 Ocean Drive" required>
+          <!-- Tab Content 1: Basic Info -->
+          <div class="form-tab-content active" id="tab-content-basic">
+            <div class="form-group-custom">
+              <label class="label-custom" for="title">Listing Title *</label>
+              <input type="text" id="title" name="title" class="input-custom" placeholder="e.g. Modern Luxury Beachfront Villa" required>
             </div>
-            <div class="form-group-admin">
-              <label class="label-admin" for="city">City *</label>
-              <select class="select-admin" id="city" name="city" required>
-                <option value="" disabled selected>Select City</option>
-                <option value="Los Angeles">Los Angeles</option>
-                <option value="New York">New York</option>
-                <option value="Miami">Miami</option>
-                <option value="Austin">Austin</option>
-                <option value="Chicago">Chicago</option>
-                <option value="San Francisco">San Francisco</option>
-                <option value="Seattle">Seattle</option>
-                <option value="Boston">Boston</option>
-                <option value="Phoenix">Phoenix</option>
-                <option value="Aspen">Aspen</option>
+
+            <div class="form-grid-layout">
+              <div class="form-group-custom">
+                <label class="label-custom" for="type">Property Category Type *</label>
+                <select id="type" name="type" class="select-custom" required>
+                  <option value="Villa">Villa</option>
+                  <option value="House">House</option>
+                  <option value="Apartment">Apartment</option>
+                  <option value="Condo">Condo</option>
+                  <option value="Commercial">Commercial</option>
+                </select>
+              </div>
+
+              <div class="form-group-custom">
+                <label class="label-custom" for="purpose">Listing Option *</label>
+                <select id="purpose" name="purpose" class="select-custom" required>
+                  <option value="buy">For Sale (Buy)</option>
+                  <option value="rent">For Rent</option>
+                </select>
+              </div>
+
+              <div class="form-group-custom">
+                <label class="label-custom" for="price">Price ($ USD) *</label>
+                <input type="number" id="price" name="price" class="input-custom" min="0" placeholder="e.g. 1500000" required>
+              </div>
+
+              <div class="form-group-custom" style="justify-content: center;">
+                <div class="toggle-container-card" onclick="toggleFeaturedCheck()">
+                  <div>
+                    <div style="font-weight: 600; font-size: 0.9rem; color: #0f172a;">Featured Status</div>
+                    <div style="font-size: 0.75rem; color: #64748b;">Highlight on the home page listings</div>
+                  </div>
+                  <label class="toggle-switch" onclick="event.stopPropagation()">
+                    <input type="checkbox" id="featured" name="featured">
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group-custom">
+              <label class="label-custom" for="description">Full Description *</label>
+              <textarea id="description" name="description" class="textarea-custom" placeholder="Write a detailed, premium narrative of the property features, build details, and layout..." required></textarea>
+            </div>
+
+            <div class="btn-form-action-group">
+              <div></div>
+              <button type="button" class="btn-add-action" onclick="switchFormTab('specs')">Continue to Specs →</button>
+            </div>
+          </div>
+
+          <!-- Tab Content 2: Specs & Location -->
+          <div class="form-tab-content" id="tab-content-specs">
+            <div class="form-grid-layout">
+              <div class="form-group-custom">
+                <label class="label-custom" for="bedrooms">Bedrooms *</label>
+                <input type="number" id="bedrooms" name="bedrooms" class="input-custom" min="0" placeholder="e.g. 4" required>
+              </div>
+
+              <div class="form-group-custom">
+                <label class="label-custom" for="bathrooms">Bathrooms *</label>
+                <input type="number" step="0.5" id="bathrooms" name="bathrooms" class="input-custom" min="0" placeholder="e.g. 3.5" required>
+              </div>
+
+              <div class="form-group-custom">
+                <label class="label-custom" for="area">Property Size (sqft) *</label>
+                <input type="number" id="area" name="area" class="input-custom" min="0" placeholder="e.g. 3600" required>
+              </div>
+
+              <div class="form-group-custom">
+                <label class="label-custom" for="yearBuilt">Year Built *</label>
+                <input type="number" id="yearBuilt" name="yearBuilt" class="input-custom" min="1800" max="2035" placeholder="e.g. 2021" required>
+              </div>
+
+              <div class="form-group-custom">
+                <label class="label-custom" for="location">Address Street *</label>
+                <input type="text" id="location" name="location" class="input-custom" placeholder="e.g. 102 Beachfront Drive" required>
+              </div>
+
+              <div class="form-group-custom">
+                <label class="label-custom" for="city">Select City *</label>
+                <select id="city" name="city" class="select-custom" required>
+                  <option value="" disabled selected>Select Location City</option>
+                  <option value="Los Angeles">Los Angeles</option>
+                  <option value="New York">New York</option>
+                  <option value="Miami">Miami</option>
+                  <option value="Austin">Austin</option>
+                  <option value="Chicago">Chicago</option>
+                  <option value="San Francisco">San Francisco</option>
+                  <option value="Seattle">Seattle</option>
+                  <option value="Boston">Boston</option>
+                  <option value="Phoenix">Phoenix</option>
+                  <option value="Aspen">Aspen</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group-custom">
+              <label class="label-custom" for="features">Key Highlights Features (comma-separated)</label>
+              <input type="text" id="features" name="features" class="input-custom" placeholder="e.g. Infinity Pool, Smart Home, Guest House, Wine Cellar">
+              <div class="form-desc">Type amenities separated by commas.</div>
+            </div>
+
+            <div class="btn-form-action-group">
+              <button type="button" class="btn-secondary-custom" onclick="switchFormTab('basic')">← Back to Basic</button>
+              <button type="button" class="btn-add-action" onclick="switchFormTab('media')">Continue to Media & Agent →</button>
+            </div>
+          </div>
+
+          <!-- Tab Content 3: Media & Agent -->
+          <div class="form-tab-content" id="tab-content-media">
+            
+            <div class="form-group-custom">
+              <label class="label-custom">Upload Property Media</label>
+              <!-- Drag zone -->
+              <div class="upload-drag-zone" id="drag-drop-zone" onclick="document.getElementById('images').click()">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="40" height="40" style="margin: 0 auto 8px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                <p>Drag and drop image files here, or <span>click to browse</span></p>
+                <span style="font-size: 0.8rem; color: #94a3b8; text-decoration: none;">Supports JPEG, PNG, WEBP, GIF (Max 5MB per file)</span>
+              </div>
+              <input type="file" id="images" name="images[]" multiple accept="image/*" style="display: none;">
+              
+              <!-- Local Previews Grid -->
+              <div class="preview-container" id="images-preview" style="margin-top: 1.5rem;"></div>
+            </div>
+
+            <!-- Agent selector -->
+            <div class="form-group-custom" style="border-top: 1px solid #edf2f7; padding-top: 1.5rem; margin-top: 1.5rem;">
+              <label class="label-custom" for="agent_selection">Assign Listing Agent *</label>
+              <select id="agent_selection" name="agent_selection" class="select-custom" required>
+                <option value="sarah" selected>Sarah Jenkins (Senior Partner)</option>
+                <option value="michael">Michael Chen (Urban Specialist)</option>
+                <option value="emma">Emma Davis (Family Homes)</option>
+                <option value="custom">-- Create Custom Agent --</option>
               </select>
             </div>
-          </div>
 
-          <div class="form-row">
-            <div class="form-group-admin">
-              <label class="label-admin" for="type">Property Type *</label>
-              <select class="select-admin" id="type" name="type" required>
-                <option value="Villa">Villa</option>
-                <option value="House">House</option>
-                <option value="Apartment">Apartment</option>
-                <option value="Condo">Condo</option>
-                <option value="Commercial">Commercial</option>
-              </select>
-            </div>
-            <div class="form-group-admin">
-              <label class="label-admin" for="purpose">Purpose *</label>
-              <select class="select-admin" id="purpose" name="purpose" required>
-                <option value="buy">For Buy</option>
-                <option value="rent">For Rent</option>
-              </select>
-            </div>
-          </div>
+            <!-- Custom agent detailed panel -->
+            <div class="agent-card-selector" id="agent-custom-section" style="display: none;">
+              <div style="font-weight: 700; font-size: 0.95rem; color:#0f172a; margin-bottom: 1rem; border-bottom: 1px dashed #e2e8f0; padding-bottom: 6px;">New Agent Details</div>
+              
+              <div class="form-grid-layout">
+                <div class="form-group-custom">
+                  <label class="label-custom" for="agent_name">Agent Name *</label>
+                  <input type="text" id="agent_name" name="agent_name" class="input-custom" placeholder="e.g. Jessica Thompson">
+                </div>
 
-          <div class="form-row">
-            <div class="form-group-admin">
-              <label class="label-admin" for="price">Price ($) *</label>
-              <input class="input-admin" type="number" id="price" name="price" min="0" placeholder="e.g. 250000" required>
-            </div>
-            <div class="form-group-admin">
-              <label class="label-admin" for="area">Area (sqft) *</label>
-              <input class="input-admin" type="number" id="area" name="area" min="0" placeholder="e.g. 1500" required>
-            </div>
-          </div>
+                <div class="form-group-custom">
+                  <label class="label-custom" for="agent_phone">Contact Number *</label>
+                  <input type="text" id="agent_phone" name="agent_phone" class="input-custom" placeholder="e.g. +1 (555) 777-8888">
+                </div>
+              </div>
 
-          <div class="form-row">
-            <div class="form-group-admin">
-              <label class="label-admin" for="bedrooms">Bedrooms *</label>
-              <input class="input-admin" type="number" id="bedrooms" name="bedrooms" min="0" placeholder="e.g. 3" required>
+              <div class="form-group-custom" style="margin-bottom: 0;">
+                <label class="label-custom" for="agent_image">Agent Headshot Photo</label>
+                <input type="file" id="agent_image" name="agent_image" class="input-custom" accept="image/*">
+                <div class="form-desc">Defaults to placeholder office headshot if left blank.</div>
+              </div>
             </div>
-            <div class="form-group-admin">
-              <label class="label-admin" for="bathrooms">Bathrooms *</label>
-              <input class="input-admin" type="number" step="0.5" id="bathrooms" name="bathrooms" min="0" placeholder="e.g. 2.5" required>
+
+            <div class="btn-form-action-group">
+              <button type="button" class="btn-secondary-custom" onclick="switchFormTab('specs')">← Back to Specs</button>
+              <button type="submit" class="btn-add-action" id="btn-submit" style="padding: 12px 30px;">
+                <span class="spinner" id="btn-spinner"></span>
+                <span id="btn-text">Publish Listing</span>
+              </button>
             </div>
-          </div>
 
-          <div class="form-row">
-            <div class="form-group-admin">
-              <label class="label-admin" for="yearBuilt">Year Built *</label>
-              <input class="input-admin" type="number" id="yearBuilt" name="yearBuilt" min="1800" max="2035" placeholder="e.g. 2021" required>
-            </div>
-            <div class="form-group-admin" style="justify-content: center;">
-              <label class="checkbox-container">
-                <input type="checkbox" id="featured" name="featured">
-                <span style="font-size: 0.9rem; font-weight: 500;">Featured Property</span>
-              </label>
-            </div>
           </div>
-
-          <div class="form-group-admin">
-            <label class="label-admin" for="description">Description *</label>
-            <textarea class="textarea-admin" id="description" name="description" placeholder="Provide full details of the property..." required></textarea>
-          </div>
-
-          <div class="form-group-admin">
-            <label class="label-admin" for="features">Key Features (comma-separated)</label>
-            <input class="input-admin" type="text" id="features" name="features" placeholder="Pool, Smart Home, Wine Cellar, Wine Room">
-            <div class="form-desc">Separate items with commas. Empty values will be filtered out.</div>
-          </div>
-
-          <div class="form-group-admin">
-            <label class="label-admin" for="images">Upload Images (select multiple)</label>
-            <input class="input-admin" type="file" id="images" name="images[]" multiple accept="image/*">
-            <div class="form-desc">First image will be used as the main display image. Defaults to placeholder if empty.</div>
-            <div class="preview-container" id="images-preview"></div>
-          </div>
-
-          <!-- Agent Section -->
-          <div class="form-group-admin" style="border-top: 1px solid var(--color-border); padding-top: 1.2rem; margin-top: 1rem;">
-            <label class="label-admin" for="agent_selection">Assign Agent *</label>
-            <select class="select-admin" id="agent_selection" name="agent_selection" required>
-              <option value="sarah" selected>Sarah Jenkins (Senior Partner)</option>
-              <option value="michael">Michael Chen (Urban Specialist)</option>
-              <option value="emma">Emma Davis (Family Homes)</option>
-              <option value="custom">-- Custom Agent --</option>
-            </select>
-          </div>
-
-          <!-- Custom Agent Details (hidden by default) -->
-          <div class="agent-custom-fields" id="agent-custom-section">
-            <div class="form-group-admin">
-              <label class="label-admin" for="agent_name">Agent Name *</label>
-              <input class="input-admin" type="text" id="agent_name" name="agent_name" placeholder="e.g. John Doe">
-            </div>
-            <div class="form-group-admin">
-              <label class="label-admin" for="agent_phone">Agent Phone Number *</label>
-              <input class="input-admin" type="text" id="agent_phone" name="agent_phone" placeholder="e.g. +1 (555) 000-1111">
-            </div>
-            <div class="form-group-admin">
-              <label class="label-admin" for="agent_image">Agent Photo</label>
-              <input class="input-admin" type="file" id="agent_image" name="agent_image" accept="image/*">
-              <div class="form-desc">Defaults to placeholder if empty.</div>
-            </div>
-          </div>
-
-          <button type="submit" class="btn-submit-prop" id="btn-submit">
-            <span class="spinner" id="btn-spinner"></span>
-            <span id="btn-text">Add Property</span>
-          </button>
 
         </form>
-      </section>
+      </div>
+    </section>
 
-    </div>
   </main>
 
   <div id="toast-container" class="toast-container"></div>
 
   <script src="{{ asset('js/main.js') }}"></script>
   <script>
-    // Handle conditional fields for Agent Selection
-    const agentSelection = document.getElementById('agent_selection');
-    const customAgentSection = document.getElementById('agent-custom-section');
-    const customAgentName = document.getElementById('agent_name');
-    const customAgentPhone = document.getElementById('agent_phone');
+    // Tab switching in form
+    function switchFormTab(tabName) {
+      document.querySelectorAll('.form-tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.form-tab-content').forEach(content => content.classList.remove('active'));
 
-    agentSelection.addEventListener('change', (e) => {
-      if (e.target.value === 'custom') {
-        customAgentSection.style.display = 'block';
-        customAgentName.required = true;
-        customAgentPhone.required = true;
+      if (tabName === 'basic') {
+        document.getElementById('tab-btn-basic').classList.add('active');
+        document.getElementById('tab-content-basic').classList.add('active');
+      } else if (tabName === 'specs') {
+        // Validate basic info required inputs first
+        if (!document.getElementById('title').reportValidity()) return;
+        if (!document.getElementById('price').reportValidity()) return;
+        
+        document.getElementById('tab-btn-specs').classList.add('active');
+        document.getElementById('tab-content-specs').classList.add('active');
+      } else if (tabName === 'media') {
+        // Validate specs info required inputs first
+        if (!document.getElementById('title').reportValidity()) { switchFormTab('basic'); return; }
+        if (!document.getElementById('price').reportValidity()) { switchFormTab('basic'); return; }
+        if (!document.getElementById('bedrooms').reportValidity()) return;
+        if (!document.getElementById('bathrooms').reportValidity()) return;
+        if (!document.getElementById('area').reportValidity()) return;
+        if (!document.getElementById('yearBuilt').reportValidity()) return;
+        if (!document.getElementById('location').reportValidity()) return;
+        if (!document.getElementById('city').reportValidity()) return;
+
+        document.getElementById('tab-btn-media').classList.add('active');
+        document.getElementById('tab-content-media').classList.add('active');
+      }
+    }
+
+    // Toggle switch container clicks
+    function toggleFeaturedCheck() {
+      const chk = document.getElementById('featured');
+      chk.checked = !chk.checked;
+    }
+
+    // Switch between listing and adding property views
+    function switchView(viewName) {
+      document.querySelectorAll('.menu-item').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.view-panel').forEach(panel => panel.classList.remove('active-view'));
+
+      const titleEl = document.getElementById('page-title-text');
+      const subtitleEl = document.getElementById('page-subtitle-text');
+
+      if (viewName === 'list') {
+        document.getElementById('menu-btn-list').classList.add('active');
+        document.getElementById('view-panel-list').classList.add('active-view');
+        titleEl.textContent = 'All Properties';
+        subtitleEl.textContent = 'Manage and search your real estate catalog';
       } else {
-        customAgentSection.style.display = 'none';
-        customAgentName.required = false;
-        customAgentPhone.required = false;
+        document.getElementById('menu-btn-add').classList.add('active');
+        document.getElementById('view-panel-add').classList.add('active-view');
+        titleEl.textContent = 'Add Property';
+        subtitleEl.textContent = 'Create a premium database real estate listing';
+        switchFormTab('basic'); // default to basic info tab
+      }
+    }
+
+    // Client-side filtering/searching in table
+    function filterTable() {
+      const query = document.getElementById('table-search').value.toLowerCase();
+      const city = document.getElementById('filter-city-select').value;
+      const type = document.getElementById('filter-type-select').value;
+      let count = 0;
+
+      document.querySelectorAll('#properties-table-body tr').forEach(row => {
+        const title = row.querySelector('.prop-name').textContent.toLowerCase();
+        const loc = row.querySelector('.prop-address').textContent.toLowerCase();
+        const rowCity = row.getAttribute('data-city');
+        const rowType = row.getAttribute('data-type');
+
+        const matchesSearch = title.includes(query) || loc.includes(query);
+        const matchesCity = !city || rowCity === city;
+        const matchesType = !type || rowType === type;
+
+        if (matchesSearch && matchesCity && matchesType) {
+          row.style.display = '';
+          count++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+
+      // Update count text dynamically
+      const countBadge = document.getElementById('properties-count');
+      if (countBadge) {
+        countBadge.textContent = `${count} showing`;
+      }
+    }
+
+    // Agent selector display toggle
+    const agentSelect = document.getElementById('agent_selection');
+    const customSection = document.getElementById('agent-custom-section');
+    const custNameInput = document.getElementById('agent_name');
+    const custPhoneInput = document.getElementById('agent_phone');
+
+    agentSelect.addEventListener('change', () => {
+      if (agentSelect.value === 'custom') {
+        customSection.style.display = 'block';
+        custNameInput.required = true;
+        custPhoneInput.required = true;
+      } else {
+        customSection.style.display = 'none';
+        custNameInput.required = false;
+        custPhoneInput.required = false;
       }
     });
 
-    // Image previews
-    const imagesInput = document.getElementById('images');
-    const previewContainer = document.getElementById('images-preview');
+    // Drag and Drop Zone triggers
+    const dragZone = document.getElementById('drag-drop-zone');
+    const fileInput = document.getElementById('images');
+    const previews = document.getElementById('images-preview');
 
-    imagesInput.addEventListener('change', () => {
-      previewContainer.innerHTML = '';
-      const files = imagesInput.files;
+    // Drag events
+    ['dragenter', 'dragover'].forEach(name => {
+      dragZone.addEventListener(name, (e) => {
+        e.preventDefault();
+        dragZone.classList.add('dragover');
+      }, false);
+    });
+
+    ['dragleave', 'drop'].forEach(name => {
+      dragZone.addEventListener(name, (e) => {
+        e.preventDefault();
+        dragZone.classList.remove('dragover');
+      }, false);
+    });
+
+    dragZone.addEventListener('drop', (e) => {
+      const dt = e.dataTransfer;
+      const files = dt.files;
+      fileInput.files = files; // Assign files to file input
+      renderPreviews(files);
+    });
+
+    fileInput.addEventListener('change', () => {
+      renderPreviews(fileInput.files);
+    });
+
+    function renderPreviews(files) {
+      previews.innerHTML = '';
       if (files.length > 0) {
-        Array.from(files).forEach(file => {
+        Array.from(files).forEach((file, index) => {
           if (file.type.startsWith('image/')) {
             const reader = new FileReader();
             reader.onload = (e) => {
-              const wrapper = document.createElement('div');
-              wrapper.className = 'preview-thumb-wrapper';
-              wrapper.innerHTML = `<img class="preview-thumb" src="${e.target.result}" alt="Preview">`;
-              previewContainer.appendChild(wrapper);
+              const box = document.createElement('div');
+              box.className = 'preview-thumb-box';
+              box.innerHTML = `
+                <img src="${e.target.result}" alt="Preview">
+                <button type="button" class="preview-remove-btn" onclick="removeSelectedFile(${index})">×</button>
+              `;
+              previews.appendChild(box);
             };
             reader.readAsDataURL(file);
           }
         });
       }
-    });
+    }
 
-    // Handle AJAX Form Submit for Adding Property
+    function removeSelectedFile(indexToRemove) {
+      const dt = new DataTransfer();
+      const { files } = fileInput;
+      for (let i = 0; i < files.length; i++) {
+        if (i !== indexToRemove) {
+          dt.items.add(files[i]);
+        }
+      }
+      fileInput.files = dt.files;
+      renderPreviews(fileInput.files);
+    }
+
+    // Submit Property Form via AJAX
     const form = document.getElementById('add-property-form');
     const btnSubmit = document.getElementById('btn-submit');
     const btnText = document.getElementById('btn-text');
@@ -694,17 +1303,17 @@
       e.preventDefault();
 
       btnSubmit.disabled = true;
-      btnText.textContent = 'Saving Property...';
       btnSpinner.style.display = 'block';
+      btnText.textContent = 'Publishing Listing...';
 
       const formData = new FormData(form);
-      const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      const csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
       try {
         const response = await fetch('{{ url("/admin/properties") }}', {
           method: 'POST',
           headers: {
-            'X-CSRF-TOKEN': csrfToken,
+            'X-CSRF-TOKEN': csrf,
             'Accept': 'application/json'
           },
           body: formData
@@ -718,33 +1327,33 @@
             window.location.reload();
           }, 1000);
         } else {
-          window.showToast(data.message || 'Validation failed. Please check inputs.');
+          window.showToast(data.message || 'Validation failed. Check your inputs.');
           btnSubmit.disabled = false;
-          btnText.textContent = 'Add Property';
           btnSpinner.style.display = 'none';
+          btnText.textContent = 'Publish Listing';
         }
-      } catch (error) {
-        console.error('Error adding property:', error);
-        window.showToast('An error occurred while saving.');
+      } catch (err) {
+        console.error(err);
+        window.showToast('Server error when publishing property.');
         btnSubmit.disabled = false;
-        btnText.textContent = 'Add Property';
         btnSpinner.style.display = 'none';
+        btnText.textContent = 'Publish Listing';
       }
     });
 
-    // Delete Property AJAX
+    // Delete Property AJAX Call
     async function deleteProperty(id) {
-      if (!confirm('Are you sure you want to delete this property? This action cannot be undone.')) {
+      if (!confirm('Are you sure you want to delete this property? This action is permanent.')) {
         return;
       }
 
-      const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      const csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
       try {
         const response = await fetch('{{ url("/admin/properties") }}/' + id, {
           method: 'DELETE',
           headers: {
-            'X-CSRF-TOKEN': csrfToken,
+            'X-CSRF-TOKEN': csrf,
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           }
@@ -753,36 +1362,41 @@
         const data = await response.json();
 
         if (response.ok && data.success) {
-          window.showToast(data.message || 'Property deleted successfully!');
-          // Remove row from table
+          window.showToast(data.message || 'Property successfully removed!');
           const row = document.getElementById(`prop-row-${id}`);
           if (row) {
-            row.style.transition = 'all 0.5s ease';
+            row.style.transition = 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
             row.style.opacity = '0';
             row.style.transform = 'translateX(-20px)';
             setTimeout(() => {
               row.remove();
+              // Refresh counts
+              const listRows = document.querySelectorAll('#properties-table-body tr');
               
-              // Update count
-              const countEl = document.getElementById('properties-count');
-              if (countEl) {
-                const rows = document.querySelectorAll('#properties-table-body tr');
-                countEl.textContent = `${rows.length} total`;
-                
-                if (rows.length === 0) {
-                  window.location.reload(); // show empty state placeholder
-                }
+              // Total metrics counts
+              const totalVal = document.getElementById('stats-total');
+              if (totalVal) {
+                totalVal.textContent = listRows.length;
+              }
+              const countBadge = document.getElementById('properties-count');
+              if (countBadge) {
+                countBadge.textContent = `${listRows.length} total`;
+              }
+              
+              if (listRows.length === 0) {
+                window.location.reload();
               }
             }, 500);
           }
         } else {
-          window.showToast(data.message || 'Could not delete property.');
+          window.showToast(data.message || 'Failed to delete listing.');
         }
-      } catch (error) {
-        console.error('Error deleting property:', error);
-        window.showToast('An error occurred during deletion.');
+      } catch (err) {
+        console.error(err);
+        window.showToast('An error occurred during list removal.');
       }
     }
   </script>
+
 </body>
 </html>
