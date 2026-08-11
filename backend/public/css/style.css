@@ -366,6 +366,12 @@ p {
 .hero h1 {
   color: #fff;
   margin-bottom: var(--spacing-md);
+  font-family: var(--font-secondary);
+  font-size: 5.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  line-height: 1.1;
 }
 
 .hero p {
@@ -988,4 +994,182 @@ p {
   height: 80px;
   border-radius: 50%;
   object-fit: cover;
+}
+
+/* Stay Section (Book a Hyve Stay) */
+.stay-section {
+  position: relative;
+}
+
+.stay-slider-container {
+  overflow: hidden;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.stay-slider-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  transition: transform 0.4s ease-in-out;
+}
+
+.stay-card {
+  width: 365px; /* Fits exactly 3 cards in the container width with 20px gaps */
+  flex-shrink: 0;
+  background-color: transparent; /* No background as per screenshot */
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e0e0e0;
+}
+
+.stay-inner-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #333;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.stay-image:hover .stay-inner-nav {
+  opacity: 1;
+}
+
+.stay-inner-prev {
+  left: 10px;
+}
+
+.stay-inner-next {
+  right: 10px;
+}
+
+.stay-image {
+  position: relative;
+  height: 250px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.stay-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.stay-card:hover .stay-image img {
+  transform: scale(1.05);
+}
+
+.badge-chpicks {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background-color: #f4b41a;
+  color: #1a1a1a;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  z-index: 2;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.stay-image-dots {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 6px 10px;
+  border-radius: 12px;
+  display: flex;
+  gap: 6px;
+  z-index: 2;
+}
+
+.stay-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 1px solid #777;
+}
+
+.stay-dot.active {
+  background-color: #333;
+  border-color: #333;
+}
+
+.stay-nav-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #f0ede6;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #555;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  transition: background-color 0.3s;
+}
+
+.stay-nav-btn:hover {
+  background-color: #e2dfd8;
+}
+
+.stay-nav-prev {
+  left: -22px;
+}
+
+.stay-nav-next {
+  right: -22px;
+}
+
+.stay-info {
+  padding: 24px 20px 24px 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.btn-text {
+  color: var(--color-text-main);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.btn-text:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+@keyframes slideTrack {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* (3 cards * 365px) + (3 gaps * 20px) = 1095 + 60 = 1155px */
+    transform: translateX(-1155px);
+  }
 }

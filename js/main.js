@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initBackToTop();
   updateFooterYear();
   initHeroSlideshow();
+  initStaySlider();
 });
 
 // Sticky Navbar
@@ -142,4 +143,63 @@ function initHeroSlideshow() {
     currentSlide = (currentSlide + 1) % slides.length;
     slides[currentSlide].classList.add('active');
   }, 5000);
+}
+
+// Stay Slider
+function initStaySlider() {
+  const track = document.querySelector('.stay-slider-track');
+  const prevBtn = document.querySelector('.stay-nav-prev');
+  const nextBtn = document.querySelector('.stay-nav-next');
+  if (!track || !prevBtn || !nextBtn) return;
+
+  let isAnimating = false;
+  
+  prevBtn.addEventListener('click', () => {
+    if (isAnimating) return;
+    isAnimating = true;
+    
+    const card = track.querySelector('.stay-card');
+    if (!card) return;
+    const cardWidth = card.offsetWidth + 20; // card width + gap
+    
+    // Instantly move last element to front and offset track
+    track.style.transition = 'none';
+    track.prepend(track.lastElementChild);
+    track.style.transform = `translateX(-${cardWidth}px)`;
+    
+    // Force reflow
+    void track.offsetWidth;
+    
+    // Animate to 0
+    track.style.transition = 'transform 0.4s ease-in-out';
+    track.style.transform = 'translateX(0)';
+    
+    setTimeout(() => {
+      isAnimating = false;
+    }, 400);
+  });
+
+  nextBtn.addEventListener('click', () => {
+    if (isAnimating) return;
+    isAnimating = true;
+    
+    const card = track.querySelector('.stay-card');
+    if (!card) return;
+    const cardWidth = card.offsetWidth + 20; // card width + gap
+    
+    // Animate to left
+    track.style.transition = 'transform 0.4s ease-in-out';
+    track.style.transform = `translateX(-${cardWidth}px)`;
+    
+    setTimeout(() => {
+      // Instantly move first element to back and reset offset
+      track.style.transition = 'none';
+      track.appendChild(track.firstElementChild);
+      track.style.transform = 'translateX(0)';
+      
+      // Force reflow
+      void track.offsetWidth;
+      isAnimating = false;
+    }, 400);
+  });
 }
