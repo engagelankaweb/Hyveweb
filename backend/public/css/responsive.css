@@ -110,8 +110,22 @@
   /* Grid Layouts */
   .grid-3 { grid-template-columns: repeat(2, 1fr); }
   
-  .about-split {
+  .about-split,
+  .premium-testimonial-block {
     grid-template-columns: 1fr;
+  }
+  .pt-image {
+    min-height: 300px;
+  }
+  .pt-content {
+    padding: 2rem;
+  }
+  .pt-slide h3 {
+    font-size: 1.4rem;
+    padding-right: 0;
+  }
+  .pt-slide {
+    padding-right: 0;
   }
   
   .footer-grid {

@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateFooterYear();
   initHeroSlideshow();
   initStaySlider();
+  initPremiumTestimonials();
 });
 
 // Sticky Navbar
@@ -150,13 +151,28 @@ function initStaySlider() {
   const track = document.querySelector('.stay-slider-track');
   const prevBtn = document.querySelector('.stay-nav-prev');
   const nextBtn = document.querySelector('.stay-nav-next');
+  const dots = document.querySelectorAll('.stay-dot');
   if (!track || !prevBtn || !nextBtn) return;
 
   let isAnimating = false;
+  let currentDot = 0;
+
+  function updateDots() {
+    if (dots.length === 0) return;
+    dots.forEach(dot => dot.classList.remove('active'));
+    if (dots[currentDot]) {
+      dots[currentDot].classList.add('active');
+    }
+  }
   
   prevBtn.addEventListener('click', () => {
     if (isAnimating) return;
     isAnimating = true;
+    
+    if (dots.length > 0) {
+      currentDot = (currentDot - 1 + dots.length) % dots.length;
+      updateDots();
+    }
     
     const card = track.querySelector('.stay-card');
     if (!card) return;
@@ -183,6 +199,11 @@ function initStaySlider() {
     if (isAnimating) return;
     isAnimating = true;
     
+    if (dots.length > 0) {
+      currentDot = (currentDot + 1) % dots.length;
+      updateDots();
+    }
+    
     const card = track.querySelector('.stay-card');
     if (!card) return;
     const cardWidth = card.offsetWidth + 20; // card width + gap
@@ -202,4 +223,79 @@ function initStaySlider() {
       isAnimating = false;
     }, 400);
   });
+}
+
+// Premium Testimonials Slider
+function initPremiumTestimonials() {
+  const track = document.getElementById('pt-track');
+  const prevBtn = document.getElementById('pt-btn-prev');
+  const nextBtn = document.getElementById('pt-btn-next');
+  if (!track || !prevBtn || !nextBtn) return;
+
+  let isAnimating = false;
+  let autoplayInterval;
+
+  const startAutoplay = () => {
+    autoplayInterval = setInterval(() => {
+      nextSlide();
+    }, 5000); // 5 seconds
+  };
+
+  const stopAutoplay = () => {
+    clearInterval(autoplayInterval);
+  };
+
+  const resetAutoplay = () => {
+    stopAutoplay();
+    startAutoplay();
+  };
+
+  const prevSlide = () => {
+    if (isAnimating) return;
+    isAnimating = true;
+    resetAutoplay();
+
+    // Instantly move last to front
+    track.style.transition = 'none';
+    track.prepend(track.lastElementChild);
+    track.style.transform = 'translateX(-100%)';
+
+    void track.offsetWidth; // Reflow
+
+    // Animate to 0
+    track.style.transition = 'transform 0.4s ease-in-out';
+    track.style.transform = 'translateX(0)';
+
+    setTimeout(() => { isAnimating = false; }, 400);
+  };
+
+  const nextSlide = () => {
+    if (isAnimating) return;
+    isAnimating = true;
+    resetAutoplay();
+
+    track.style.transition = 'transform 0.4s ease-in-out';
+    track.style.transform = 'translateX(-100%)';
+
+    setTimeout(() => {
+      track.style.transition = 'none';
+      track.appendChild(track.firstElementChild);
+      track.style.transform = 'translateX(0)';
+      void track.offsetWidth;
+      isAnimating = false;
+    }, 400);
+  };
+
+  prevBtn.addEventListener('click', prevSlide);
+  nextBtn.addEventListener('click', nextSlide);
+
+  // Pause on hover
+  const container = document.querySelector('.premium-testimonial-block');
+  if (container) {
+    container.addEventListener('mouseenter', stopAutoplay);
+    container.addEventListener('mouseleave', startAutoplay);
+  }
+
+  // Start initial autoplay
+  startAutoplay();
 }

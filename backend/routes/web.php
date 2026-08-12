@@ -5,7 +5,15 @@ use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
-    return file_get_contents(public_path('index.html'));
+    return file_get_contents(base_path('../index.html'));
+});
+
+Route::get('/{page}.html', function ($page) {
+    $path = base_path('../' . basename($page) . '.html');
+    if (file_exists($path)) {
+        return file_get_contents($path);
+    }
+    abort(404);
 });
 
 Route::get('/js/properties.js', [PropertyController::class, 'getPropertiesJs']);
