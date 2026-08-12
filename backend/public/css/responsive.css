@@ -115,7 +115,12 @@
   }
   
   .footer-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+
+  .footer-newsletter-col {
+    grid-column: span 2;
   }
 }
 
@@ -133,6 +138,36 @@
   
   .footer-grid {
     grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footer-newsletter-col {
+    grid-column: span 1;
+  }
+
+  .footer-review-card {
+    max-width: 100%;
+  }
+
+  .footer-subscribe-form {
+    flex-direction: column;
+  }
+
+  .footer-btn-subscribe {
+    width: 100%;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+  }
+
+  .floating-whatsapp-btn {
+    bottom: 16px;
+    right: 16px;
+    padding: 8px 14px;
+    font-size: 0.88rem;
   }
   
   .stats-grid {
