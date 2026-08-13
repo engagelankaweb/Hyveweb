@@ -3,59 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Login | HYVE Real Estate</title>
+  <title>Admin Portal Login | HYVE Real Estate</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
   <link rel="stylesheet" href="{{ asset('css/animations.css') }}">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <style>
+    :root {
+      --color-accent: #D4AF37;
+      --color-accent-hover: #E5C158;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+    }
+
     body {
-      background: radial-gradient(circle at center, #1E1E1E 0%, #121212 100%);
+      background: radial-gradient(circle at center, #1E1E28 0%, #0F0F16 100%);
       color: #FFFFFF;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: var(--spacing-md);
+      padding: 1.5rem;
       position: relative;
-      overflow: hidden;
+      overflow-x: hidden;
+      font-family: 'Inter', sans-serif;
     }
 
     body::before {
       content: '';
       position: absolute;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
-      top: -100px;
-      right: -100px;
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+      top: -120px;
+      right: -120px;
       pointer-events: none;
     }
 
     body::after {
       content: '';
       position: absolute;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
-      bottom: -100px;
-      left: -100px;
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.06) 0%, transparent 70%);
+      bottom: -120px;
+      left: -120px;
       pointer-events: none;
     }
 
     .login-container {
       width: 100%;
-      max-width: 420px;
-      background: rgba(30, 30, 30, 0.75);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      max-width: 440px;
+      background: rgba(26, 26, 38, 0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: var(--radius-lg);
-      padding: 3rem 2.5rem;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      padding: 2.8rem 2.4rem;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
       z-index: 10;
       animation: loginFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
@@ -63,7 +72,7 @@
     @keyframes loginFadeIn {
       from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(24px);
       }
       to {
         opacity: 1;
@@ -73,16 +82,16 @@
 
     .login-header {
       text-align: center;
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem;
     }
 
     .login-logo {
-      font-family: var(--font-secondary);
-      font-size: 2.5rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
       font-weight: 700;
-      letter-spacing: -1px;
+      letter-spacing: -0.5px;
       color: #FFFFFF;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
 
     .login-logo span {
@@ -90,60 +99,90 @@
     }
 
     .login-subtitle {
-      color: #999999;
-      font-size: 0.95rem;
+      color: #94A3B8;
+      font-size: 0.92rem;
+      letter-spacing: 0.3px;
+    }
+
+    .alert-error {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      color: #F87171;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: loginFadeIn 0.4s ease;
     }
 
     .form-group {
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.3rem;
     }
 
     .form-label {
       display: block;
-      color: #CCCCCC;
-      font-size: 0.85rem;
-      font-weight: 500;
+      color: #CBD5E1;
+      font-size: 0.82rem;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 0.5rem;
-    }
-
-    .input-wrapper {
-      position: relative;
+      letter-spacing: 0.8px;
+      margin-bottom: 0.45rem;
     }
 
     .form-control {
       width: 100%;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: var(--radius-sm);
-      padding: 12px 16px;
+      padding: 12px 14px;
       color: #FFFFFF;
-      font-family: var(--font-primary);
-      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
       transition: all 0.3s ease;
+      box-sizing: border-box;
     }
 
     .form-control:focus {
       outline: none;
       border-color: var(--color-accent);
-      background: rgba(255, 255, 255, 0.06);
-      box-shadow: 0 0 10px rgba(212, 175, 55, 0.15);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+    }
+
+    .form-control::placeholder {
+      color: #64748B;
+    }
+
+    .form-check {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+      color: #94A3B8;
+      cursor: pointer;
+    }
+
+    .form-check input {
+      accent-color: var(--color-accent);
+      cursor: pointer;
     }
 
     .btn-login {
       width: 100%;
       background: var(--color-accent);
-      color: #121212;
+      color: #121216;
       border: none;
       border-radius: var(--radius-sm);
       padding: 14px;
-      font-family: var(--font-primary);
-      font-weight: 600;
-      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.98rem;
       cursor: pointer;
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-      margin-top: 1rem;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -152,27 +191,23 @@
 
     .btn-login:hover {
       background: var(--color-accent-hover);
-      box-shadow: 0 8px 20px rgba(212, 175, 55, 0.25);
+      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.28);
       transform: translateY(-1px);
     }
 
-    .btn-login:active {
-      transform: translateY(1px);
-    }
-
     .btn-login:disabled {
-      background: #555555;
-      color: #888888;
+      background: #475569;
+      color: #94A3B8;
       cursor: not-allowed;
       transform: none;
       box-shadow: none;
     }
 
     .spinner {
-      width: 20px;
-      height: 20px;
-      border: 2px solid rgba(18, 18, 18, 0.1);
-      border-top-color: #121212;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(18, 18, 22, 0.2);
+      border-top-color: #121216;
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
       display: none;
@@ -182,14 +217,67 @@
       to { transform: rotate(360deg); }
     }
 
+    /* Quick demo test accounts */
+    .demo-accounts {
+      margin-top: 1.8rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      text-align: center;
+    }
+
+    .demo-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #64748B;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+
+    .demo-pills {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .demo-pill-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-sm);
+      color: #CBD5E1;
+      padding: 8px 12px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s ease;
+      text-align: left;
+    }
+
+    .demo-pill-btn:hover {
+      background: rgba(212, 175, 55, 0.1);
+      border-color: rgba(212, 175, 55, 0.3);
+      color: var(--color-accent);
+    }
+
+    .demo-pill-btn span.badge-role {
+      font-size: 0.7rem;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
     .back-home {
       text-align: center;
-      margin-top: 2rem;
+      margin-top: 1.4rem;
     }
 
     .back-link {
-      color: #888888;
-      font-size: 0.9rem;
+      color: #64748B;
+      font-size: 0.85rem;
+      text-decoration: none;
       transition: color 0.3s ease;
     }
 
@@ -203,38 +291,72 @@
   <div class="login-container">
     <div class="login-header">
       <div class="login-logo">HYVE<span>.</span></div>
-      <div class="login-subtitle">Administrative Portal Access</div>
+      <div class="login-subtitle">Administrator & Staff Portal</div>
     </div>
 
     @if(session('error'))
-      <div style="background: rgba(230, 57, 70, 0.15); border: 1px solid rgba(230, 57, 70, 0.3); color: #ff6b6b; padding: 12px; border-radius: var(--radius-sm); font-size: 0.9rem; text-align: center; margin-bottom: 1.5rem; animation: loginFadeIn 0.5s ease;">
-        {{ session('error') }}
+      <div class="alert-error">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+        <span>{{ session('error') }}</span>
       </div>
     @endif
 
     <form id="login-form" action="{{ url('/admin/login') }}" method="POST">
       @csrf
+      
       <div class="form-group">
-        <label for="password" class="form-label">Admin Password</label>
-        <div class="input-wrapper">
-          <input type="password" id="password" name="password" class="form-control" placeholder="••••••••" required autocomplete="current-password">
-        </div>
+        <label for="email" class="form-label">Email Address</label>
+        <input type="email" id="email" name="email" class="form-control" placeholder="admin@hyve.com" value="{{ old('email') }}" required autofocus autocomplete="email">
       </div>
+
+      <div class="form-group">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="••••••••" required autocomplete="current-password">
+      </div>
+
+      <label class="form-check">
+        <input type="checkbox" name="remember" value="1">
+        <span>Remember this device</span>
+      </label>
 
       <button type="submit" id="submit-btn" class="btn-login">
         <span class="spinner" id="btn-spinner"></span>
-        <span id="btn-text">Sign In</span>
+        <span id="btn-text">Sign In to Dashboard</span>
       </button>
     </form>
 
+    <!-- Quick Access Demo Helpers -->
+    <div class="demo-accounts">
+      <div class="demo-title">Quick Fill Demo Roles</div>
+      <div class="demo-pills">
+        <button type="button" class="demo-pill-btn" onclick="fillCredentials('admin@hyve.com', 'admin123')">
+          <span><strong>Main Admin:</strong> admin@hyve.com</span>
+          <span class="badge-role" style="color: #D4AF37;">Executive</span>
+        </button>
+        <button type="button" class="demo-pill-btn" onclick="fillCredentials('staff@hyve.com', 'staff123')">
+          <span><strong>Staff:</strong> staff@hyve.com</span>
+          <span class="badge-role" style="color: #60A5FA;">Manager</span>
+        </button>
+        <button type="button" class="demo-pill-btn" onclick="fillCredentials('agent@hyve.com', 'agent123')">
+          <span><strong>Agent:</strong> agent@hyve.com</span>
+          <span class="badge-role" style="color: #34D399;">Agent</span>
+        </button>
+      </div>
+    </div>
+
     <div class="back-home">
       <a href="{{ url('/') }}" class="back-link">
-        ← Back to HYVE Homepage
+        ← Return to HYVE Website
       </a>
     </div>
   </div>
 
   <script>
+    function fillCredentials(email, password) {
+      document.getElementById('email').value = email;
+      document.getElementById('password').value = password;
+    }
+
     document.getElementById('login-form').addEventListener('submit', () => {
       const submitBtn = document.getElementById('submit-btn');
       const btnSpinner = document.getElementById('btn-spinner');

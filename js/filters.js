@@ -1,4 +1,4 @@
-﻿// =========================================
+// =========================================
 // PROPERTY FILTERING & RENDERING
 // =========================================
 
@@ -18,23 +18,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Render a single property card
 function createPropertyCard(property) {
-  const isFav = window.isFavorite(property.id) ? 'active' : '';
-  const priceLabel = property.purpose === 'rent' ? '/mo' : '';
+  const isFav = window.isFavorite ? (window.isFavorite(property.id) ? 'active' : '') : '';
+  const isShortTerm = property.rental_type === 'short_term';
+  let priceLabel = '';
+  let displayPrice = property.price;
+
+  if (isShortTerm) {
+    priceLabel = '/night';
+    displayPrice = property.nightly_rate || property.price;
+  } else if (property.purpose === 'rent') {
+    priceLabel = '/mo';
+  }
   
+  const imgSrc = (property.images && property.images.length > 0) ? property.images[0] : 'assets/images/luxury_villa_1786339560928.png';
+
   return `
     <div class="property-card reveal-hidden" data-animation="reveal-slide-up">
       <div class="property-image-wrapper">
         ${property.featured ? '<span class="property-badge">Featured</span>' : ''}
+        ${isShortTerm ? '<span class="property-badge" style="left: auto; right: 12px; background: #86198f;">Vacation Stay</span>' : ''}
         <span class="property-type">${property.type}</span>
         <button class="fav-btn ${isFav}" onclick="event.preventDefault(); toggleFavorite(${property.id}, this)">
           <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
         </button>
         <a href="property-details.html?id=${property.id}">
-          <img src="${property.images[0]}" alt="${property.title}" loading="lazy">
+          <img src="${imgSrc}" alt="${property.title}" loading="lazy">
         </a>
       </div>
       <div class="property-content">
-        <div class="property-price">${formatPrice(property.price)}${priceLabel}</div>
+        <div class="property-price">${formatPrice(displayPrice)}${priceLabel}</div>
         <h3 class="property-title"><a href="property-details.html?id=${property.id}">${property.title}</a></h3>
         <div class="property-location">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
@@ -46,16 +58,21 @@ function createPropertyCard(property) {
             ${property.bedrooms} Beds
           </div>
           <div class="feature">
-            <svg viewBox="0 0 24 24"><path d="M2 12h20M12 2v20"></path></svg> <!-- Placeholder icon -->
+            <svg viewBox="0 0 24 24"><path d="M2 12h20M12 2v20"></path></svg>
             ${property.bathrooms} Baths
           </div>
           <div class="feature">
             <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect></svg>
-            ${property.area} sqft
+            ${isShortTerm && property.max_guests ? property.max_guests + ' Guests' : property.area + ' sqft'}
           </div>
         </div>
-        <div class="property-footer">
-          <a href="property-details.html?id=${property.id}" class="btn btn-outline" style="width: 100%; text-align: center;">View Property</a>
+        <div class="property-footer" style="display: flex; gap: 8px;">
+          <a href="property-details.html?id=${property.id}" class="btn btn-outline" style="flex: 1; text-align: center;">View Property</a>
+          ${property.external_url ? `
+            <a href="${property.external_url}" target="_blank" class="btn btn-secondary" style="padding: 8px 12px;" title="Virtual Tour / External Listing">
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          ` : ''}
         </div>
       </div>
     </div>
@@ -64,9 +81,9 @@ function createPropertyCard(property) {
 
 // Render Featured Properties on Homepage
 function renderFeaturedProperties(container) {
+  if (typeof propertiesData === 'undefined') return;
   const featured = propertiesData.filter(p => p.featured).slice(0, 6);
   container.innerHTML = featured.map(createPropertyCard).join('');
-  // Re-init scroll reveals for new elements
   if (window.initScrollReveals) initScrollReveals();
 }
 
@@ -77,7 +94,7 @@ function initFilters(container) {
   const sortSelect = document.getElementById('sort-select');
   const resetBtn = document.getElementById('reset-filters');
   
-  if (!form || !container) return;
+  if (!form || !container || typeof propertiesData === 'undefined') return;
 
   let currentData = [...propertiesData];
 
@@ -110,9 +127,16 @@ function initFilters(container) {
 
     currentData = propertiesData.filter(p => {
       let match = true;
-      if (purpose && p.purpose !== purpose) match = false;
+      if (purpose) {
+        if (purpose === 'short_term') {
+          if (p.rental_type !== 'short_term') match = false;
+        } else if (p.purpose !== purpose) {
+          match = false;
+        }
+      }
       if (type && p.type !== type) match = false;
-      if (p.price < minPrice || p.price > maxPrice) match = false;
+      const comparePrice = (p.rental_type === 'short_term' && p.nightly_rate) ? p.nightly_rate : p.price;
+      if (comparePrice < minPrice || comparePrice > maxPrice) match = false;
       if (beds) {
         if (beds === '4+' && p.bedrooms < 4) match = false;
         else if (beds !== '4+' && p.bedrooms != beds) match = false;
@@ -120,11 +144,11 @@ function initFilters(container) {
       return match;
     });
 
-    applySort(); // Sort after filtering
+    applySort();
   };
 
   const applySort = () => {
-    const sortVal = sortSelect.value;
+    const sortVal = sortSelect ? sortSelect.value : 'default';
     
     if (sortVal === 'price-low') {
       currentData.sort((a, b) => a.price - b.price);
@@ -132,29 +156,30 @@ function initFilters(container) {
       currentData.sort((a, b) => b.price - a.price);
     } else if (sortVal === 'newest') {
       currentData.sort((a, b) => b.yearBuilt - a.yearBuilt);
-    } // default is basically original order (no sort needed)
+    }
 
     render();
   };
 
-  // Event Listeners
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     applyFilters();
   });
   
   form.addEventListener('change', applyFilters);
-  sortSelect.addEventListener('change', applySort);
+  if (sortSelect) sortSelect.addEventListener('change', applySort);
   
-  resetBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    form.reset();
-    currentData = [...propertiesData];
-    sortSelect.value = 'default';
-    render();
-  });
+  if (resetBtn) {
+    resetBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      form.reset();
+      currentData = [...propertiesData];
+      if (sortSelect) sortSelect.value = 'default';
+      render();
+    });
+  }
 
-  // Check URL params for initial search (from homepage)
+  // Check URL params for initial search
   const urlParams = new URLSearchParams(window.location.search);
   if (urlParams.toString()) {
     ['purpose', 'location', 'type', 'beds'].forEach(param => {
@@ -166,7 +191,6 @@ function initFilters(container) {
     });
     applyFilters();
   } else {
-    // Initial render
     render();
   }
 }
