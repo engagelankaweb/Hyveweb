@@ -188,3 +188,88 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* About Page Responsive Rules */
+@media (max-width: 1024px) {
+  .values-grid,
+  .why-hyve-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .about-overview-grid {
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-overview-grid,
+  .mv-grid,
+  .founders-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-floating-badge {
+    position: static;
+    margin-top: 1.25rem;
+  }
+  .about-main-img {
+    height: 340px;
+  }
+  .founder-card,
+  .mv-card {
+    padding: 2.25rem 1.75rem;
+  }
+  .about-cta-luxury {
+    padding: 3.5rem 1.5rem;
+  }
+  .about-cta-luxury h2 {
+    font-size: 2.2rem;
+  }
+  .section-title-luxury {
+    font-size: 2.2rem;
+  }
+  .stats-counter-strip .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .about-stat-card:nth-child(2)::after {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .values-grid,
+  .why-hyve-grid {
+    grid-template-columns: 1fr;
+  }
+  .stats-counter-strip .grid-4 {
+    grid-template-columns: 1fr;
+  }
+  .about-stat-card:not(:last-child)::after {
+    display: none;
+  }
+  .about-stat-card:not(:last-child) {
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 1.5rem;
+  }
+  .about-cta-luxury h2 {
+    font-size: 1.85rem;
+  }
+  .about-stat-val {
+    font-size: 2.3rem;
+  }
+  .founder-header-flex {
+    flex-direction: column;
+    text-align: center;
+  }
+  .founder-card {
+    text-align: center;
+  }
+  .founder-contact-actions {
+    justify-content: center;
+  }
+  .why-trust-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem;
+  }
+}
+
