@@ -58,7 +58,7 @@ function renderProperty(p) {
   // Render Gallery Images
   const mainImage = document.getElementById('main-gallery-image');
   const images = (p.images && p.images.length > 0) ? p.images : ['assets/images/luxury_villa_1786339560928.png'];
-  if (mainImage) mainImage.src = images[0];
+  mainImage.src = images[0];
   
   const thumbnailContainer = document.getElementById('gallery-thumbnails');
   if (thumbnailContainer) {
@@ -70,22 +70,13 @@ function renderProperty(p) {
   }
 
   // Render Details
-  const titleEl = document.getElementById('pd-title');
-  if (titleEl) titleEl.textContent = p.title;
-
-  const locEl = document.getElementById('pd-location');
-  if (locEl) {
-    locEl.innerHTML = `
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-      ${p.location}
-    `;
-  }
-
-  const priceEl = document.getElementById('pd-price');
-  if (priceEl) priceEl.textContent = formatPrice(displayPrice) + priceLabel;
-
-  const typeEl = document.getElementById('pd-type');
-  if (typeEl) typeEl.textContent = p.type;
+  document.getElementById('pd-title').textContent = p.title;
+  document.getElementById('pd-location').innerHTML = `
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+    ${p.location}
+  `;
+  document.getElementById('pd-price').textContent = formatPrice(displayPrice) + priceLabel;
+  document.getElementById('pd-type').textContent = p.type;
 
   const statusBadge = document.getElementById('pd-status');
   if (statusBadge) {
@@ -105,35 +96,28 @@ function renderProperty(p) {
   }
 
   // Key stats
-  const bedsEl = document.getElementById('pd-beds');
-  if (bedsEl) bedsEl.textContent = p.bedrooms;
-  const bathsEl = document.getElementById('pd-baths');
-  if (bathsEl) bathsEl.textContent = p.bathrooms;
-  const areaEl = document.getElementById('pd-area');
-  if (areaEl) areaEl.textContent = (isShortTerm && p.max_guests) ? `${p.max_guests} Guests` : p.area;
-  const yearEl = document.getElementById('pd-year');
-  if (yearEl) yearEl.textContent = p.yearBuilt;
+  document.getElementById('pd-beds').textContent = p.bedrooms;
+  document.getElementById('pd-baths').textContent = p.bathrooms;
+  document.getElementById('pd-area').textContent = (isShortTerm && p.max_guests) ? `${p.max_guests} Guests` : p.area;
+  document.getElementById('pd-year').textContent = p.yearBuilt;
 
   // Description & Features
-  const descEl = document.getElementById('pd-description');
-  if (descEl) descEl.textContent = p.description;
-
-  const featuresList = p.features && Array.isArray(p.features) ? [...p.features] : [];
+  document.getElementById('pd-description').textContent = p.description;
+  const featuresList = p.features && Array.isArray(p.features) ? p.features : [];
+  
+  // Add short term stay specs if present
   if (isShortTerm) {
     if (p.min_stay) featuresList.push(`Min Stay: ${p.min_stay} nights`);
     if (p.check_in_time) featuresList.push(`Check-In: ${p.check_in_time}`);
     if (p.check_out_time) featuresList.push(`Check-Out: ${p.check_out_time}`);
   }
 
-  const featEl = document.getElementById('pd-features');
-  if (featEl) {
-    featEl.innerHTML = featuresList.map(f => `
-      <li style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-        ${f}
-      </li>
-    `).join('');
-  }
+  document.getElementById('pd-features').innerHTML = featuresList.map(f => `
+    <li style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      ${f}
+    </li>
+  `).join('');
 
   // External Links section
   let externalLinksHtml = '';
@@ -154,11 +138,14 @@ function renderProperty(p) {
     `;
   }
 
-  if (externalLinksHtml && descEl) {
-    const linkBox = document.createElement('div');
-    linkBox.style.marginTop = '16px';
-    linkBox.innerHTML = externalLinksHtml;
-    descEl.parentNode.insertBefore(linkBox, descEl.nextSibling);
+  if (externalLinksHtml) {
+    const descSection = document.getElementById('pd-description');
+    if (descSection) {
+      const linkBox = document.createElement('div');
+      linkBox.style.marginTop = '16px';
+      linkBox.innerHTML = externalLinksHtml;
+      descSection.parentNode.insertBefore(linkBox, descSection.nextSibling);
+    }
   }
 
   // Agent Info
