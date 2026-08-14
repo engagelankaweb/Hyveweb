@@ -124,11 +124,12 @@ function initFilters(container) {
   };
 
   const applyFilters = () => {
-    const purpose = document.getElementById('filter-purpose').value;
-    const type = document.getElementById('filter-type').value;
-    const minPrice = parseInt(document.getElementById('filter-min-price').value) || 0;
-    const maxPrice = parseInt(document.getElementById('filter-max-price').value) || Infinity;
-    const beds = document.getElementById('filter-beds').value;
+    const purpose = document.getElementById('filter-purpose') ? document.getElementById('filter-purpose').value : '';
+    const type = document.getElementById('filter-type') ? document.getElementById('filter-type').value : '';
+    const locationInput = document.getElementById('filter-location') ? document.getElementById('filter-location').value.toLowerCase() : '';
+    const minPrice = parseInt(document.getElementById('filter-min-price') ? document.getElementById('filter-min-price').value : 0) || 0;
+    const maxPrice = parseInt(document.getElementById('filter-max-price') ? document.getElementById('filter-max-price').value : '') || Infinity;
+    const beds = document.getElementById('filter-beds') ? document.getElementById('filter-beds').value : '';
 
     currentData = propertiesData.filter(p => {
       let match = true;
@@ -137,6 +138,13 @@ function initFilters(container) {
       } else {
         if (p.rental_type === 'short_term') match = false;
         if (purpose && p.purpose !== purpose) match = false;
+      }
+      if (locationInput) {
+        const locStr = (p.location || '').toLowerCase();
+        const cityStr = (p.city || '').toLowerCase();
+        if (!locStr.includes(locationInput) && !cityStr.includes(locationInput)) {
+          match = false;
+        }
       }
       if (type && p.type !== type) match = false;
       const comparePrice = (p.rental_type === 'short_term' && p.nightly_rate) ? p.nightly_rate : p.price;
@@ -154,12 +162,14 @@ function initFilters(container) {
   const applySort = () => {
     const sortVal = sortSelect ? sortSelect.value : 'default';
     
+    const getPrice = (p) => (p.rental_type === 'short_term' && p.nightly_rate) ? p.nightly_rate : (p.price || 0);
+
     if (sortVal === 'price-low') {
-      currentData.sort((a, b) => a.price - b.price);
+      currentData.sort((a, b) => getPrice(a) - getPrice(b));
     } else if (sortVal === 'price-high') {
-      currentData.sort((a, b) => b.price - a.price);
+      currentData.sort((a, b) => getPrice(b) - getPrice(a));
     } else if (sortVal === 'newest') {
-      currentData.sort((a, b) => b.yearBuilt - a.yearBuilt);
+      currentData.sort((a, b) => (b.yearBuilt || 0) - (a.yearBuilt || 0));
     }
 
     render();
