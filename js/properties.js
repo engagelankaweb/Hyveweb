@@ -1,4 +1,4 @@
-﻿const propertiesData = [
+const propertiesData = [
   {
     id: 1,
     title: "Modern Luxury Villa",
@@ -362,5 +362,83 @@
       phone: "+1 (555) 333-2222"
     },
     featured: false
+  },
+  {
+    id: 16,
+    title: "Luxury Beachfront Villa",
+    location: "Waikiki, HI",
+    city: "Honolulu",
+    type: "Villa",
+    purpose: "rent",
+    rental_type: "short_term",
+    nightly_rate: 850,
+    max_guests: 8,
+    bedrooms: 4,
+    bathrooms: 3.5,
+    area: 3200,
+    yearBuilt: 2018,
+    description: "Experience the ultimate Hawaiian getaway in this stunning beachfront villa. Wake up to ocean views and step directly onto the sand.",
+    features: ["Beachfront", "Private Pool", "Outdoor BBQ", "Ocean View"],
+    images: [
+      "assets/images/luxury_villa_1786339560928.png"
+    ],
+    agent: {
+      name: "Sarah Jenkins",
+      image: "assets/images/agent_office_1786339595128.png",
+      phone: "+1 (555) 123-4567"
+    },
+    featured: true
+  },
+  {
+    id: 17,
+    title: "Cozy Mountain Cabin",
+    location: "Lake Tahoe, CA",
+    city: "Tahoe City",
+    type: "House",
+    purpose: "rent",
+    rental_type: "short_term",
+    nightly_rate: 350,
+    max_guests: 6,
+    bedrooms: 3,
+    bathrooms: 2,
+    area: 1800,
+    yearBuilt: 2010,
+    description: "A beautiful log cabin surrounded by pine trees. Perfect for ski trips in the winter or lake days in the summer. Features a private hot tub.",
+    features: ["Hot Tub", "Fireplace", "Forest Views", "Near Ski Resort"],
+    images: [
+      "assets/images/hero_property_1786339547369.png"
+    ],
+    agent: {
+      name: "Michael Chen",
+      image: "assets/images/agent_office_1786339595128.png",
+      phone: "+1 (555) 987-6543"
+    },
+    featured: false
+  },
+  {
+    id: 18,
+    title: "Downtown Skyline Apartment",
+    location: "Downtown, Chicago",
+    city: "Chicago",
+    type: "Apartment",
+    purpose: "rent",
+    rental_type: "short_term",
+    nightly_rate: 200,
+    max_guests: 2,
+    bedrooms: 1,
+    bathrooms: 1,
+    area: 850,
+    yearBuilt: 2021,
+    description: "Modern high-rise apartment with incredible views of the Chicago skyline and Lake Michigan. Walking distance to Millennium Park.",
+    features: ["Skyline View", "Gym in Building", "Fast Wi-Fi"],
+    images: [
+      "assets/images/penthouse_interior_1786339582396.png"
+    ],
+    agent: {
+      name: "Emma Davis",
+      image: "assets/images/agent_office_1786339595128.png",
+      phone: "+1 (555) 333-2222"
+    },
+    featured: true
   }
 ];
