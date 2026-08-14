@@ -355,6 +355,24 @@
       .stats-grid {
         grid-template-columns: 1fr;
       }
+      .dashboard-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+        padding: 1rem;
+      }
+      .header-search {
+        margin: 0;
+      }
+      .header-search input {
+        width: 100%;
+      }
+      .header-actions {
+        justify-content: flex-end;
+      }
+      .page-title {
+        font-size: 1.5rem;
+      }
     }
 
     .stat-card {
@@ -939,12 +957,14 @@
       background: #ffffff;
       border-radius: var(--radius-md);
       box-shadow: var(--shadow-dropdown);
-      width: 100%;
+      width: 95%;
       max-width: 850px;
       max-height: 90vh;
+      margin: 20px auto;
       display: flex;
       flex-direction: column;
       animation: modalSlide 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow-y: auto;
     }
 
     .modal-dialog.sm {
@@ -1561,32 +1581,19 @@
 
               <div class="form-group-custom">
                 <label class="label-custom" for="add_purpose">Listing Purpose *</label>
-                <select id="add_purpose" name="purpose" class="select-custom" required onchange="handleAddPurposeChange(this.value)">
+                <select id="add_purpose" name="purpose" class="select-custom" required>
                   <option value="buy">For Sale (Buy)</option>
                   <option value="rent">For Rent (Long-Term)</option>
                 </select>
               </div>
             </div>
 
-            <!-- Short-term rental extra selector -->
-            <div class="form-group-custom" id="add-rental-type-container" style="display: none;">
-              <label class="label-custom" for="add_rental_type">Rental Format</label>
-              <select id="add_rental_type" name="rental_type" class="select-custom" onchange="handleAddRentalTypeChange(this.value)">
-                <option value="long_term">Long-Term Residential Rental</option>
-                <option value="short_term">Short-Term Vacation / Nightly Stay</option>
-              </select>
-            </div>
+            <!-- Hidden long_term for properties -->
+            <input type="hidden" id="add_rental_type" name="rental_type" value="long_term">
 
-            <div class="form-grid-2">
-              <div class="form-group-custom">
-                <label class="label-custom" for="add_price">Price ($ USD) *</label>
-                <input type="number" id="add_price" name="price" class="input-custom" min="0" required>
-              </div>
-
-              <div class="form-group-custom" id="add-nightly-rate-box" style="display: none;">
-                <label class="label-custom" for="add_nightly_rate">Nightly Rate ($ USD)</label>
-                <input type="number" id="add_nightly_rate" name="nightly_rate" class="input-custom" min="0">
-              </div>
+            <div class="form-group-custom">
+              <label class="label-custom" for="add_price">Price ($ USD) *</label>
+              <input type="number" id="add_price" name="price" class="input-custom" min="0" required>
             </div>
 
             <div class="form-group-custom">
@@ -1708,6 +1715,213 @@
               <button type="submit" class="btn-add-action" id="btn-add-submit" style="padding: 12px 32px;">
                 <span class="spinner-sm" id="spinner-add-submit"></span>
                 <span>Publish Real Estate Listing</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- VIEW X: ADD SHORT TERM RENTAL VIEW -->
+    <!-- ============================================== -->
+    <section class="view-panel" id="view-panel-add-short-rental">
+      <div class="dashboard-panel-card" style="max-width: 900px; margin: 0 auto 2rem;">
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title">Create New Short-Term Rental</h2>
+            <p style="margin: 4px 0 0; color: #64748b; font-size: 0.88rem;">Publish a vacation stay with nightly rates</p>
+          </div>
+          <button class="btn-secondary-custom" onclick="switchView('rentals')">Cancel & Return</button>
+        </div>
+
+        <form id="add-short-rental-form" enctype="multipart/form-data">
+          <!-- Hidden fields for rentals -->
+          <input type="hidden" name="purpose" value="rent">
+          <input type="hidden" name="rental_type" value="short_term">
+
+          <!-- Step Tabs -->
+          <div class="form-tabs">
+            <button type="button" class="form-tab-btn active" id="tab-rental-btn-1" onclick="switchRentalTab(1)">1. Basic Information</button>
+            <button type="button" class="form-tab-btn" id="tab-rental-btn-2" onclick="switchRentalTab(2)">2. Specs & Rates</button>
+            <button type="button" class="form-tab-btn" id="tab-rental-btn-3" onclick="switchRentalTab(3)">3. Media & Links</button>
+          </div>
+
+          <!-- Tab 1: Basic Info -->
+          <div class="form-tab-content active" id="tab-rental-content-1">
+            <div class="form-group-custom">
+              <label class="label-custom" for="rental_title">Listing Title *</label>
+              <input type="text" id="rental_title" name="title" class="input-custom" required>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group-custom">
+                <label class="label-custom" for="rental_type_select">Property Category *</label>
+                <select id="rental_type_select" name="type" class="select-custom" required>
+                  <option value="Villa">Villa</option>
+                  <option value="House">House</option>
+                  <option value="Apartment">Apartment</option>
+                  <option value="Condo">Condo</option>
+                  <option value="Cabin">Cabin</option>
+                </select>
+              </div>
+
+              <div class="form-group-custom">
+                <label class="label-custom" for="rental_nightly_rate">Nightly Rate ($ USD) *</label>
+                <input type="number" id="rental_nightly_rate" name="nightly_rate" class="input-custom" min="0" required oninput="document.getElementById('rental_price').value = this.value">
+              </div>
+            </div>
+
+            <div class="form-group-custom" style="display: none;">
+              <input type="number" id="rental_price" name="price" value="0">
+            </div>
+
+            <div class="form-group-custom">
+              <label class="label-custom" for="rental_description">Listing Narrative & Description *</label>
+              <textarea id="rental_description" name="description" class="textarea-custom" required></textarea>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group-custom">
+                <label class="label-custom">Featured on Homepage</label>
+                <label class="switch-toggle" style="margin-top: 6px;">
+                  <input type="checkbox" name="featured" value="1">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="form-group-custom">
+                <label class="label-custom">Publish Immediately</label>
+                <label class="switch-toggle" style="margin-top: 6px;">
+                  <input type="checkbox" name="is_published" value="1" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="btn-form-action-group">
+              <div></div>
+              <button type="button" class="btn-add-action" onclick="switchRentalTab(2)">Continue to Specs →</button>
+            </div>
+          </div>
+
+          <!-- Tab 2: Specs & Rates -->
+          <div class="form-tab-content" id="tab-rental-content-2">
+            <div class="form-grid-3">
+              <div class="form-group-custom">
+                <label class="label-custom" for="rental_bedrooms">Bedrooms *</label>
+                <input type="number" id="rental_bedrooms" name="bedrooms" class="input-custom" min="0" required>
+              </div>
+
+              <div class="form-group-custom">
+                <label class="label-custom" for="rental_bathrooms">Bathrooms *</label>
+                <input type="number" step="0.5" id="rental_bathrooms" name="bathrooms" class="input-custom" min="0" required>
+              </div>
+
+              <div class="form-group-custom">
+                <label class="label-custom" for="rental_area">Area (sqft) *</label>
+                <input type="number" id="rental_area" name="area" class="input-custom" min="0" required>
+              </div>
+            </div>
+
+            <div class="form-grid-3">
+              <div class="form-group-custom">
+                <label class="label-custom" for="rental_max_guests">Max Guests</label>
+                <input type="number" id="rental_max_guests" name="max_guests" class="input-custom" min="1">
+              </div>
+
+              <div class="form-group-custom">
+                <label class="label-custom" for="rental_min_stay">Min Stay (Nights)</label>
+                <input type="number" id="rental_min_stay" name="min_stay" class="input-custom" min="1">
+              </div>
+
+              <div class="form-group-custom">
+                <label class="label-custom" for="rental_yearBuilt">Year Built *</label>
+                <input type="number" id="rental_yearBuilt" name="yearBuilt" class="input-custom" min="1800" max="2035" required>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group-custom">
+                <label class="label-custom" for="rental_check_in_time">Check-in Time</label>
+                <input type="text" id="rental_check_in_time" name="check_in_time" placeholder="e.g. 3:00 PM" class="input-custom">
+              </div>
+
+              <div class="form-group-custom">
+                <label class="label-custom" for="rental_check_out_time">Check-out Time</label>
+                <input type="text" id="rental_check_out_time" name="check_out_time" placeholder="e.g. 11:00 AM" class="input-custom">
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group-custom">
+                <label class="label-custom" for="rental_city">City *</label>
+                <input type="text" id="rental_city" name="city" class="input-custom" required>
+              </div>
+
+              <div class="form-group-custom">
+                <label class="label-custom" for="rental_location">Street Address *</label>
+                <input type="text" id="rental_location" name="location" class="input-custom" required>
+              </div>
+            </div>
+
+            <div class="form-group-custom">
+              <label class="label-custom" for="rental_features">Key Features (comma-separated)</label>
+              <input type="text" id="rental_features" name="features" class="input-custom">
+            </div>
+
+            <div class="btn-form-action-group">
+              <button type="button" class="btn-secondary-custom" onclick="switchRentalTab(1)">← Back to Basic</button>
+              <button type="button" class="btn-add-action" onclick="switchRentalTab(3)">Continue to Media →</button>
+            </div>
+          </div>
+
+          <!-- Tab 3: Media & Links -->
+          <div class="form-tab-content" id="tab-rental-content-3">
+            <div class="form-group-custom">
+              <label class="label-custom">Upload Property Media Photos</label>
+              <div class="upload-drag-zone" onclick="document.getElementById('rental_images').click()">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="36" height="36" style="margin: 0 auto 6px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                <div style="font-weight: 600; font-size: 0.92rem; color: #1e293b;">Click to browse photos or drag and drop files here</div>
+                <span style="font-size: 0.8rem; color: #94a3b8;">Supports JPEG, PNG, WEBP (Max 5MB each)</span>
+              </div>
+              <input type="file" id="rental_images" name="images[]" multiple accept="image/*" style="display: none;" onchange="renderRentalImagePreviews(this.files)">
+              <div class="preview-container" id="rental_images_preview"></div>
+            </div>
+
+            <div class="form-group-custom">
+              <label class="label-custom" for="rental_external_booking_url">Booking Partner URL (e.g. Airbnb, Booking.com)</label>
+              <input type="url" id="rental_external_booking_url" name="external_booking_url" class="input-custom" placeholder="https://">
+            </div>
+
+            <div class="form-group-custom" style="border-top: 1px solid #f1f5f9; padding-top: 1.25rem; margin-top: 1.25rem;">
+              <label class="label-custom" for="rental_agent_selection">Assign Listing Agent *</label>
+              <select id="rental_agent_selection" name="agent_selection" class="select-custom" required onchange="handleRentalAgentChange(this.value)">
+                <option value="sarah" selected>Sarah Jenkins (Senior Partner)</option>
+                <option value="michael">Michael Chen (Urban Specialist)</option>
+                <option value="emma">Emma Davis (Family Estates)</option>
+                <option value="custom">-- Custom Listing Agent --</option>
+              </select>
+            </div>
+
+            <div id="rental-custom-agent-box" style="display: none; background: #f8fafc; border: 1px solid #e2e8f0; padding: 1.25rem; border-radius: var(--radius-sm); margin-bottom: 1rem;">
+              <div class="form-grid-2">
+                <div class="form-group-custom">
+                  <label class="label-custom" for="rental_agent_name">Agent Full Name</label>
+                  <input type="text" id="rental_agent_name" name="agent_name" class="input-custom">
+                </div>
+                <div class="form-group-custom">
+                  <label class="label-custom" for="rental_agent_phone">Contact Phone</label>
+                  <input type="text" id="rental_agent_phone" name="agent_phone" class="input-custom">
+                </div>
+              </div>
+            </div>
+
+            <div class="btn-form-action-group">
+              <button type="button" class="btn-secondary-custom" onclick="switchRentalTab(2)">← Back to Specs</button>
+              <button type="submit" class="btn-add-action" id="btn-rental-submit" style="padding: 12px 32px;">
+                <span class="spinner-sm" id="spinner-rental-submit"></span>
+                <span>Publish Vacation Stay</span>
               </button>
             </div>
           </div>
@@ -2136,8 +2350,13 @@
         if (btn) btn.classList.add('active');
         document.getElementById('view-panel-add-property').classList.add('active-view');
         titleEl.textContent = 'Add Property Listing';
-        subtitleEl.textContent = 'Create a premium database real estate listing or vacation stay';
+        subtitleEl.textContent = 'Create a premium database real estate listing';
         switchAddTab(1);
+      } else if (viewName === 'add-short-rental') {
+        document.getElementById('view-panel-add-short-rental').classList.add('active-view');
+        titleEl.textContent = 'Create New Short-Term Rental';
+        subtitleEl.textContent = 'Publish a vacation stay with nightly rates';
+        switchRentalTab(1);
       } else if (viewName === 'users') {
         const btn = document.getElementById('menu-btn-users');
         if (btn) btn.classList.add('active');
@@ -2175,26 +2394,7 @@
       document.getElementById(`tab-add-content-${step}`).classList.add('active');
     }
 
-    // Purpose change in Add Form
-    function handleAddPurposeChange(val) {
-      const rentalContainer = document.getElementById('add-rental-type-container');
-      if (val === 'rent') {
-        rentalContainer.style.display = 'flex';
-      } else {
-        rentalContainer.style.display = 'none';
-        document.getElementById('add_rental_type').value = 'long_term';
-        handleAddRentalTypeChange('long_term');
-      }
-    }
-
-    function handleAddRentalTypeChange(val) {
-      const nightlyBox = document.getElementById('add-nightly-rate-box');
-      if (val === 'short_term') {
-        nightlyBox.style.display = 'flex';
-      } else {
-        nightlyBox.style.display = 'none';
-      }
-    }
+    // Removed handleAddPurposeChange and handleAddRentalTypeChange
 
     function handleAddAgentChange(val) {
       const box = document.getElementById('add-custom-agent-box');
@@ -2522,13 +2722,101 @@
       }
     });
 
+    // Tab switcher in Add Short Rental Form
+    function switchRentalTab(step) {
+      if (step === 2) {
+        if (!document.getElementById('rental_title').reportValidity()) return;
+        if (!document.getElementById('rental_nightly_rate').reportValidity()) return;
+      } else if (step === 3) {
+        if (!document.getElementById('rental_bedrooms').reportValidity()) return;
+        if (!document.getElementById('rental_bathrooms').reportValidity()) return;
+        if (!document.getElementById('rental_area').reportValidity()) return;
+        if (!document.getElementById('rental_yearBuilt').reportValidity()) return;
+        if (!document.getElementById('rental_city').reportValidity()) return;
+        if (!document.getElementById('rental_location').reportValidity()) return;
+      }
+
+      document.querySelectorAll('#view-panel-add-short-rental .form-tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('#view-panel-add-short-rental .form-tab-content').forEach(c => c.classList.remove('active'));
+
+      document.getElementById(`tab-rental-btn-${step}`).classList.add('active');
+      document.getElementById(`tab-rental-content-${step}`).classList.add('active');
+    }
+
+    function handleRentalAgentChange(val) {
+      const box = document.getElementById('rental-custom-agent-box');
+      box.style.display = (val === 'custom') ? 'block' : 'none';
+    }
+
+    let rentalFilesList = [];
+    function renderRentalImagePreviews(files) {
+      rentalFilesList = Array.from(files);
+      const container = document.getElementById('rental_images_preview');
+      container.innerHTML = '';
+
+      rentalFilesList.forEach((file, index) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const div = document.createElement('div');
+          div.className = 'preview-thumb-box';
+          div.innerHTML = `
+            <img src="${e.target.result}" alt="Preview">
+            <button type="button" class="preview-remove-btn" onclick="removeRentalFile(${index})">&times;</button>
+          `;
+          container.appendChild(div);
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function removeRentalFile(idx) {
+      rentalFilesList.splice(idx, 1);
+      const dt = new DataTransfer();
+      rentalFilesList.forEach(file => dt.items.add(file));
+      document.getElementById('rental_images').files = dt.files;
+      renderRentalImagePreviews(dt.files);
+    }
+
+    // Submit Add Short Rental Form
+    document.getElementById('add-short-rental-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('btn-rental-submit');
+      const spinner = document.getElementById('spinner-rental-submit');
+      btn.disabled = true;
+      spinner.style.display = 'inline-block';
+
+      const formData = new FormData(document.getElementById('add-short-rental-form'));
+
+      try {
+        const res = await fetch('{{ url("/admin/properties") }}', {
+          method: 'POST',
+          headers: {
+            'X-CSRF-TOKEN': CSRF_TOKEN,
+            'Accept': 'application/json'
+          },
+          body: formData
+        });
+
+        const data = await res.json();
+        if (res.ok && data.success) {
+          showToast(data.message || 'Short term rental added successfully!');
+          setTimeout(() => window.location.reload(), 800);
+        } else {
+          showToast(data.message || 'Validation failed. Check your input values.');
+          btn.disabled = false;
+          spinner.style.display = 'none';
+        }
+      } catch (err) {
+        console.error(err);
+        showToast('Error connecting to server.');
+        btn.disabled = false;
+        spinner.style.display = 'none';
+      }
+    });
+
     // Shortcut to Add Short Rental
     function openAddShortRentalModal() {
-      switchView('add-property');
-      document.getElementById('add_purpose').value = 'rent';
-      handleAddPurposeChange('rent');
-      document.getElementById('add_rental_type').value = 'short_term';
-      handleAddRentalTypeChange('short_term');
+      switchView('add-short-rental');
     }
 
     // ==========================================

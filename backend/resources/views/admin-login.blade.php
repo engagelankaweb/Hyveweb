@@ -284,6 +284,15 @@
     .back-link:hover {
       color: var(--color-accent);
     }
+
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 2rem 1.5rem;
+      }
+      .login-logo {
+        font-size: 2rem;
+      }
+    }
   </style>
 </head>
 <body>

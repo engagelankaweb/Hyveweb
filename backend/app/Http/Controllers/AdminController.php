@@ -110,8 +110,14 @@ class AdminController extends Controller
 
         $currentUser = Auth::user();
         
-        // Fetch properties
-        $properties = Property::orderBy('id', 'desc')->get();
+        // Fetch properties (excluding short-term rentals)
+        $properties = Property::where(function($q) {
+            $q->where('rental_type', '!=', 'short_term')
+              ->orWhereNull('rental_type');
+        })->where(function($q) {
+            $q->where('purpose', '!=', 'rent')
+              ->orWhereNull('nightly_rate');
+        })->orderBy('id', 'desc')->get();
 
         // Short term rentals collection
         $shortTermRentals = Property::where(function($q) {
