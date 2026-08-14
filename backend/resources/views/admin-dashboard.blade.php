@@ -1069,22 +1069,22 @@
         Overview Dashboard
       </button>
 
-      <button class="menu-item" id="menu-btn-properties" onclick="switchView('properties')">
-        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-        Property Management
-      </button>
-
-      <button class="menu-item" id="menu-btn-rentals" onclick="switchView('rentals')">
-        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-        Short Term Rentals
-      </button>
-
-      <button class="menu-item" id="menu-btn-add-property" onclick="switchView('add-property')">
-        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
-        Add New Property
-      </button>
-
       @if($currentUser->isMainAdmin())
+        <button class="menu-item" id="menu-btn-properties" onclick="switchView('properties')">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          Property Management
+        </button>
+
+        <button class="menu-item" id="menu-btn-rentals" onclick="switchView('rentals')">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Short Term Rentals
+        </button>
+
+        <button class="menu-item" id="menu-btn-add-property" onclick="switchView('add-property')">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+          Add New Property
+        </button>
+
         <div class="menu-section-heading">Administration</div>
         
         <button class="menu-item" id="menu-btn-users" onclick="switchView('users')">
@@ -1138,10 +1138,12 @@
           <div class="user-avatar-sm" style="width: 28px; height: 28px; font-size: 0.8rem;">{{ strtoupper(substr($currentUser->name, 0, 1)) }}</div>
           <span style="font-weight: 600; font-size: 0.88rem; color: #1e293b;">{{ $currentUser->name }}</span>
         </button>
+        @if($currentUser->isMainAdmin())
         <button class="btn-add-action" onclick="switchView('add-property')">
           <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
           New Listing
         </button>
+        @endif
       </div>
     </header>
 
@@ -1195,7 +1197,9 @@
       <div class="dashboard-panel-card">
         <div class="panel-header">
           <h2 class="panel-title">Recent Real Estate Listings</h2>
+          @if($currentUser->isMainAdmin())
           <button class="btn-secondary-custom" onclick="switchView('properties')">View Full Catalog →</button>
+          @endif
         </div>
 
         <div style="overflow-x: auto;">
@@ -1205,9 +1209,11 @@
                 <th>Property</th>
                 <th>Type & Purpose</th>
                 <th>Price / Rates</th>
+                @if($currentUser->isMainAdmin())
                 <th>Publish Status</th>
                 <th>Featured</th>
                 <th style="text-align: right;">Quick Actions</th>
+                @endif
               </tr>
             </thead>
             <tbody>
@@ -1236,6 +1242,7 @@
                   <td style="font-weight: 700; color: #0f172a;">
                     ${{ number_format($prop->price) }}{{ $prop->purpose === 'rent' ? ($prop->rental_type === 'short_term' ? '/night' : '/mo') : '' }}
                   </td>
+                  @if($currentUser->isMainAdmin())
                   <td>
                     <label class="switch-toggle" title="Toggle Publish Status">
                       <input type="checkbox" {{ $prop->is_published ? 'checked' : '' }} onchange="togglePublish({{ $prop->id }}, this)">
@@ -1259,10 +1266,11 @@
                       </button>
                     </div>
                   </td>
+                  @endif
                 </tr>
               @empty
                 <tr>
-                  <td colspan="6" style="text-align: center; color: #64748b; padding: 3rem;">No property listings available.</td>
+                  <td colspan="{{ $currentUser->isMainAdmin() ? 6 : 3 }}" style="text-align: center; color: #64748b; padding: 3rem;">No property listings available.</td>
                 </tr>
               @endforelse
             </tbody>
@@ -1271,6 +1279,7 @@
       </div>
     </section>
 
+    @if($currentUser->isMainAdmin())
     <!-- ============================================== -->
     <!-- VIEW 2: PROPERTY MANAGEMENT DASHBOARD -->
     <!-- ============================================== -->
@@ -1740,6 +1749,7 @@
         </form>
       </div>
     </section>
+    @endif
 
     <!-- ============================================== -->
     <!-- VIEW 5: USER MANAGEMENT (MAIN ADMIN ONLY) -->
