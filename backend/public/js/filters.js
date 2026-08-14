@@ -52,6 +52,9 @@ function createPropertyCard(property) {
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
           ${property.location}
         </div>
+        <div class="property-description" style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--color-text-light, #666); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
+          ${property.description || ''}
+        </div>
         <div class="property-features">
           <div class="feature">
             <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>

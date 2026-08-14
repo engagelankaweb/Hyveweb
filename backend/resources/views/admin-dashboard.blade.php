@@ -1636,19 +1636,7 @@
 
               <div class="form-group-custom">
                 <label class="label-custom" for="add_city">City *</label>
-                <select id="add_city" name="city" class="select-custom" required>
-                  <option value="" disabled selected>Select Location City</option>
-                  <option value="Los Angeles">Los Angeles</option>
-                  <option value="New York">New York</option>
-                  <option value="Miami">Miami</option>
-                  <option value="Austin">Austin</option>
-                  <option value="Chicago">Chicago</option>
-                  <option value="San Francisco">San Francisco</option>
-                  <option value="Seattle">Seattle</option>
-                  <option value="Boston">Boston</option>
-                  <option value="Phoenix">Phoenix</option>
-                  <option value="Aspen">Aspen</option>
-                </select>
+                <input type="text" id="add_city" name="city" class="input-custom" placeholder="e.g. Los Angeles" required>
               </div>
             </div>
 
@@ -1948,18 +1936,7 @@
 
               <div class="form-group-custom">
                 <label class="label-custom" for="edit_city">City *</label>
-                <select id="edit_city" name="city" class="select-custom" required>
-                  <option value="Los Angeles">Los Angeles</option>
-                  <option value="New York">New York</option>
-                  <option value="Miami">Miami</option>
-                  <option value="Austin">Austin</option>
-                  <option value="Chicago">Chicago</option>
-                  <option value="San Francisco">San Francisco</option>
-                  <option value="Seattle">Seattle</option>
-                  <option value="Boston">Boston</option>
-                  <option value="Phoenix">Phoenix</option>
-                  <option value="Aspen">Aspen</option>
-                </select>
+                <input type="text" id="edit_city" name="city" class="input-custom" placeholder="e.g. Los Angeles" required>
               </div>
             </div>
 
@@ -2238,9 +2215,6 @@
 
     // Tab switcher in Add Property Form
     function switchAddTab(step) {
-      document.querySelectorAll('#view-panel-add-property .form-tab-btn').forEach(btn => btn.classList.remove('active'));
-      document.querySelectorAll('#view-panel-add-property .form-tab-content').forEach(c => c.classList.remove('active'));
-
       if (step === 2) {
         if (!document.getElementById('add_title').reportValidity()) return;
         if (!document.getElementById('add_price').reportValidity()) return;
@@ -2252,6 +2226,9 @@
         if (!document.getElementById('add_city').reportValidity()) return;
         if (!document.getElementById('add_location').reportValidity()) return;
       }
+
+      document.querySelectorAll('#view-panel-add-property .form-tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('#view-panel-add-property .form-tab-content').forEach(c => c.classList.remove('active'));
 
       document.getElementById(`tab-add-btn-${step}`).classList.add('active');
       document.getElementById(`tab-add-content-${step}`).classList.add('active');
