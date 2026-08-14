@@ -176,9 +176,8 @@ function initFilters(container) {
     resetBtn.addEventListener('click', (e) => {
       e.preventDefault();
       form.reset();
-      currentData = [...propertiesData];
       if (sortSelect) sortSelect.value = 'default';
-      render();
+      applyFilters();
     });
   }
 
@@ -192,8 +191,7 @@ function initFilters(container) {
         if (el) el.value = val;
       }
     });
-    applyFilters();
-  } else {
-    render();
   }
+  
+  applyFilters();
 }
