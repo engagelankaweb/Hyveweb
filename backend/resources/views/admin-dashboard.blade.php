@@ -1300,7 +1300,7 @@
         <div class="table-filter-bar">
           <div class="search-wrapper">
             <svg class="search-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-            <input type="text" id="prop-search" class="search-input" placeholder="Search by title, location, street..." oninput="filterPropertiesTable()">
+            <input type="text" id="prop-search" class="search-input" oninput="filterPropertiesTable()">
           </div>
           
           <select id="prop-filter-city" class="filter-select" onchange="filterPropertiesTable()">
@@ -1544,7 +1544,7 @@
           <div class="form-tab-content active" id="tab-add-content-1">
             <div class="form-group-custom">
               <label class="label-custom" for="add_title">Listing Title *</label>
-              <input type="text" id="add_title" name="title" class="input-custom" placeholder="e.g. Bel Air Modern Architectural Estate" required>
+              <input type="text" id="add_title" name="title" class="input-custom" required>
             </div>
 
             <div class="form-grid-2">
@@ -1580,18 +1580,18 @@
             <div class="form-grid-2">
               <div class="form-group-custom">
                 <label class="label-custom" for="add_price">Price ($ USD) *</label>
-                <input type="number" id="add_price" name="price" class="input-custom" min="0" placeholder="e.g. 4500000" required>
+                <input type="number" id="add_price" name="price" class="input-custom" min="0" required>
               </div>
 
               <div class="form-group-custom" id="add-nightly-rate-box" style="display: none;">
                 <label class="label-custom" for="add_nightly_rate">Nightly Rate ($ USD)</label>
-                <input type="number" id="add_nightly_rate" name="nightly_rate" class="input-custom" min="0" placeholder="e.g. 650">
+                <input type="number" id="add_nightly_rate" name="nightly_rate" class="input-custom" min="0">
               </div>
             </div>
 
             <div class="form-group-custom">
               <label class="label-custom" for="add_description">Listing Narrative & Description *</label>
-              <textarea id="add_description" name="description" class="textarea-custom" placeholder="Detailed luxury narrative of property highlights, design, and views..." required></textarea>
+              <textarea id="add_description" name="description" class="textarea-custom" required></textarea>
             </div>
 
             <div class="form-grid-2">
@@ -1623,65 +1623,41 @@
             <div class="form-grid-3">
               <div class="form-group-custom">
                 <label class="label-custom" for="add_bedrooms">Bedrooms *</label>
-                <input type="number" id="add_bedrooms" name="bedrooms" class="input-custom" min="0" placeholder="4" required>
+                <input type="number" id="add_bedrooms" name="bedrooms" class="input-custom" min="0" required>
               </div>
 
               <div class="form-group-custom">
                 <label class="label-custom" for="add_bathrooms">Bathrooms *</label>
-                <input type="number" step="0.5" id="add_bathrooms" name="bathrooms" class="input-custom" min="0" placeholder="3.5" required>
+                <input type="number" step="0.5" id="add_bathrooms" name="bathrooms" class="input-custom" min="0" required>
               </div>
 
               <div class="form-group-custom">
                 <label class="label-custom" for="add_area">Area (sqft) *</label>
-                <input type="number" id="add_area" name="area" class="input-custom" min="0" placeholder="4200" required>
+                <input type="number" id="add_area" name="area" class="input-custom" min="0" required>
               </div>
             </div>
 
             <div class="form-grid-2">
               <div class="form-group-custom">
                 <label class="label-custom" for="add_yearBuilt">Year Built *</label>
-                <input type="number" id="add_yearBuilt" name="yearBuilt" class="input-custom" min="1800" max="2035" placeholder="2023" required>
+                <input type="number" id="add_yearBuilt" name="yearBuilt" class="input-custom" min="1800" max="2035" required>
               </div>
 
               <div class="form-group-custom">
                 <label class="label-custom" for="add_city">City *</label>
-                <input type="text" id="add_city" name="city" class="input-custom" placeholder="e.g. Los Angeles" required>
+                <input type="text" id="add_city" name="city" class="input-custom" required>
               </div>
             </div>
 
             <div class="form-group-custom">
               <label class="label-custom" for="add_location">Street Address *</label>
-              <input type="text" id="add_location" name="location" class="input-custom" placeholder="e.g. 742 Evergreen Terrace" required>
+              <input type="text" id="add_location" name="location" class="input-custom" required>
             </div>
 
-            <!-- Vacation Stay Specific Fields -->
-            <div id="add-short-stay-specs" style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 1.25rem; border-radius: var(--radius-sm); margin-bottom: 1.25rem; display: none;">
-              <div style="font-weight: 700; font-size: 0.9rem; color: #0f172a; margin-bottom: 1rem;">Short-Term Stay Settings</div>
-              <div class="form-grid-2">
-                <div class="form-group-custom">
-                  <label class="label-custom" for="add_max_guests">Max Guests Allowed</label>
-                  <input type="number" id="add_max_guests" name="max_guests" class="input-custom" min="1" placeholder="e.g. 6">
-                </div>
-                <div class="form-group-custom">
-                  <label class="label-custom" for="add_min_stay">Minimum Stay (Nights)</label>
-                  <input type="number" id="add_min_stay" name="min_stay" class="input-custom" min="1" placeholder="e.g. 2">
-                </div>
-              </div>
-              <div class="form-grid-2">
-                <div class="form-group-custom">
-                  <label class="label-custom" for="add_check_in_time">Check-In Time</label>
-                  <input type="text" id="add_check_in_time" name="check_in_time" class="input-custom" placeholder="3:00 PM">
-                </div>
-                <div class="form-group-custom">
-                  <label class="label-custom" for="add_check_out_time">Check-Out Time</label>
-                  <input type="text" id="add_check_out_time" name="check_out_time" class="input-custom" placeholder="11:00 AM">
-                </div>
-              </div>
-            </div>
 
             <div class="form-group-custom">
               <label class="label-custom" for="add_features">Key Features (comma-separated)</label>
-              <input type="text" id="add_features" name="features" class="input-custom" placeholder="Infinity Pool, Smart Automation, Wine Cellar, Private Elevator">
+              <input type="text" id="add_features" name="features" class="input-custom">
             </div>
 
             <div class="btn-form-action-group">
@@ -1703,17 +1679,6 @@
               <div class="preview-container" id="add_images_preview"></div>
             </div>
 
-            <div class="form-grid-2" style="border-top: 1px solid #f1f5f9; padding-top: 1.25rem; margin-top: 1.25rem;">
-              <div class="form-group-custom">
-                <label class="label-custom" for="add_external_url">External Property URL / 3D Tour Link</label>
-                <input type="url" id="add_external_url" name="external_url" class="input-custom" placeholder="https://my.matterport.com/show/?m=... or MLS Link">
-              </div>
-
-              <div class="form-group-custom">
-                <label class="label-custom" for="add_external_booking_url">External Booking URL (Airbnb/VRBO)</label>
-                <input type="url" id="add_external_booking_url" name="external_booking_url" class="input-custom" placeholder="https://airbnb.com/rooms/...">
-              </div>
-            </div>
 
             <div class="form-group-custom" style="border-top: 1px solid #f1f5f9; padding-top: 1.25rem; margin-top: 1.25rem;">
               <label class="label-custom" for="add_agent_selection">Assign Listing Agent *</label>
@@ -1729,11 +1694,11 @@
               <div class="form-grid-2">
                 <div class="form-group-custom">
                   <label class="label-custom" for="add_agent_name">Agent Full Name</label>
-                  <input type="text" id="add_agent_name" name="agent_name" class="input-custom" placeholder="e.g. David Vance">
+                  <input type="text" id="add_agent_name" name="agent_name" class="input-custom">
                 </div>
                 <div class="form-group-custom">
                   <label class="label-custom" for="add_agent_phone">Contact Phone</label>
-                  <input type="text" id="add_agent_phone" name="agent_phone" class="input-custom" placeholder="+1 (555) 345-6789">
+                  <input type="text" id="add_agent_phone" name="agent_phone" class="input-custom">
                 </div>
               </div>
             </div>
@@ -1946,7 +1911,7 @@
 
               <div class="form-group-custom">
                 <label class="label-custom" for="edit_city">City *</label>
-                <input type="text" id="edit_city" name="city" class="input-custom" placeholder="e.g. Los Angeles" required>
+                <input type="text" id="edit_city" name="city" class="input-custom" required>
               </div>
             </div>
 
@@ -1955,29 +1920,6 @@
               <input type="text" id="edit_location" name="location" class="input-custom" required>
             </div>
 
-            <!-- Short Stay Specs -->
-            <div id="edit-short-stay-specs" style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 1.25rem; border-radius: var(--radius-sm); margin-bottom: 1.25rem; display: none;">
-              <div class="form-grid-2">
-                <div class="form-group-custom">
-                  <label class="label-custom" for="edit_max_guests">Max Guests Allowed</label>
-                  <input type="number" id="edit_max_guests" name="max_guests" class="input-custom" min="1">
-                </div>
-                <div class="form-group-custom">
-                  <label class="label-custom" for="edit_min_stay">Minimum Stay (Nights)</label>
-                  <input type="number" id="edit_min_stay" name="min_stay" class="input-custom" min="1">
-                </div>
-              </div>
-              <div class="form-grid-2">
-                <div class="form-group-custom">
-                  <label class="label-custom" for="edit_check_in_time">Check-In Time</label>
-                  <input type="text" id="edit_check_in_time" name="check_in_time" class="input-custom">
-                </div>
-                <div class="form-group-custom">
-                  <label class="label-custom" for="edit_check_out_time">Check-Out Time</label>
-                  <input type="text" id="edit_check_out_time" name="check_out_time" class="input-custom">
-                </div>
-              </div>
-            </div>
 
             <div class="form-group-custom">
               <label class="label-custom" for="edit_features">Key Features (comma-separated)</label>
@@ -1997,17 +1939,6 @@
               <input type="file" id="edit_images" name="images[]" multiple accept="image/*" class="input-custom">
             </div>
 
-            <div class="form-grid-2">
-              <div class="form-group-custom">
-                <label class="label-custom" for="edit_external_url">External 3D Tour / MLS URL</label>
-                <input type="url" id="edit_external_url" name="external_url" class="input-custom">
-              </div>
-
-              <div class="form-group-custom">
-                <label class="label-custom" for="edit_external_booking_url">External Booking Partner URL</label>
-                <input type="url" id="edit_external_booking_url" name="external_booking_url" class="input-custom">
-              </div>
-            </div>
 
             <div class="form-group-custom">
               <label class="label-custom" for="edit_agent_selection">Assigned Agent</label>
@@ -2048,12 +1979,12 @@
         <div class="modal-body">
           <div class="form-group-custom">
             <label class="label-custom" for="modal_user_name">Full Name *</label>
-            <input type="text" id="modal_user_name" name="name" class="input-custom" placeholder="e.g. John Doe" required>
+            <input type="text" id="modal_user_name" name="name" class="input-custom" required>
           </div>
 
           <div class="form-group-custom">
             <label class="label-custom" for="modal_user_email">Email Address *</label>
-            <input type="email" id="modal_user_email" name="email" class="input-custom" placeholder="staff@hyve.com" required>
+            <input type="email" id="modal_user_email" name="email" class="input-custom" required>
           </div>
 
           <div class="form-group-custom">
@@ -2067,7 +1998,7 @@
 
           <div class="form-group-custom">
             <label class="label-custom" for="modal_user_phone">Phone Number</label>
-            <input type="text" id="modal_user_phone" name="phone" class="input-custom" placeholder="+1 (555) 000-0000">
+            <input type="text" id="modal_user_phone" name="phone" class="input-custom">
           </div>
 
           <div class="form-group-custom">
@@ -2080,7 +2011,7 @@
 
           <div class="form-group-custom">
             <label class="label-custom" for="modal_user_password" id="modal_user_password_label">Password *</label>
-            <input type="password" id="modal_user_password" name="password" class="input-custom" placeholder="••••••••">
+            <input type="password" id="modal_user_password" name="password" class="input-custom">
             <span id="modal_user_password_hint" style="font-size: 0.75rem; color: #64748b; margin-top: 4px; display: none;">Leave blank to keep existing password.</span>
           </div>
         </div>
@@ -2126,15 +2057,15 @@
             <div style="font-weight: 700; font-size: 0.9rem; color: #0f172a; margin-bottom: 0.8rem;">Change Password</div>
             <div class="form-group-custom">
               <label class="label-custom" for="profile_current_password">Current Password</label>
-              <input type="password" id="profile_current_password" name="current_password" class="input-custom" placeholder="••••••••">
+              <input type="password" id="profile_current_password" name="current_password" class="input-custom">
             </div>
             <div class="form-group-custom">
               <label class="label-custom" for="profile_new_password">New Password</label>
-              <input type="password" id="profile_new_password" name="new_password" class="input-custom" placeholder="••••••••">
+              <input type="password" id="profile_new_password" name="new_password" class="input-custom">
             </div>
             <div class="form-group-custom">
               <label class="label-custom" for="profile_new_password_confirmation">Confirm New Password</label>
-              <input type="password" id="profile_new_password_confirmation" name="new_password_confirmation" class="input-custom" placeholder="••••••••">
+              <input type="password" id="profile_new_password_confirmation" name="new_password_confirmation" class="input-custom">
             </div>
           </div>
         </div>
@@ -2258,13 +2189,10 @@
 
     function handleAddRentalTypeChange(val) {
       const nightlyBox = document.getElementById('add-nightly-rate-box');
-      const shortStaySpecs = document.getElementById('add-short-stay-specs');
       if (val === 'short_term') {
         nightlyBox.style.display = 'flex';
-        shortStaySpecs.style.display = 'block';
       } else {
         nightlyBox.style.display = 'none';
-        shortStaySpecs.style.display = 'none';
       }
     }
 
@@ -2478,13 +2406,10 @@
 
     function handleEditRentalTypeChange(val) {
       const nightlyBox = document.getElementById('edit-nightly-rate-box');
-      const specs = document.getElementById('edit-short-stay-specs');
       if (val === 'short_term') {
         nightlyBox.style.display = 'flex';
-        specs.style.display = 'block';
       } else {
         nightlyBox.style.display = 'none';
-        specs.style.display = 'none';
       }
     }
 
@@ -2516,14 +2441,8 @@
         document.getElementById('edit_city').value = prop.city || '';
         document.getElementById('edit_location').value = prop.location || '';
         document.getElementById('edit_features').value = Array.isArray(prop.features) ? prop.features.join(', ') : '';
-        document.getElementById('edit_external_url').value = prop.external_url || '';
-        document.getElementById('edit_external_booking_url').value = prop.external_booking_url || '';
         document.getElementById('edit_featured').checked = !!prop.featured;
         document.getElementById('edit_is_published').checked = !!prop.is_published;
-        document.getElementById('edit_max_guests').value = prop.max_guests || '';
-        document.getElementById('edit_min_stay').value = prop.min_stay || '';
-        document.getElementById('edit_check_in_time').value = prop.check_in_time || '3:00 PM';
-        document.getElementById('edit_check_out_time').value = prop.check_out_time || '11:00 AM';
 
         handleEditPurposeChange(prop.purpose);
         if (prop.purpose === 'rent') {
