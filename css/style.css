@@ -143,6 +143,17 @@ p {
   color: #fff;
 }
 
+.btn-alt {
+  background-color: var(--color-text-main);
+  color: #fff;
+}
+
+.btn-alt:hover {
+  background-color: #333;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
 .btn-primary:hover {
   background-color: var(--color-accent-hover);
   transform: translateY(-2px);
