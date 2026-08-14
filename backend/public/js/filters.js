@@ -87,7 +87,7 @@ function createPropertyCard(property) {
 // Render Featured Properties on Homepage
 function renderFeaturedProperties(container) {
   if (typeof propertiesData === 'undefined') return;
-  const featured = propertiesData.filter(p => p.featured).slice(0, 6);
+  const featured = propertiesData.filter(p => p.featured && p.rental_type !== 'short_term').slice(0, 6);
   container.innerHTML = featured.map(createPropertyCard).join('');
   if (window.initScrollReveals) initScrollReveals();
 }
@@ -132,12 +132,11 @@ function initFilters(container) {
 
     currentData = propertiesData.filter(p => {
       let match = true;
-      if (purpose) {
-        if (purpose === 'short_term') {
-          if (p.rental_type !== 'short_term') match = false;
-        } else if (p.purpose !== purpose) {
-          match = false;
-        }
+      if (purpose === 'short_term') {
+        if (p.rental_type !== 'short_term') match = false;
+      } else {
+        if (p.rental_type === 'short_term') match = false;
+        if (purpose && p.purpose !== purpose) match = false;
       }
       if (type && p.type !== type) match = false;
       const comparePrice = (p.rental_type === 'short_term' && p.nightly_rate) ? p.nightly_rate : p.price;

@@ -259,10 +259,66 @@ function initHeroSlideshow() {
 // Stay Slider
 function initStaySlider() {
   const track = document.querySelector('.stay-slider-track');
+  const dotsContainer = document.getElementById('stay-slider-dots');
+  const staySection = document.querySelector('.stay-section');
+  
+  if (!track || !staySection) return;
+
+  let stayProperties = [];
+  if (typeof propertiesData !== 'undefined') {
+    stayProperties = propertiesData.filter(p => p.rental_type === 'short_term' && p.featured).slice(0, 6);
+  }
+
+  if (stayProperties.length === 0) {
+    staySection.style.display = 'none';
+    return;
+  }
+
+  // Generate cards
+  let cardsHtml = '';
+  // Duplicate properties to ensure continuous sliding if there are few
+  const displayProperties = stayProperties.length < 4 ? [...stayProperties, ...stayProperties] : stayProperties;
+  
+  displayProperties.forEach(property => {
+    const imgSrc = (property.images && property.images.length > 0) ? property.images[0] : 'assets/images/luxury_villa_1786339560928.png';
+    cardsHtml += `
+      <div class="stay-card">
+        <div class="stay-image">
+          <img src="${imgSrc}" alt="${property.title}">
+        </div>
+        <div class="stay-info">
+          <span class="stay-location text-xs uppercase" style="color: #e67e22; font-weight: 500; letter-spacing: 0.5px; font-size: 0.85rem; margin-bottom: 8px; display: block;">${property.city || property.location || 'LOCATION'}</span>
+          <h3 class="stay-title" style="font-family: 'Playfair Display', serif; font-weight: 500; font-size: 1.5rem; margin-bottom: 12px; color: #000;">${property.title}</h3>
+          <div style="color: #666; font-size: 0.8rem; display: flex; align-items: center; gap: 6px; font-weight: 500; text-transform: uppercase; margin-bottom: 16px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            ${property.location}
+          </div>
+          <p style="color: #666; font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
+            ${property.description || ''}
+          </p>
+
+          <a href="property-details.html?id=${property.id}" class="btn-text" style="font-weight: 600; font-size: 0.9rem; color: #234551; margin-top: auto; align-self: center; text-decoration: none;">View More</a>
+        </div>
+      </div>
+    `;
+  });
+  
+  track.innerHTML = cardsHtml;
+
+  // Generate dots
+  if (dotsContainer) {
+    let dotsHtml = '';
+    stayProperties.forEach((_, index) => {
+      dotsHtml += `<div class="stay-dot ${index === 0 ? 'active' : ''}"></div>`;
+    });
+    dotsContainer.innerHTML = dotsHtml;
+  }
+
   const prevBtn = document.querySelector('.stay-nav-prev');
   const nextBtn = document.querySelector('.stay-nav-next');
   const dots = document.querySelectorAll('.stay-dot');
-  if (!track || !prevBtn || !nextBtn) return;
+  
+  if (!prevBtn || !nextBtn) return;
 
   let isAnimating = false;
   let currentDot = 0;
