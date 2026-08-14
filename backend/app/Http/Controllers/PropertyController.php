@@ -4,9 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Models\Property;
 use Illuminate\Http\Response;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ListPropertyMail;
 
 class PropertyController extends Controller
 {
+    public function listProperty(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'contact_number' => 'required|string|max:20',
+            'email' => 'required|email|max:255',
+            'property_type' => 'required|string|max:100',
+            'location' => 'required|string|max:255',
+            'description' => 'required|string',
+            'additional_notes' => 'nullable|string',
+        ]);
+
+        Mail::to('info@hyve.lk')->send(new ListPropertyMail($validated));
+
+        return response()->json(['message' => 'Property listed successfully!']);
+    }
     public function getPropertiesJs()
     {
         // Only return published properties for the public website

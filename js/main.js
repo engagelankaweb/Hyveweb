@@ -10,7 +10,117 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeroSlideshow();
   initStaySlider();
   initPremiumTestimonials();
+  initListPropertyModal();
 });
+
+function initListPropertyModal() {
+  const modalHtml = `
+    <div id="listPropertyModal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal" id="closeListPropertyModal">&times;</span>
+        <h2 style="margin-bottom: 20px;">List Your Property</h2>
+        <form id="listPropertyForm">
+          <div class="form-group">
+            <label class="form-label">Name</label>
+            <input type="text" name="name" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Contact Number</label>
+            <input type="text" name="contact_number" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" name="email" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Property Type</label>
+            <select name="property_type" class="form-control" required>
+              <option value="">Select Type</option>
+              <option value="House">House</option>
+              <option value="Apartment">Apartment</option>
+              <option value="Villa">Villa</option>
+              <option value="Condo">Condo</option>
+              <option value="Commercial">Commercial</option>
+              <option value="Land">Land</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Location</label>
+            <input type="text" name="location" class="form-control" placeholder="City, Neighborhood" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Description</label>
+            <textarea name="description" class="form-control" rows="4" required></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Additional Notes</label>
+            <textarea name="additional_notes" class="form-control" rows="2"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Submit Listing</button>
+        </form>
+      </div>
+    </div>
+  `;
+
+  document.body.insertAdjacentHTML('beforeend', modalHtml);
+
+  const modal = document.getElementById('listPropertyModal');
+  const closeBtn = document.getElementById('closeListPropertyModal');
+  const form = document.getElementById('listPropertyForm');
+  const listBtns = document.querySelectorAll('.nav-list-property');
+
+  listBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      modal.style.display = 'flex';
+    });
+  });
+
+  closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const submitBtn = form.querySelector('button[type="submit"]');
+    submitBtn.textContent = 'Submitting...';
+    submitBtn.disabled = true;
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch('/api/list-property', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        showToast('Property details submitted successfully!');
+        form.reset();
+        modal.style.display = 'none';
+      } else {
+        const errorData = await response.json();
+        showToast(errorData.message || 'Error submitting form. Please try again.');
+      }
+    } catch (error) {
+      showToast('A network error occurred. Please try again.');
+    } finally {
+      submitBtn.textContent = 'Submit Listing';
+      submitBtn.disabled = false;
+    }
+  });
+}
 
 // Sticky Navbar
 function initNavbar() {

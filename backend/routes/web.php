@@ -17,6 +17,7 @@ Route::get('/{page}.html', function ($page) {
 });
 
 Route::get('/js/properties.js', [PropertyController::class, 'getPropertiesJs']);
+Route::post('/api/list-property', [PropertyController::class, 'listProperty']);
 
 // Admin Login & Authentication Routes
 Route::get('/admin/login', [AdminController::class, 'showLogin'])->name('admin.login');
