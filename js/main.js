@@ -96,23 +96,12 @@ function initListPropertyModal() {
     const data = Object.fromEntries(formData.entries());
 
     try {
-      const response = await fetch('/api/list-property', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(data)
-      });
+      // Simulated API call for GitHub Pages static hosting
+      await new Promise(resolve => setTimeout(resolve, 800));
 
-      if (response.ok) {
-        showToast('Property details submitted successfully!');
-        form.reset();
-        modal.style.display = 'none';
-      } else {
-        const errorData = await response.json();
-        showToast(errorData.message || 'Error submitting form. Please try again.');
-      }
+      showToast('Property details submitted successfully!');
+      form.reset();
+      modal.style.display = 'none';
     } catch (error) {
       showToast('A network error occurred. Please try again.');
     } finally {
