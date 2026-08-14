@@ -35,8 +35,10 @@ function createPropertyCard(property) {
   return `
     <div class="property-card reveal-hidden" data-animation="reveal-slide-up">
       <div class="property-image-wrapper">
-        ${property.featured ? '<span class="property-badge">Featured</span>' : ''}
-        ${isShortTerm ? '<span class="property-badge" style="left: auto; right: 12px; background: #86198f;">Vacation Stay</span>' : ''}
+        <div style="position: absolute; top: 16px; left: 16px; display: flex; gap: 8px; z-index: 10;">
+          ${property.featured ? '<span class="property-badge" style="position: static; margin: 0;">Featured</span>' : ''}
+          ${isShortTerm ? '<span class="property-badge" style="position: static; margin: 0; background: #86198f;">Vacation Stay</span>' : ''}
+        </div>
         <span class="property-type">${property.type}</span>
         <button class="fav-btn ${isFav}" onclick="event.preventDefault(); toggleFavorite(${property.id}, this)">
           <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
