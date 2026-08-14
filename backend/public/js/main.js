@@ -331,7 +331,8 @@ function initStaySlider() {
     
     const card = track.querySelector('.stay-card');
     if (!card) return;
-    const cardWidth = card.offsetWidth + 20; // card width + gap
+    const gap = parseInt(window.getComputedStyle(track).gap) || 20;
+    const cardWidth = card.offsetWidth + gap; // card width + gap
     
     // Instantly move last element to front and offset track
     track.style.transition = 'none';
@@ -361,7 +362,8 @@ function initStaySlider() {
     
     const card = track.querySelector('.stay-card');
     if (!card) return;
-    const cardWidth = card.offsetWidth + 20; // card width + gap
+    const gap = parseInt(window.getComputedStyle(track).gap) || 20;
+    const cardWidth = card.offsetWidth + gap; // card width + gap
     
     // Animate to left
     track.style.transition = 'transform 0.4s ease-in-out';
@@ -377,6 +379,27 @@ function initStaySlider() {
       void track.offsetWidth;
       isAnimating = false;
     }, 400);
+  });
+
+  // Touch Swipe Logic
+  let startX = 0;
+  let currentX = 0;
+
+  track.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    currentX = startX;
+  }, {passive: true});
+
+  track.addEventListener('touchmove', (e) => {
+    currentX = e.touches[0].clientX;
+  }, {passive: true});
+
+  track.addEventListener('touchend', () => {
+    if (startX - currentX > 50) {
+      nextBtn.click();
+    } else if (currentX - startX > 50) {
+      prevBtn.click();
+    }
   });
 }
 
