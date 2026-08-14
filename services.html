@@ -3,17 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Agents | HYVE Real Estate</title>
+  <meta name="description" content="HYVE Real Estate Services - A breakdown of all our premium services including Properties and Short-Term Rentals.">
+  <title>Our Services | HYVE Real Estate &amp; Luxury Stays</title>
+  
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="css/animations.css">
 </head>
 <body>
 
-  <!-- Navigation -->
+  <!-- Navigation (Dark mode) -->
   <nav class="navbar scrolled">
     <div class="container">
       <a href="index.html" class="logo">HYVE.</a>
@@ -24,64 +29,80 @@
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="properties.html" class="nav-link">Properties</a></li>
         <li><a href="short-term-rentals.html" class="nav-link">Short-Term Rentals</a></li>
-        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="services.html" class="nav-link active">Services</a></li>
         <li><a href="about.html" class="nav-link">About</a></li>
         <li><a href="contact.html" class="btn btn-primary">Contact Us</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- Page Header -->
-  <div style="padding: 120px 0 60px; background: var(--color-bg-secondary); text-align: center;">
+  <!-- Page Hero Header -->
+  <header class="about-hero-header">
     <div class="container">
-      <h1 class="reveal-hidden">Meet Our Experts</h1>
-      <p class="reveal-hidden delay-100" style="max-width: 600px; margin: 0 auto; font-size: 1.1rem;">Dedicated professionals committed to finding your perfect property.</p>
+      <span class="section-eyebrow reveal-hidden">Our Services</span>
+      <h1 class="section-title-luxury reveal-hidden delay-100" style="font-size: 3.5rem; margin-bottom: 1rem;">
+        End-to-End Real Estate &amp; Hospitality
+      </h1>
+      <p class="section-desc-luxury reveal-hidden delay-200">
+        A breakdown of the premium services offered by HYVE, connecting clients with extraordinary properties worldwide.
+      </p>
     </div>
-  </div>
+  </header>
 
-  <!-- Agents Grid -->
-  <section class="section container">
-    <div class="grid grid-3 gap-lg">
-      
-      <div class="agent-card reveal-hidden delay-100">
-        <img src="assets/images/agent_office_1786339595128.png" alt="Sarah Jenkins" class="agent-img">
-        <div class="agent-info">
-          <h3>Sarah Jenkins</h3>
-          <p style="color: var(--color-accent); font-weight: 500; margin-bottom: 8px;">Senior Partner</p>
-          <p style="font-size: 0.9rem;">Specializes in luxury estates and coastal properties.</p>
-          <div class="agent-socials">
-            <a href="mailto:sarah@hyve.com"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
-            <a href="tel:+15551234567"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></a>
+  <!-- Services Breakdown Section -->
+  <section class="section" id="services-breakdown">
+    <div class="container">
+      <!-- Changed to grid-2 for 2 items to make them larger and centered -->
+      <div class="grid grid-2 gap-lg values-grid">
+        <!-- Service 1 -->
+        <a href="properties.html" style="text-decoration: none; color: inherit; display: block;" class="value-card reveal-hidden delay-100">
+          <div class="value-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
           </div>
+          <h3>Properties</h3>
+          <p>
+            Discover exceptional homes, luxury apartments, and exclusive commercial properties curated for your lifestyle. Our premium real estate portfolio offers long-term value, unparalleled comfort, and prime locations for discerning buyers and renters.
+          </p>
+          <div style="margin-top: 1rem; color: #D4AF37; font-weight: 600; display: flex; align-items: center; gap: 0.5rem;">
+            Explore Properties <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </div>
+        </a>
+
+        <!-- Service 2 -->
+        <a href="short-term-rentals.html" style="text-decoration: none; color: inherit; display: block;" class="value-card reveal-hidden delay-200">
+          <div class="value-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          </div>
+          <h3>Short-Term Rentals</h3>
+          <p>
+            Experience ultimate relaxation and luxury during your vacation. We offer meticulously selected, fully-serviced short-term rental properties, including beachfront villas and upscale urban retreats, ensuring a flawless and memorable stay.
+          </p>
+          <div style="margin-top: 1rem; color: #D4AF37; font-weight: 600; display: flex; align-items: center; gap: 0.5rem;">
+            View Destinations <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Call To Action -->
+  <section class="section" style="padding-top: var(--spacing-lg); padding-bottom: var(--spacing-xl); background-color: var(--color-bg-secondary);">
+    <div class="container">
+      <div class="about-cta-luxury reveal-hidden">
+        <h2>Experience the HYVE Standard</h2>
+        <p>
+          Whether you are looking to acquire an extraordinary coastal estate, list a prime property, or book an unforgettable luxury stay, our advisory team is here to assist you.
+        </p>
+        <div class="about-cta-btns">
+          <a href="contact.html" class="btn btn-luxury-gold">
+            Schedule a Private Consultation
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+          <a href="properties.html" class="btn btn-luxury-outline">
+            Explore Properties
+          </a>
         </div>
       </div>
-      
-      <div class="agent-card reveal-hidden delay-200">
-        <img src="assets/images/agent_office_1786339595128.png" alt="Michael Chen" class="agent-img">
-        <div class="agent-info">
-          <h3>Michael Chen</h3>
-          <p style="color: var(--color-accent); font-weight: 500; margin-bottom: 8px;">Urban Specialist</p>
-          <p style="font-size: 0.9rem;">Expert in downtown penthouses and new developments.</p>
-          <div class="agent-socials">
-            <a href="mailto:michael@hyve.com"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
-            <a href="tel:+15559876543"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="agent-card reveal-hidden delay-300">
-        <img src="assets/images/agent_office_1786339595128.png" alt="Emma Davis" class="agent-img">
-        <div class="agent-info">
-          <h3>Emma Davis</h3>
-          <p style="color: var(--color-accent); font-weight: 500; margin-bottom: 8px;">Family Homes</p>
-          <p style="font-size: 0.9rem;">Focuses on suburban retreats and family-friendly neighborhoods.</p>
-          <div class="agent-socials">
-            <a href="mailto:emma@hyve.com"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
-            <a href="tel:+15553332222"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></a>
-          </div>
-        </div>
-      </div>
-
     </div>
   </section>
 
@@ -131,7 +152,7 @@
           <h4 class="footer-col-title">Our Services</h4>
           <ul class="footer-links">
             <li><a href="about.html">About Us</a></li>
-            <li><a href="about.html">Payment Plans</a></li>
+            <li><a href="services.html">Services</a></li>
             <li><a href="agents.html">Our Agents</a></li>
             <li><a href="contact.html">Contact Us</a></li>
             <li><a href="contact.html">Terms</a></li>
@@ -171,14 +192,13 @@
     </div>
   </footer>
 
-  
-
-  <!-- Utilities -->
+  <!-- Back to top & Toast container -->
   <button id="back-to-top" aria-label="Back to top">
     <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"></polyline></svg>
   </button>
   <div id="toast-container" class="toast-container"></div>
 
+  <!-- Scripts -->
   <script src="js/main.js"></script>
   <script src="js/animations.js"></script>
 </body>
