@@ -277,7 +277,7 @@ function initStaySlider() {
         </div>
         <div class="stay-info">
           <span class="stay-location text-xs uppercase" style="color: #e67e22; font-weight: 500; letter-spacing: 0.5px; font-size: 0.85rem; margin-bottom: 8px; display: block;">${property.city || property.location || 'LOCATION'}</span>
-          <h3 class="stay-title" style="font-family: 'Playfair Display', serif; font-weight: 500; font-size: 1.5rem; margin-bottom: 12px; color: #000;">${property.title}</h3>
+          <h3 class="stay-title" style="font-family: 'Roboto', sans-serif; font-weight: 500; font-size: 1.5rem; margin-bottom: 12px; color: #000;">${property.title}</h3>
           <div style="color: #666; font-size: 0.8rem; display: flex; align-items: center; gap: 6px; font-weight: 500; text-transform: uppercase; margin-bottom: 16px;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
             ${property.location}

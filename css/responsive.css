@@ -37,8 +37,12 @@
   h1 { font-size: 2.5rem; }
   .hero h1 { font-size: 3rem; }
   h2 { font-size: 2rem; }
-  .stay-section h2 { font-size: 2rem !important; }
+  .stay-section h2 { font-size: 2rem !important; margin-bottom: 15px !important; }
+  .stay-section p { font-size: 1rem !important; }
   .stay-nav-btn { display: none; }
+  .stay-card { width: 85vw !important; max-width: 320px !important; }
+  .stay-image { height: 200px !important; }
+  .stay-slider-track { gap: 15px !important; }
 
   /* Property Details */
   .gallery-container { height: 300px; }
@@ -115,17 +119,23 @@
     grid-template-columns: 1fr;
   }
   .pt-image {
-    min-height: 300px;
+    min-height: 250px;
   }
   .pt-content {
-    padding: 2rem;
+    padding: 2rem 1.5rem;
   }
   .pt-slide h3 {
-    font-size: 1.4rem;
+    font-size: 1.25rem;
     padding-right: 0;
   }
   .pt-slide {
     padding-right: 0;
+  }
+  .pt-quote {
+    top: 1rem;
+    right: 1rem;
+    width: 50px;
+    height: 50px;
   }
   
   .footer-grid {
@@ -141,6 +151,12 @@
 @media (max-width: 576px) {
   h1 { font-size: 2rem; }
   .hero h1 { font-size: 2.25rem; }
+  
+  .stay-section h2 { font-size: 1.75rem !important; }
+  .stay-section p { font-size: 0.95rem !important; }
+  .pt-content { padding: 1.5rem 1rem; }
+  .pt-slide h3 { font-size: 1.15rem; }
+  .pt-quote { display: none; } /* Hide quote icon on very small screens to save space */
   
   .grid-2, .grid-3, .grid-4, .contact-grid, .pd-stats-grid { 
     grid-template-columns: 1fr !important; 

@@ -6,7 +6,7 @@
   <title>HYVE Portal | Management Dashboard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
   <link rel="stylesheet" href="{{ asset('css/animations.css') }}">
@@ -45,7 +45,7 @@
       color: #1e293b;
       min-height: 100vh;
       display: flex;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Roboto', sans-serif;
       margin: 0;
       padding: 0;
     }
@@ -87,7 +87,7 @@
 
     .sidebar-brand {
       padding: 26px 24px;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Roboto', sans-serif;
       font-size: 1.75rem;
       font-weight: 700;
       color: #ffffff;
@@ -102,7 +102,7 @@
     }
 
     .sidebar-role-badge {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Roboto', sans-serif;
       font-size: 0.72rem;
       font-weight: 600;
       padding: 4px 8px;
@@ -306,7 +306,7 @@
       font-weight: 700;
       margin: 0 0 4px 0;
       color: #0f172a;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Roboto', sans-serif;
     }
 
     .header-title p {
@@ -460,7 +460,7 @@
     }
 
     .panel-title {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Roboto', sans-serif;
       font-size: 1.45rem;
       font-weight: 700;
       color: #0f172a;
@@ -822,7 +822,7 @@
       border: 1px solid #cbd5e1;
       border-radius: var(--radius-sm);
       padding: 11px 14px;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Roboto', sans-serif;
       font-size: 0.92rem;
       background: #FFFFFF;
       transition: all 0.25s ease;
@@ -985,7 +985,7 @@
     }
 
     .modal-title {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Roboto', sans-serif;
       font-size: 1.35rem;
       font-weight: 700;
       color: #0f172a;

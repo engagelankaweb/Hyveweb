@@ -6,7 +6,7 @@
   <title>Admin Portal Login | HYVE Real Estate</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
   <link rel="stylesheet" href="{{ asset('css/animations.css') }}">
@@ -30,7 +30,7 @@
       padding: 1.5rem;
       position: relative;
       overflow-x: hidden;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Roboto', sans-serif;
     }
 
     body::before {
@@ -86,7 +86,7 @@
     }
 
     .login-logo {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Roboto', sans-serif;
       font-size: 2.4rem;
       font-weight: 700;
       letter-spacing: -0.5px;
@@ -139,7 +139,7 @@
       border-radius: var(--radius-sm);
       padding: 12px 14px;
       color: #FFFFFF;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Roboto', sans-serif;
       font-size: 0.95rem;
       transition: all 0.3s ease;
       box-sizing: border-box;
@@ -178,7 +178,7 @@
       border: none;
       border-radius: var(--radius-sm);
       padding: 14px;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Roboto', sans-serif;
       font-weight: 700;
       font-size: 0.98rem;
       cursor: pointer;
