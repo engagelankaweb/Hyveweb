@@ -16,7 +16,7 @@ Route::get('/{page}.html', function ($page) {
     abort(404);
 });
 
-Route::get('/js/properties.js', [PropertyController::class, 'getPropertiesJs']);
+Route::get('/api/properties-data.js', [PropertyController::class, 'getPropertiesJs']);
 Route::post('/api/list-property', [PropertyController::class, 'listProperty']);
 
 // Admin Login & Authentication Routes
