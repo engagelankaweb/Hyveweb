@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
   <link rel="stylesheet" href="{{ asset('css/animations.css') }}">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <style>
+    <style>
     :root {
       --color-accent: #D4AF37;
       --color-accent-hover: #E5C158;
@@ -21,8 +21,8 @@
     }
 
     body {
-      background: radial-gradient(circle at center, #1E1E28 0%, #0F0F16 100%);
-      color: #FFFFFF;
+      background: #F4F7F6;
+      color: #1E293B;
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -38,7 +38,7 @@
       position: absolute;
       width: 550px;
       height: 550px;
-      background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
       top: -120px;
       right: -120px;
       pointer-events: none;
@@ -49,7 +49,7 @@
       position: absolute;
       width: 550px;
       height: 550px;
-      background: radial-gradient(circle, rgba(212, 175, 55, 0.06) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
       bottom: -120px;
       left: -120px;
       pointer-events: none;
@@ -58,13 +58,11 @@
     .login-container {
       width: 100%;
       max-width: 440px;
-      background: rgba(26, 26, 38, 0.85);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
       border-radius: var(--radius-lg);
       padding: 2.8rem 2.4rem;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
       z-index: 10;
       animation: loginFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
@@ -90,7 +88,7 @@
       font-size: 2.4rem;
       font-weight: 700;
       letter-spacing: -0.5px;
-      color: #FFFFFF;
+      color: #0F172A;
       margin-bottom: 0.4rem;
     }
 
@@ -99,15 +97,15 @@
     }
 
     .login-subtitle {
-      color: #94A3B8;
+      color: #64748B;
       font-size: 0.92rem;
       letter-spacing: 0.3px;
     }
 
     .alert-error {
-      background: rgba(239, 68, 68, 0.15);
-      border: 1px solid rgba(239, 68, 68, 0.35);
-      color: #F87171;
+      background: #FEF2F2;
+      border: 1px solid #FECACA;
+      color: #DC2626;
       padding: 12px 16px;
       border-radius: var(--radius-sm);
       font-size: 0.88rem;
@@ -124,7 +122,7 @@
 
     .form-label {
       display: block;
-      color: #CBD5E1;
+      color: #475569;
       font-size: 0.82rem;
       font-weight: 600;
       text-transform: uppercase;
@@ -134,11 +132,11 @@
 
     .form-control {
       width: 100%;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #F8FAFC;
+      border: 1px solid #CBD5E1;
       border-radius: var(--radius-sm);
       padding: 12px 14px;
-      color: #FFFFFF;
+      color: #1E293B;
       font-family: 'Roboto', sans-serif;
       font-size: 0.95rem;
       transition: all 0.3s ease;
@@ -148,12 +146,12 @@
     .form-control:focus {
       outline: none;
       border-color: var(--color-accent);
-      background: rgba(255, 255, 255, 0.08);
-      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+      background: #FFFFFF;
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
     }
 
     .form-control::placeholder {
-      color: #64748B;
+      color: #94A3B8;
     }
 
     .form-check {
@@ -162,7 +160,7 @@
       gap: 8px;
       margin-bottom: 1.5rem;
       font-size: 0.85rem;
-      color: #94A3B8;
+      color: #475569;
       cursor: pointer;
     }
 
@@ -174,7 +172,7 @@
     .btn-login {
       width: 100%;
       background: var(--color-accent);
-      color: #121216;
+      color: #FFFFFF;
       border: none;
       border-radius: var(--radius-sm);
       padding: 14px;
@@ -191,12 +189,12 @@
 
     .btn-login:hover {
       background: var(--color-accent-hover);
-      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.28);
+      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.25);
       transform: translateY(-1px);
     }
 
     .btn-login:disabled {
-      background: #475569;
+      background: #E2E8F0;
       color: #94A3B8;
       cursor: not-allowed;
       transform: none;
@@ -206,8 +204,8 @@
     .spinner {
       width: 18px;
       height: 18px;
-      border: 2px solid rgba(18, 18, 22, 0.2);
-      border-top-color: #121216;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #FFFFFF;
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
       display: none;
@@ -221,7 +219,7 @@
     .demo-accounts {
       margin-top: 1.8rem;
       padding-top: 1.4rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: 1px solid #E2E8F0;
       text-align: center;
     }
 
@@ -241,10 +239,10 @@
     }
 
     .demo-pill-btn {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
       border-radius: var(--radius-sm);
-      color: #CBD5E1;
+      color: #334155;
       padding: 8px 12px;
       font-size: 0.8rem;
       cursor: pointer;
@@ -256,17 +254,18 @@
     }
 
     .demo-pill-btn:hover {
-      background: rgba(212, 175, 55, 0.1);
+      background: rgba(212, 175, 55, 0.05);
       border-color: rgba(212, 175, 55, 0.3);
-      color: var(--color-accent);
+      color: #0F172A;
     }
 
     .demo-pill-btn span.badge-role {
       font-size: 0.7rem;
-      background: rgba(255, 255, 255, 0.08);
+      background: #FFFFFF;
       padding: 2px 6px;
       border-radius: 4px;
       font-weight: 600;
+      border: 1px solid #E2E8F0;
     }
 
     .back-home {
