@@ -1,4 +1,4 @@
-﻿const propertiesData = [
+const propertiesData = [
   {
     id: 1,
     title: "Modern Luxury Villa",
@@ -360,6 +360,87 @@
       name: "Emma Davis",
       image: "assets/images/agent_office_1786339595128.png",
       phone: "+1 (555) 333-2222"
+    },
+    featured: false
+  },
+  {
+    id: 16,
+    title: "Luxury Beachfront Villa",
+    location: "Mount Lavinia, Colombo",
+    city: "Colombo",
+    type: "Villa",
+    rental_type: "short_term",
+    purpose: "rent",
+    nightly_rate: 250,
+    bedrooms: 4,
+    bathrooms: 4,
+    max_guests: 8,
+    area: 3200,
+    yearBuilt: 2021,
+    description: "Experience the ultimate beachfront luxury with our stunning 4-bedroom villa. Private pool, direct beach access, and full staff including a chef.",
+    features: ["Private Pool", "Beach Access", "Chef Included", "Ocean View"],
+    images: [
+      "assets/images/luxury_villa_1786339560928.png",
+      "assets/images/hero_property_1786339547369.png"
+    ],
+    agent: {
+      name: "HYVE Stays",
+      image: "assets/images/agent_office_1786339595128.png",
+      phone: "+94 76 762 8254"
+    },
+    featured: true
+  },
+  {
+    id: 17,
+    title: "City Center Penthouse",
+    location: "Colombo 03",
+    city: "Colombo",
+    type: "Apartment",
+    rental_type: "short_term",
+    purpose: "rent",
+    nightly_rate: 180,
+    bedrooms: 2,
+    bathrooms: 2,
+    max_guests: 4,
+    area: 1500,
+    yearBuilt: 2023,
+    description: "Modern luxury penthouse in the heart of the city. Walking distance to major shopping malls, restaurants, and business centers. Features a rooftop infinity pool.",
+    features: ["Infinity Pool", "Gym", "City Views", "Smart Home"],
+    images: [
+      "assets/images/penthouse_interior_1786339582396.png",
+      "assets/images/luxury_villa_1786339560928.png"
+    ],
+    agent: {
+      name: "HYVE Stays",
+      image: "assets/images/agent_office_1786339595128.png",
+      phone: "+94 76 762 8254"
+    },
+    featured: true
+  },
+  {
+    id: 18,
+    title: "Cozy Garden Suite",
+    location: "Colombo 07",
+    city: "Colombo",
+    type: "House",
+    rental_type: "short_term",
+    purpose: "rent",
+    nightly_rate: 85,
+    bedrooms: 1,
+    bathrooms: 1,
+    max_guests: 2,
+    area: 600,
+    yearBuilt: 2019,
+    description: "A peaceful retreat in Colombo's most prestigious neighborhood. Features a private garden patio, kitchenette, and high-speed fiber internet.",
+    features: ["Private Garden", "Fiber Internet", "Kitchenette", "Workspace"],
+    images: [
+      "assets/images/hero_property_1786339547369.png",
+      "assets/images/penthouse_interior_1786339582396.png"
+    ],
+    agent: {
+      name: "HYVE Stays",
+      image: "assets/images/agent_office_1786339595128.png",
+      phone: "+94 76 762 8254"
     },
     featured: false
   }
