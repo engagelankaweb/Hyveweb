@@ -255,7 +255,7 @@ function initStaySlider() {
 
   let stayProperties = [];
   if (typeof propertiesData !== 'undefined') {
-    stayProperties = propertiesData.filter(p => p.rental_type === 'short_term' && p.featured).slice(0, 6);
+    stayProperties = propertiesData.filter(p => p.rental_type === 'short_term').slice(0, 6);
   }
 
   if (stayProperties.length === 0) {
