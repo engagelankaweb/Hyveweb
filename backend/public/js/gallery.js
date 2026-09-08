@@ -157,7 +157,30 @@ function renderProperty(p) {
     const agentPhone = document.getElementById('agent-phone');
     if (agentPhone) agentPhone.textContent = p.agent.phone || '+1 (555) 019-2831';
   }
+
+  window.currentPropertyDetail = p;
 }
+
+// Update property price when currency is switched
+window.addEventListener('currencyChanged', () => {
+  if (window.currentPropertyDetail) {
+    const p = window.currentPropertyDetail;
+    const isShortTerm = p.rental_type === 'short_term';
+    let priceLabel = '';
+    let displayPrice = p.price;
+    if (isShortTerm) {
+      priceLabel = '/night';
+      displayPrice = p.nightly_rate || p.price;
+    } else if (p.purpose === 'rent') {
+      priceLabel = '/mo';
+    }
+    const priceEl = document.getElementById('pd-price');
+    if (priceEl) {
+      priceEl.textContent = formatPrice(displayPrice) + priceLabel;
+    }
+  }
+});
+
 
 function initGallery() {
   const mainImage = document.getElementById('main-gallery-image');

@@ -3,6 +3,7 @@
 // =========================================
 
 document.addEventListener('DOMContentLoaded', () => {
+  initCurrencySelector();
   initNavbar();
   initMobileMenu();
   initBackToTop();
@@ -200,14 +201,362 @@ window.showToast = function(message) {
   }, 3000);
 };
 
-// Utilities for formatting
-window.formatPrice = function(price) {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    maximumFractionDigits: 0
-  }).format(price);
+// =========================================
+// MULTI-CURRENCY ENGINE
+// Currencies: LKR (First / Default), USD, YEN, AUD, CAD, EUROS
+// =========================================
+window.HYVE_CURRENCIES = {
+  LKR: { code: 'LKR', label: 'LKR', symbol: 'Rs. ', flag: '🇱🇰', rate: 308.0, locale: 'en-LK', name: 'Sri Lankan Rupee' },
+  USD: { code: 'USD', label: 'USD', symbol: '$', flag: '🇺🇸', rate: 1.0, locale: 'en-US', name: 'US Dollar' },
+  YEN: { code: 'JPY', label: 'YEN', symbol: '¥', flag: '🇯🇵', rate: 155.0, locale: 'ja-JP', name: 'Japanese Yen' },
+  AUD: { code: 'AUD', label: 'AUD', symbol: 'A$', flag: '🇦🇺', rate: 1.55, locale: 'en-AU', name: 'Australian Dollar' },
+  CAD: { code: 'CAD', label: 'CAD', symbol: 'C$', flag: '🇨🇦', rate: 1.39, locale: 'en-CA', name: 'Canadian Dollar' },
+  EUR: { code: 'EUR', label: 'EUROS', symbol: '€', flag: '🇪🇺', rate: 0.92, locale: 'de-DE', name: 'Euro' }
 };
+
+window.getCurrentCurrency = function() {
+  const saved = localStorage.getItem('hyve_currency');
+  if (saved && window.HYVE_CURRENCIES[saved]) {
+    return saved;
+  }
+  return 'LKR'; // Default LKR first
+};
+
+window.convertPrice = function(usdAmount, targetCurrency) {
+  if (usdAmount === undefined || usdAmount === null || isNaN(usdAmount)) return 0;
+  const curr = targetCurrency || window.getCurrentCurrency();
+  const cfg = window.HYVE_CURRENCIES[curr] || window.HYVE_CURRENCIES['LKR'];
+  return Math.round(Number(usdAmount) * cfg.rate);
+};
+
+window.formatPrice = function(usdPrice, targetCurrency) {
+  if (usdPrice === undefined || usdPrice === null || isNaN(usdPrice)) return '0';
+  const curr = targetCurrency || window.getCurrentCurrency();
+  const cfg = window.HYVE_CURRENCIES[curr] || window.HYVE_CURRENCIES['LKR'];
+  const converted = Math.round(Number(usdPrice) * cfg.rate);
+
+  if (cfg.code === 'LKR') {
+    return 'Rs. ' + converted.toLocaleString('en-US');
+  } else if (cfg.code === 'USD') {
+    return '$' + converted.toLocaleString('en-US');
+  } else if (cfg.code === 'JPY') {
+    return '¥' + converted.toLocaleString('ja-JP');
+  } else if (cfg.code === 'AUD') {
+    return 'A$' + converted.toLocaleString('en-AU');
+  } else if (cfg.code === 'CAD') {
+    return 'C$' + converted.toLocaleString('en-CA');
+  } else if (cfg.code === 'EUR') {
+    return '€' + converted.toLocaleString('de-DE');
+  }
+  return (cfg.symbol || '') + converted.toLocaleString('en-US');
+};
+
+window.setCurrency = function(currencyKey) {
+  if (!window.HYVE_CURRENCIES[currencyKey]) return;
+  localStorage.setItem('hyve_currency', currencyKey);
+
+  updateCurrencyButtonUI(currencyKey);
+  updateCurrencyLabels(currencyKey);
+
+  window.dispatchEvent(new CustomEvent('currencyChanged', {
+    detail: {
+      currency: currencyKey,
+      config: window.HYVE_CURRENCIES[currencyKey]
+    }
+  }));
+};
+
+function updateCurrencyButtonUI(currencyKey) {
+  const cfg = window.HYVE_CURRENCIES[currencyKey] || window.HYVE_CURRENCIES['LKR'];
+
+  // Navbar button elements
+  const flagEl = document.getElementById('current-currency-flag');
+  const codeEl = document.getElementById('current-currency-code');
+  const symbolEl = document.getElementById('current-currency-symbol');
+  if (flagEl) flagEl.textContent = cfg.flag;
+  if (codeEl) codeEl.textContent = cfg.label;
+  if (symbolEl) symbolEl.textContent = cfg.symbol.trim();
+
+  // Floating circular button elements (Properties & Short-Term Rentals)
+  const fcFlag = document.getElementById('fc-current-flag');
+  const fcCode = document.getElementById('fc-current-code');
+  const fcBtn = document.getElementById('floating-currency-btn');
+  if (fcFlag) fcFlag.textContent = cfg.flag;
+  if (fcCode) fcCode.textContent = cfg.label;
+  if (fcBtn) fcBtn.setAttribute('title', `Currency: ${cfg.label} (${cfg.symbol.trim()}) - Click to change`);
+
+  document.querySelectorAll('.currency-option, .curr-opt-item').forEach(opt => {
+    if (opt.getAttribute('data-currency') === currencyKey) {
+      opt.classList.add('active');
+    } else {
+      opt.classList.remove('active');
+    }
+  });
+}
+
+function updateCurrencyLabels(currencyKey) {
+  const cfg = window.HYVE_CURRENCIES[currencyKey] || window.HYVE_CURRENCIES['LKR'];
+  document.querySelectorAll('.curr-symbol-label').forEach(el => {
+    el.textContent = cfg.symbol.trim() || cfg.label;
+  });
+  document.querySelectorAll('.curr-code-label').forEach(el => {
+    el.textContent = cfg.label;
+  });
+}
+
+function fetchLiveRates() {
+  fetch('https://open.er-api.com/v6/latest/USD')
+    .then(res => res.json())
+    .then(data => {
+      if (data && data.rates) {
+        if (data.rates.LKR) window.HYVE_CURRENCIES.LKR.rate = data.rates.LKR;
+        if (data.rates.JPY) window.HYVE_CURRENCIES.YEN.rate = data.rates.JPY;
+        if (data.rates.AUD) window.HYVE_CURRENCIES.AUD.rate = data.rates.AUD;
+        if (data.rates.CAD) window.HYVE_CURRENCIES.CAD.rate = data.rates.CAD;
+        if (data.rates.EUR) window.HYVE_CURRENCIES.EUR.rate = data.rates.EUR;
+
+        const current = window.getCurrentCurrency();
+        window.dispatchEvent(new CustomEvent('currencyChanged', {
+          detail: { currency: current, config: window.HYVE_CURRENCIES[current] }
+        }));
+      }
+    })
+    .catch(() => { /* Fallback to default rates */ });
+}
+
+function initCurrencySelector() {
+  const navLinks = document.querySelector('.nav-links');
+  if (!navLinks) return;
+
+  const current = window.getCurrentCurrency();
+  let dropdown = document.querySelector('.currency-dropdown');
+  const isLightMode = document.querySelector('.navbar .nav-link')?.classList.contains('light-mode') || false;
+
+  if (!dropdown) {
+    const li = document.createElement('li');
+    li.className = 'currency-selector-item';
+    li.innerHTML = `
+      <div class="currency-dropdown" id="currency-dropdown">
+        <button class="currency-btn ${isLightMode ? 'light-mode' : ''}" type="button" aria-haspopup="true" aria-expanded="false" id="currency-toggle-btn">
+          <span class="currency-flag" id="current-currency-flag">🇱🇰</span>
+          <span class="currency-code" id="current-currency-code">LKR</span>
+          <span class="currency-symbol-tag" id="current-currency-symbol">Rs.</span>
+          <svg class="currency-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="currency-menu" id="currency-menu">
+          <div class="currency-menu-header">Select Currency</div>
+          <button class="currency-option ${current === 'LKR' ? 'active' : ''}" data-currency="LKR">
+            <span class="curr-opt-flag">🇱🇰</span>
+            <span class="curr-opt-details">
+              <span class="curr-opt-top">LKR <span class="curr-opt-symbol">Rs.</span></span>
+              <span class="curr-opt-name">Sri Lankan Rupee</span>
+            </span>
+            <span class="curr-opt-check">✓</span>
+          </button>
+          <button class="currency-option ${current === 'USD' ? 'active' : ''}" data-currency="USD">
+            <span class="curr-opt-flag">🇺🇸</span>
+            <span class="curr-opt-details">
+              <span class="curr-opt-top">USD <span class="curr-opt-symbol">$</span></span>
+              <span class="curr-opt-name">US Dollar</span>
+            </span>
+            <span class="curr-opt-check">✓</span>
+          </button>
+          <button class="currency-option ${current === 'YEN' ? 'active' : ''}" data-currency="YEN">
+            <span class="curr-opt-flag">🇯🇵</span>
+            <span class="curr-opt-details">
+              <span class="curr-opt-top">YEN <span class="curr-opt-symbol">¥</span></span>
+              <span class="curr-opt-name">Japanese Yen (JPY)</span>
+            </span>
+            <span class="curr-opt-check">✓</span>
+          </button>
+          <button class="currency-option ${current === 'AUD' ? 'active' : ''}" data-currency="AUD">
+            <span class="curr-opt-flag">🇦🇺</span>
+            <span class="curr-opt-details">
+              <span class="curr-opt-top">AUD <span class="curr-opt-symbol">A$</span></span>
+              <span class="curr-opt-name">Australian Dollar</span>
+            </span>
+            <span class="curr-opt-check">✓</span>
+          </button>
+          <button class="currency-option ${current === 'CAD' ? 'active' : ''}" data-currency="CAD">
+            <span class="curr-opt-flag">🇨🇦</span>
+            <span class="curr-opt-details">
+              <span class="curr-opt-top">CAD <span class="curr-opt-symbol">C$</span></span>
+              <span class="curr-opt-name">Canadian Dollar</span>
+            </span>
+            <span class="curr-opt-check">✓</span>
+          </button>
+          <button class="currency-option ${current === 'EUR' ? 'active' : ''}" data-currency="EUR">
+            <span class="curr-opt-flag">🇪🇺</span>
+            <span class="curr-opt-details">
+              <span class="curr-opt-top">EUROS <span class="curr-opt-symbol">€</span></span>
+              <span class="curr-opt-name">Euro</span>
+            </span>
+            <span class="curr-opt-check">✓</span>
+          </button>
+        </div>
+      </div>
+    `;
+
+    const listBtnLi = navLinks.querySelector('.nav-list-property')?.closest('li');
+    if (listBtnLi) {
+      navLinks.insertBefore(li, listBtnLi);
+    } else {
+      navLinks.appendChild(li);
+    }
+    dropdown = li.querySelector('.currency-dropdown');
+  }
+
+  updateCurrencyButtonUI(current);
+  updateCurrencyLabels(current);
+
+  const toggleBtn = dropdown.querySelector('#currency-toggle-btn');
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdown.classList.toggle('open');
+      toggleBtn.setAttribute('aria-expanded', dropdown.classList.contains('open'));
+    });
+  }
+
+  dropdown.querySelectorAll('.currency-option').forEach(opt => {
+    opt.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const code = opt.getAttribute('data-currency');
+      window.setCurrency(code);
+      dropdown.classList.remove('open');
+      if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!dropdown.contains(e.target)) {
+      dropdown.classList.remove('open');
+      if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && dropdown.classList.contains('open')) {
+      dropdown.classList.remove('open');
+      if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  fetchLiveRates();
+  initFloatingCurrencyChanger();
+}
+
+function initFloatingCurrencyChanger() {
+  const isTargetPage = document.body.classList.contains('has-floating-currency') ||
+                       window.location.pathname.includes('properties') || 
+                       window.location.pathname.includes('short-term-rentals') ||
+                       document.getElementById('properties-grid') !== null;
+  if (!isTargetPage) return;
+
+  document.body.classList.add('has-floating-currency');
+
+  let wrapper = document.getElementById('floating-currency-wrapper');
+  const current = window.getCurrentCurrency();
+  const cfg = window.HYVE_CURRENCIES[current] || window.HYVE_CURRENCIES['LKR'];
+
+  if (!wrapper) {
+    wrapper = document.createElement('div');
+    wrapper.className = 'floating-currency-wrapper';
+    wrapper.id = 'floating-currency-wrapper';
+    wrapper.innerHTML = `
+      <button class="floating-currency-btn" id="floating-currency-btn" type="button" aria-label="Change Currency" title="Currency: ${cfg.label} (${cfg.symbol.trim()}) - Click to change">
+        <span class="fc-flag" id="fc-current-flag">${cfg.flag}</span>
+        <span class="fc-code" id="fc-current-code">${cfg.label}</span>
+      </button>
+      <div class="floating-currency-menu" id="floating-currency-menu">
+        <div class="menu-heading">
+          <span>Select Currency</span>
+          <span style="color: var(--color-accent, #D4AF37); font-weight: 700;">HYVE</span>
+        </div>
+        <button class="curr-opt-item ${current === 'LKR' ? 'active' : ''}" data-currency="LKR">
+          <span class="curr-opt-flag">🇱🇰</span>
+          <span class="curr-opt-details">
+            <span class="curr-opt-top">LKR <span class="curr-opt-symbol">Rs.</span></span>
+            <span class="curr-opt-name">Sri Lankan Rupee</span>
+          </span>
+          <span class="curr-opt-check">✓</span>
+        </button>
+        <button class="curr-opt-item ${current === 'USD' ? 'active' : ''}" data-currency="USD">
+          <span class="curr-opt-flag">🇺🇸</span>
+          <span class="curr-opt-details">
+            <span class="curr-opt-top">USD <span class="curr-opt-symbol">$</span></span>
+            <span class="curr-opt-name">US Dollar</span>
+          </span>
+          <span class="curr-opt-check">✓</span>
+        </button>
+        <button class="curr-opt-item ${current === 'YEN' ? 'active' : ''}" data-currency="YEN">
+          <span class="curr-opt-flag">🇯🇵</span>
+          <span class="curr-opt-details">
+            <span class="curr-opt-top">YEN <span class="curr-opt-symbol">¥</span></span>
+            <span class="curr-opt-name">Japanese Yen (JPY)</span>
+          </span>
+          <span class="curr-opt-check">✓</span>
+        </button>
+        <button class="curr-opt-item ${current === 'AUD' ? 'active' : ''}" data-currency="AUD">
+          <span class="curr-opt-flag">🇦🇺</span>
+          <span class="curr-opt-details">
+            <span class="curr-opt-top">AUD <span class="curr-opt-symbol">A$</span></span>
+            <span class="curr-opt-name">Australian Dollar</span>
+          </span>
+          <span class="curr-opt-check">✓</span>
+        </button>
+        <button class="curr-opt-item ${current === 'CAD' ? 'active' : ''}" data-currency="CAD">
+          <span class="curr-opt-flag">🇨🇦</span>
+          <span class="curr-opt-details">
+            <span class="curr-opt-top">CAD <span class="curr-opt-symbol">C$</span></span>
+            <span class="curr-opt-name">Canadian Dollar</span>
+          </span>
+          <span class="curr-opt-check">✓</span>
+        </button>
+        <button class="curr-opt-item ${current === 'EUR' ? 'active' : ''}" data-currency="EUR">
+          <span class="curr-opt-flag">🇪🇺</span>
+          <span class="curr-opt-details">
+            <span class="curr-opt-top">EUROS <span class="curr-opt-symbol">€</span></span>
+            <span class="curr-opt-name">Euro</span>
+          </span>
+          <span class="curr-opt-check">✓</span>
+        </button>
+      </div>
+    `;
+    document.body.appendChild(wrapper);
+  }
+
+  const fcBtn = wrapper.querySelector('#floating-currency-btn');
+  if (fcBtn) {
+    fcBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      wrapper.classList.toggle('open');
+    });
+  }
+
+  wrapper.querySelectorAll('.curr-opt-item').forEach(opt => {
+    opt.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const code = opt.getAttribute('data-currency');
+      window.setCurrency(code);
+      wrapper.classList.remove('open');
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!wrapper.contains(e.target)) {
+      wrapper.classList.remove('open');
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && wrapper.classList.contains('open')) {
+      wrapper.classList.remove('open');
+    }
+  });
+}
 
 // LocalStorage for Favorites
 window.toggleFavorite = function(id, btnElement) {

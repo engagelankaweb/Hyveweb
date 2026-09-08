@@ -147,7 +147,8 @@ function initFilters(container) {
         }
       }
       if (type && p.type !== type) match = false;
-      const comparePrice = (p.rental_type === 'short_term' && p.nightly_rate) ? p.nightly_rate : p.price;
+      const rawPrice = (p.rental_type === 'short_term' && p.nightly_rate) ? p.nightly_rate : p.price;
+      const comparePrice = window.convertPrice ? window.convertPrice(rawPrice) : rawPrice;
       if (comparePrice < minPrice || comparePrice > maxPrice) match = false;
       if (beds) {
         if (beds === '4+' && p.bedrooms < 4) match = false;
@@ -204,5 +205,17 @@ function initFilters(container) {
     });
   }
   
+  window.hyveApplyFilters = applyFilters;
   applyFilters();
 }
+
+// Re-render when currency changes
+window.addEventListener('currencyChanged', () => {
+  const featuredGrid = document.getElementById('featured-grid');
+  if (featuredGrid) {
+    renderFeaturedProperties(featuredGrid);
+  }
+  if (window.hyveApplyFilters) {
+    window.hyveApplyFilters();
+  }
+});
