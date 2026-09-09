@@ -253,7 +253,7 @@ p {
 
 .nav-links {
   display: flex;
-  gap: var(--spacing-md);
+  gap: 1rem;
   align-items: center;
 }
 
