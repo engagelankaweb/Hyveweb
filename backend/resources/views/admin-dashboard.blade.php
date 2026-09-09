@@ -1156,7 +1156,7 @@
 
         <button class="menu-item" id="menu-btn-rentals" onclick="switchView('rentals')">
           <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-          Short Term Rentals
+          Stays
         </button>
 
         <button class="menu-item" id="menu-btn-add-property" onclick="switchView('add-property')">
@@ -1261,7 +1261,7 @@
         </div>
         <div>
           <div class="stat-value" id="stats-rentals">{{ $stats['short_term'] }}</div>
-          <div class="stat-label">Short Term Rentals</div>
+          <div class="stat-label">Stays</div>
         </div>
       </div>
 
@@ -1518,12 +1518,12 @@
       <div class="dashboard-panel-card">
         <div class="panel-header">
           <div>
-            <h2 class="panel-title">Short Term Rentals & Vacation Stays</h2>
+            <h2 class="panel-title">Stays & Vacation Rentals</h2>
             <p style="margin: 4px 0 0; color: #64748b; font-size: 0.88rem;">Manage nightly rates, guest capacities, min stays, and booking URLs</p>
           </div>
           <button class="btn-add-action" onclick="openAddShortRentalModal()">
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-            Add Short-Term Rental
+            Add Stay
           </button>
         </div>
 
@@ -1595,7 +1595,7 @@
               @empty
                 <tr>
                   <td colspan="8" style="text-align: center; color: #64748b; padding: 3rem;">
-                    No short-term rentals configured yet. Click "Add Short-Term Rental" to create vacation listings.
+                    No stays configured yet. Click "Add Stay" to create vacation listings.
                   </td>
                 </tr>
               @endforelse
@@ -1795,7 +1795,7 @@
       <div class="dashboard-panel-card" style="max-width: 900px; margin: 0 auto 2rem;">
         <div class="panel-header">
           <div>
-            <h2 class="panel-title">Create New Short-Term Rental</h2>
+            <h2 class="panel-title">Create New Stay</h2>
             <p style="margin: 4px 0 0; color: #64748b; font-size: 0.88rem;">Publish a vacation stay with nightly rates</p>
           </div>
           <button class="btn-secondary-custom" onclick="switchView('rentals')">Cancel & Return</button>
@@ -2409,7 +2409,7 @@
         const btn = document.getElementById('menu-btn-rentals');
         if (btn) btn.classList.add('active');
         document.getElementById('view-panel-rentals').classList.add('active-view');
-        titleEl.textContent = 'Short Term Rentals';
+        titleEl.textContent = 'Stays';
         subtitleEl.textContent = 'Manage vacation stays, nightly rates, capacity, and booking links';
       } else if (viewName === 'add-property') {
         const btn = document.getElementById('menu-btn-add-property');
@@ -2420,7 +2420,7 @@
         switchAddTab(1);
       } else if (viewName === 'add-short-rental') {
         document.getElementById('view-panel-add-short-rental').classList.add('active-view');
-        titleEl.textContent = 'Create New Short-Term Rental';
+        titleEl.textContent = 'Create New Stay';
         subtitleEl.textContent = 'Publish a vacation stay with nightly rates';
         switchRentalTab(1);
       } else if (viewName === 'users') {
@@ -2865,7 +2865,7 @@
 
         const data = await res.json();
         if (res.ok && data.success) {
-          showToast(data.message || 'Short term rental added successfully!');
+          showToast(data.message || 'Stay added successfully!');
           setTimeout(() => window.location.reload(), 800);
         } else {
           showToast(data.message || 'Validation failed. Check your input values.');

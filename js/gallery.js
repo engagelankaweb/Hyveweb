@@ -28,7 +28,7 @@ function loadPropertyDetails() {
     document.getElementById('property-details-container').innerHTML = `
       <div class="container text-center section">
         <h2>Property Not Found</h2>
-        <a href="properties.html" class="btn btn-primary" style="margin-top: 1rem;">Back to Properties</a>
+        <a href="properties.html" class="btn btn-primary" style="margin-top: 1rem;">Back to Real Estate</a>
       </div>
     `;
     return;
