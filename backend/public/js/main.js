@@ -325,6 +325,11 @@ function fetchLiveRates() {
 }
 
 function initCurrencySelector() {
+  const isNoCurrencyPage = document.body.classList.contains('no-currency') || 
+                           window.location.pathname.includes('about.html') ||
+                           window.location.pathname.endsWith('/about');
+  if (isNoCurrencyPage) return;
+
   const navLinks = document.querySelector('.nav-links');
   if (!navLinks) return;
 

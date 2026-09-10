@@ -2414,7 +2414,9 @@ p {
    FLOATING CIRCULAR CURRENCY BUTTON (BOTTOM LEFT)
    Dedicated to Properties & Short-Term Rentals Pages
    ======================================================= */
-body.has-floating-currency .navbar .currency-selector-item {
+body.has-floating-currency .navbar .currency-selector-item,
+body.no-currency .navbar .currency-selector-item,
+body.no-currency .currency-selector-item {
   display: none !important;
 }
 
