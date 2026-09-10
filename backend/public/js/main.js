@@ -337,7 +337,7 @@ function initCurrencySelector() {
     li.className = 'currency-selector-item';
     li.innerHTML = `
       <div class="currency-dropdown" id="currency-dropdown">
-        <button class="currency-btn ${isLightMode ? 'light-mode' : ''}" type="button" aria-haspopup="true" aria-expanded="false" id="currency-toggle-btn">
+        <button class="currency-btn" type="button" aria-haspopup="true" aria-expanded="false" id="currency-toggle-btn">
           <span class="currency-flag" id="current-currency-flag">🇱🇰</span>
           <span class="currency-code" id="current-currency-code">LKR</span>
           <span class="currency-symbol-tag" id="current-currency-symbol">Rs.</span>

@@ -2257,19 +2257,6 @@ p {
   transform: translateY(-1px);
 }
 
-.navbar:not(.scrolled) .currency-btn.light-mode {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.35);
-  color: #ffffff;
-  backdrop-filter: blur(8px);
-}
-
-.navbar:not(.scrolled) .currency-btn.light-mode:hover {
-  background: rgba(255, 255, 255, 0.25);
-  border-color: #ffffff;
-  color: #ffffff;
-}
-
 .currency-flag {
   font-size: 1.15rem;
   line-height: 1;
@@ -2285,10 +2272,6 @@ p {
   opacity: 0.8;
   font-weight: 500;
   color: var(--color-accent);
-}
-
-.navbar:not(.scrolled) .currency-btn.light-mode .currency-symbol-tag {
-  color: #fef08a;
 }
 
 .currency-chevron {

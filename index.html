@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="css/animations.css">
 </head>
-<body>
+<body class="has-floating-currency">
 
   <!-- Navigation -->
   <nav class="navbar">
@@ -408,7 +408,67 @@
     </div>
   </footer>
 
-  
+  <!-- Floating Circular Currency Changer (Bottom Left) -->
+  <div class="floating-currency-wrapper" id="floating-currency-wrapper">
+    <button class="floating-currency-btn" id="floating-currency-btn" type="button" aria-label="Change Currency" title="Currency: LKR (Rs.) - Click to change">
+      <span class="fc-flag" id="fc-current-flag">🇱🇰</span>
+      <span class="fc-code" id="fc-current-code">LKR</span>
+    </button>
+    <div class="floating-currency-menu" id="floating-currency-menu">
+      <div class="menu-heading">
+        <span>Select Currency</span>
+        <span style="color: var(--color-accent); font-weight: 700;">HYVE</span>
+      </div>
+      <button class="curr-opt-item active" data-currency="LKR">
+        <span class="curr-opt-flag">🇱🇰</span>
+        <span class="curr-opt-details">
+          <span class="curr-opt-top">LKR <span class="curr-opt-symbol">Rs.</span></span>
+          <span class="curr-opt-name">Sri Lankan Rupee</span>
+        </span>
+        <span class="curr-opt-check">✓</span>
+      </button>
+      <button class="curr-opt-item" data-currency="USD">
+        <span class="curr-opt-flag">🇺🇸</span>
+        <span class="curr-opt-details">
+          <span class="curr-opt-top">USD <span class="curr-opt-symbol">$</span></span>
+          <span class="curr-opt-name">US Dollar</span>
+        </span>
+        <span class="curr-opt-check">✓</span>
+      </button>
+      <button class="curr-opt-item" data-currency="YEN">
+        <span class="curr-opt-flag">🇯🇵</span>
+        <span class="curr-opt-details">
+          <span class="curr-opt-top">YEN <span class="curr-opt-symbol">¥</span></span>
+          <span class="curr-opt-name">Japanese Yen (JPY)</span>
+        </span>
+        <span class="curr-opt-check">✓</span>
+      </button>
+      <button class="curr-opt-item" data-currency="AUD">
+        <span class="curr-opt-flag">🇦🇺</span>
+        <span class="curr-opt-details">
+          <span class="curr-opt-top">AUD <span class="curr-opt-symbol">A$</span></span>
+          <span class="curr-opt-name">Australian Dollar</span>
+        </span>
+        <span class="curr-opt-check">✓</span>
+      </button>
+      <button class="curr-opt-item" data-currency="CAD">
+        <span class="curr-opt-flag">🇨🇦</span>
+        <span class="curr-opt-details">
+          <span class="curr-opt-top">CAD <span class="curr-opt-symbol">C$</span></span>
+          <span class="curr-opt-name">Canadian Dollar</span>
+        </span>
+        <span class="curr-opt-check">✓</span>
+      </button>
+      <button class="curr-opt-item" data-currency="EUR">
+        <span class="curr-opt-flag">🇪🇺</span>
+        <span class="curr-opt-details">
+          <span class="curr-opt-top">EUROS <span class="curr-opt-symbol">€</span></span>
+          <span class="curr-opt-name">Euro</span>
+        </span>
+        <span class="curr-opt-check">✓</span>
+      </button>
+    </div>
+  </div>
 
   <!-- Utilities -->
   <button id="back-to-top" aria-label="Back to top">
