@@ -174,7 +174,7 @@
       background: var(--color-accent);
       color: #FFFFFF;
       border: none;
-      border-radius: var(--radius-sm);
+      border-radius: 0;
       padding: 14px;
       font-family: 'Roboto', sans-serif;
       font-weight: 700;
@@ -241,7 +241,7 @@
     .demo-pill-btn {
       background: #F8FAFC;
       border: 1px solid #E2E8F0;
-      border-radius: var(--radius-sm);
+      border-radius: 0;
       color: #334155;
       padding: 8px 12px;
       font-size: 0.8rem;

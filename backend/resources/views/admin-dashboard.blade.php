@@ -152,7 +152,7 @@
       align-items: center;
       gap: 12px;
       padding: 12px 16px;
-      border-radius: var(--radius-sm);
+      border-radius: 0;
       color: #94a3b8;
       font-weight: 500;
       font-size: 0.92rem;
@@ -247,7 +247,7 @@
       border: 1px solid rgba(239, 68, 68, 0.2);
       color: #f87171;
       padding: 9px;
-      border-radius: var(--radius-sm);
+      border-radius: 0;
       cursor: pointer;
       font-weight: 600;
       font-size: 0.85rem;
@@ -528,7 +528,7 @@
       background: var(--color-accent);
       color: #121212;
       padding: 10px 18px;
-      border-radius: var(--radius-sm);
+      border-radius: 0;
       font-weight: 600;
       font-size: 0.88rem;
       border: none;
@@ -661,7 +661,7 @@
 
     .btn-action-sm {
       padding: 6px 10px;
-      border-radius: var(--radius-sm);
+      border-radius: 0;
       font-size: 0.8rem;
       font-weight: 600;
       cursor: pointer;
@@ -766,7 +766,7 @@
       font-weight: 600;
       color: #64748b;
       cursor: pointer;
-      border-radius: var(--radius-sm);
+      border-radius: 0;
       transition: all 0.2s ease;
     }
 
@@ -915,7 +915,7 @@
       background: #f1f5f9;
       color: #475569;
       border: 1px solid #e2e8f0;
-      border-radius: var(--radius-sm);
+      border-radius: 0;
       padding: 10px 20px;
       font-size: 0.9rem;
       font-weight: 600;

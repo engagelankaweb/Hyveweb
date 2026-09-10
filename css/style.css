@@ -129,7 +129,7 @@ p {
 .btn {
   display: inline-block;
   padding: 12px 24px;
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1104,7 +1104,7 @@ p {
   font-size: 0.95rem;
   font-weight: 600;
   padding: 0.75rem 1.4rem;
-  border-radius: 4px;
+  border-radius: 0;
   cursor: pointer;
   white-space: nowrap;
   transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
@@ -1957,7 +1957,7 @@ p {
   color: var(--color-text-main);
   border: 1px solid var(--color-border-dark);
   padding: 8px 18px;
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -2150,7 +2150,7 @@ p {
   color: #FFFFFF;
   padding: 14px 32px;
   font-weight: 600;
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
@@ -2169,7 +2169,7 @@ p {
   border: 1px solid rgba(255, 255, 255, 0.6);
   padding: 14px 32px;
   font-weight: 600;
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
@@ -2339,7 +2339,7 @@ p {
   align-items: center;
   gap: 12px;
   padding: 8px 12px;
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   border: none;
   background: transparent;
   color: var(--color-text-main);
@@ -2537,7 +2537,7 @@ body.has-floating-currency .navbar .currency-selector-item {
   align-items: center;
   gap: 12px;
   padding: 8px 12px;
-  border-radius: 10px;
+  border-radius: 0;
   border: none;
   background: transparent;
   color: #1e293b;
