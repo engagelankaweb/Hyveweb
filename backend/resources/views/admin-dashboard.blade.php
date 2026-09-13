@@ -17,10 +17,10 @@
       --sidebar-width: 270px;
       --color-primary-dark: #0f111a;
       --color-sidebar-bg: #161824;
-      --color-sidebar-active: rgba(212, 175, 55, 0.12);
-      --color-accent: #D4AF37;
+      --color-sidebar-active: rgba(20, 51, 92, 0.12);
+      --color-accent: #14335C;
       --color-accent-hover: #E5C158;
-      --color-accent-glow: rgba(212, 175, 55, 0.2);
+      --color-accent-glow: rgba(20, 51, 92, 0.2);
       --color-danger: #EF4444;
       --color-danger-hover: #DC2626;
       --color-success: #10B981;
@@ -112,9 +112,9 @@
     }
 
     .badge-role-main_admin {
-      background: rgba(212, 175, 55, 0.2);
+      background: rgba(20, 51, 92, 0.2);
       color: var(--color-accent);
-      border: 1px solid rgba(212, 175, 55, 0.4);
+      border: 1px solid rgba(20, 51, 92, 0.4);
     }
 
     .badge-role-staff {
@@ -390,7 +390,7 @@
     .stat-card:hover {
       transform: translateY(-3px);
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
-      border-color: rgba(212, 175, 55, 0.35);
+      border-color: rgba(20, 51, 92, 0.35);
     }
 
     .stat-icon {
@@ -403,7 +403,7 @@
       flex-shrink: 0;
     }
 
-    .icon-gold { background: rgba(212,175,55,0.12); color: #B89010; }
+    .icon-gold { background: rgba(20,51,92,0.12); color: #B89010; }
     .icon-green { background: rgba(16,185,129,0.12); color: var(--color-success); }
     .icon-blue { background: rgba(59,130,246,0.12); color: #2563EB; }
     .icon-purple { background: rgba(139,92,246,0.12); color: #7C3AED; }
@@ -499,7 +499,7 @@
     .search-input:focus {
       outline: none;
       border-color: var(--color-accent);
-      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+      box-shadow: 0 0 0 3px rgba(20, 51, 92, 0.15);
     }
 
     .search-icon {
@@ -542,7 +542,7 @@
 
     .btn-add-action:hover {
       background: var(--color-accent-hover);
-      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.25);
+      box-shadow: 0 4px 12px rgba(20, 51, 92, 0.25);
     }
 
     /* Table Styling */
@@ -772,7 +772,7 @@
 
     .form-tab-btn.active {
       color: #121212;
-      background: rgba(212, 175, 55, 0.15);
+      background: rgba(20, 51, 92, 0.15);
     }
 
     .form-tab-content {
@@ -834,7 +834,7 @@
     .input-custom:focus, .select-custom:focus, .textarea-custom:focus {
       outline: none;
       border-color: var(--color-accent);
-      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+      box-shadow: 0 0 0 3px rgba(20, 51, 92, 0.15);
     }
 
     .textarea-custom {
@@ -855,7 +855,7 @@
 
     .upload-drag-zone:hover, .upload-drag-zone.dragover {
       border-color: var(--color-accent);
-      background: rgba(212, 175, 55, 0.03);
+      background: rgba(20, 51, 92, 0.03);
     }
 
     .upload-drag-zone svg {

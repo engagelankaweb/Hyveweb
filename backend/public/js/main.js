@@ -359,7 +359,7 @@ function initFloatingCurrencyChanger() {
       <div class="floating-currency-menu" id="floating-currency-menu">
         <div class="menu-heading">
           <span>Select Currency</span>
-          <span style="color: var(--color-accent, #D4AF37); font-weight: 700;">HYVE</span>
+          <span style="color: var(--color-accent, #14335C); font-weight: 700;">HYVE</span>
         </div>
         <button class="curr-opt-item ${current === 'LKR' ? 'active' : ''}" data-currency="LKR">
           <span class="curr-opt-flag">🇱🇰</span>

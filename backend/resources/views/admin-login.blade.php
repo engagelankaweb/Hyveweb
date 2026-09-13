@@ -13,7 +13,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
     :root {
-      --color-accent: #D4AF37;
+      --color-accent: #14335C;
       --color-accent-hover: #E5C158;
       --radius-sm: 8px;
       --radius-md: 12px;
@@ -38,7 +38,7 @@
       position: absolute;
       width: 550px;
       height: 550px;
-      background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(20, 51, 92, 0.15) 0%, transparent 70%);
       top: -120px;
       right: -120px;
       pointer-events: none;
@@ -49,7 +49,7 @@
       position: absolute;
       width: 550px;
       height: 550px;
-      background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(20, 51, 92, 0.1) 0%, transparent 70%);
       bottom: -120px;
       left: -120px;
       pointer-events: none;
@@ -147,7 +147,7 @@
       outline: none;
       border-color: var(--color-accent);
       background: #FFFFFF;
-      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+      box-shadow: 0 0 0 3px rgba(20, 51, 92, 0.15);
     }
 
     .form-control::placeholder {
@@ -189,7 +189,7 @@
 
     .btn-login:hover {
       background: var(--color-accent-hover);
-      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.25);
+      box-shadow: 0 8px 24px rgba(20, 51, 92, 0.25);
       transform: translateY(-1px);
     }
 
@@ -254,8 +254,8 @@
     }
 
     .demo-pill-btn:hover {
-      background: rgba(212, 175, 55, 0.05);
-      border-color: rgba(212, 175, 55, 0.3);
+      background: rgba(20, 51, 92, 0.05);
+      border-color: rgba(20, 51, 92, 0.3);
       color: #0F172A;
     }
 
@@ -339,7 +339,7 @@
       <div class="demo-pills">
         <button type="button" class="demo-pill-btn" onclick="fillCredentials('admin@hyve.com', 'admin123')">
           <span><strong>Main Admin:</strong> admin@hyve.com</span>
-          <span class="badge-role" style="color: #D4AF37;">Executive</span>
+          <span class="badge-role" style="color: #14335C;">Executive</span>
         </button>
         <button type="button" class="demo-pill-btn" onclick="fillCredentials('staff@hyve.com', 'staff123')">
           <span><strong>Staff:</strong> staff@hyve.com</span>
