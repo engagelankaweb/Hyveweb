@@ -27,10 +27,10 @@
   --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
   --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
   --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
   
   /* Layout */
   --container-width: 1200px;
@@ -940,7 +940,7 @@ p {
 
 .footer-review-card {
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
+  border-radius: 0;
   padding: 1rem 1.25rem;
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(8px);
@@ -1084,7 +1084,7 @@ p {
   color: #1A1A1A;
   font-size: 0.95rem;
   padding: 0.75rem 1rem;
-  border-radius: 4px;
+  border-radius: 0;
   outline: none;
   transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
@@ -1162,7 +1162,7 @@ p {
   align-items: center;
   gap: 10px;
   padding: 10px 18px;
-  border-radius: 50px;
+  border-radius: 0;
   box-shadow: 0 4px 18px rgba(37, 211, 102, 0.45), 0 2px 6px rgba(0, 0, 0, 0.15);
   font-size: 0.95rem;
   font-weight: 600;
@@ -1433,7 +1433,7 @@ p {
   font-size: 0.85rem;
   font-weight: 600;
   z-index: 2;
-  border-radius: 4px;
+  border-radius: 0;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -1446,7 +1446,7 @@ p {
   transform: translateX(-50%);
   background-color: rgba(255, 255, 255, 0.9);
   padding: 6px 10px;
-  border-radius: 12px;
+  border-radius: 0;
   display: flex;
   gap: 6px;
   z-index: 2;
@@ -1762,7 +1762,7 @@ p {
 .mv-icon-badge {
   width: 60px;
   height: 60px;
-  border-radius: 14px;
+  border-radius: 0;
   background: rgba(212, 175, 55, 0.12);
   color: var(--color-accent);
   display: flex;
@@ -1843,7 +1843,7 @@ p {
 .value-icon-box {
   width: 54px;
   height: 54px;
-  border-radius: 12px;
+  border-radius: 0;
   background: #FAF7F2;
   border: 1px solid rgba(212, 175, 55, 0.25);
   color: var(--color-accent);
@@ -2242,7 +2242,7 @@ p {
   font-family: var(--font-primary);
   font-size: 0.85rem;
   font-weight: 600;
-  border-radius: 999px;
+  border-radius: 0;
   cursor: pointer;
   transition: all 0.25s ease;
   border: 1px solid var(--color-border);
@@ -2446,15 +2446,17 @@ body.has-floating-currency .navbar .currency-selector-item {
   width: 58px;
   height: 58px;
   border-radius: 50%;
-  background: #0f172a;
-  border: 2px solid #D4AF37;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 55, 0.5);
   color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35), 0 0 15px rgba(212, 175, 55, 0.25);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35), 0 0 15px rgba(212, 175, 55, 0.25), inset 0 0 15px rgba(255, 255, 255, 0.05);
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   user-select: none;
   position: relative;
@@ -2495,7 +2497,7 @@ body.has-floating-currency .navbar .currency-selector-item {
   min-width: 250px;
   background: #ffffff;
   border: 1px solid rgba(212, 175, 55, 0.35);
-  border-radius: 16px;
+  border-radius: 0;
   box-shadow: 0 22px 50px rgba(0, 0, 0, 0.22), 0 0 20px rgba(212, 175, 55, 0.15);
   padding: 8px;
   opacity: 0;
