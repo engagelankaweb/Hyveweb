@@ -206,12 +206,12 @@ window.showToast = function(message) {
 // Currencies: LKR (First / Default), USD, YEN, AUD, CAD, EUROS
 // =========================================
 window.HYVE_CURRENCIES = {
-  LKR: { code: 'LKR', label: 'LKR', symbol: 'Rs. ', flag: '🇱🇰', rate: 308.0, locale: 'en-LK', name: 'Sri Lankan Rupee' },
-  USD: { code: 'USD', label: 'USD', symbol: '$', flag: '🇺🇸', rate: 1.0, locale: 'en-US', name: 'US Dollar' },
-  YEN: { code: 'JPY', label: 'YEN', symbol: '¥', flag: '🇯🇵', rate: 155.0, locale: 'ja-JP', name: 'Japanese Yen' },
-  AUD: { code: 'AUD', label: 'AUD', symbol: 'A$', flag: '🇦🇺', rate: 1.55, locale: 'en-AU', name: 'Australian Dollar' },
-  CAD: { code: 'CAD', label: 'CAD', symbol: 'C$', flag: '🇨🇦', rate: 1.39, locale: 'en-CA', name: 'Canadian Dollar' },
-  EUR: { code: 'EUR', label: 'EUROS', symbol: '€', flag: '🇪🇺', rate: 0.92, locale: 'de-DE', name: 'Euro' }
+  LKR: { code: 'LKR', label: 'LKR', symbol: 'Rs. ', flag: '🇱🇰', icon: 'https://hatscripts.github.io/circle-flags/flags/lk.svg', rate: 308.0, locale: 'en-LK', name: 'Sri Lankan Rupee' },
+  USD: { code: 'USD', label: 'USD', symbol: '$', flag: '🇺🇸', icon: 'https://hatscripts.github.io/circle-flags/flags/us.svg', rate: 1.0, locale: 'en-US', name: 'US Dollar' },
+  YEN: { code: 'JPY', label: 'YEN', symbol: '¥', flag: '🇯🇵', icon: 'https://hatscripts.github.io/circle-flags/flags/jp.svg', rate: 155.0, locale: 'ja-JP', name: 'Japanese Yen' },
+  AUD: { code: 'AUD', label: 'AUD', symbol: 'A$', flag: '🇦🇺', icon: 'https://hatscripts.github.io/circle-flags/flags/au.svg', rate: 1.55, locale: 'en-AU', name: 'Australian Dollar' },
+  CAD: { code: 'CAD', label: 'CAD', symbol: 'C$', flag: '🇨🇦', icon: 'https://hatscripts.github.io/circle-flags/flags/ca.svg', rate: 1.39, locale: 'en-CA', name: 'Canadian Dollar' },
+  EUR: { code: 'EUR', label: 'EUROS', symbol: '€', flag: '🇪🇺', icon: 'https://hatscripts.github.io/circle-flags/flags/eu.svg', rate: 0.92, locale: 'de-DE', name: 'Euro' }
 };
 
 window.getCurrentCurrency = function() {
@@ -277,13 +277,13 @@ function updateCurrencyButtonUI(currencyKey) {
   if (codeEl) codeEl.textContent = cfg.label;
   if (symbolEl) symbolEl.textContent = cfg.symbol.trim();
 
-  // Floating circular button elements (Properties & Short-Term Rentals)
-  const fcFlag = document.getElementById('fc-current-flag');
-  const fcCode = document.getElementById('fc-current-code');
-  const fcBtn = document.getElementById('floating-currency-btn');
-  if (fcFlag) fcFlag.textContent = cfg.flag;
-  if (fcCode) fcCode.textContent = cfg.label;
-  if (fcBtn) fcBtn.setAttribute('title', `Currency: ${cfg.label} (${cfg.symbol.trim()}) - Click to change`);
+  // Navbar pill button elements
+  const ncFlag = document.getElementById('nc-current-flag');
+  const ncCode = document.getElementById('nc-current-code');
+  const ncBtn = document.getElementById('navbar-currency-btn');
+  if (ncFlag) ncFlag.innerHTML = `<img src="${cfg.icon}" alt="${cfg.code}" class="currency-flag-icon">`;
+  if (ncCode) ncCode.textContent = cfg.label;
+  if (ncBtn) ncBtn.setAttribute('title', `Currency: ${cfg.label} (${cfg.symbol.trim()}) - Click to change`);
 
   document.querySelectorAll('.currency-option, .curr-opt-item').forEach(opt => {
     if (opt.getAttribute('data-currency') === currencyKey) {
@@ -335,26 +335,18 @@ function initCurrencySelector() {
 }
 
 function initFloatingCurrencyChanger() {
-  const isTargetPage = document.body.classList.contains('has-floating-currency') ||
-                       window.location.pathname.includes('properties') || 
-                       window.location.pathname.includes('short-term-rentals') ||
-                       document.getElementById('properties-grid') !== null;
-  if (!isTargetPage) return;
-
-  document.body.classList.add('has-floating-currency');
-
-  let wrapper = document.getElementById('floating-currency-wrapper');
+  let wrapper = document.getElementById('navbar-currency-wrapper');
   const current = window.getCurrentCurrency();
   const cfg = window.HYVE_CURRENCIES[current] || window.HYVE_CURRENCIES['LKR'];
 
   if (!wrapper) {
-    wrapper = document.createElement('div');
-    wrapper.className = 'floating-currency-wrapper';
-    wrapper.id = 'floating-currency-wrapper';
+    wrapper = document.createElement('li');
+    wrapper.className = 'navbar-currency-wrapper';
+    wrapper.id = 'navbar-currency-wrapper';
     wrapper.innerHTML = `
-      <button class="floating-currency-btn" id="floating-currency-btn" type="button" aria-label="Change Currency" title="Currency: ${cfg.label} (${cfg.symbol.trim()}) - Click to change">
-        <span class="fc-flag" id="fc-current-flag">${cfg.flag}</span>
-        <span class="fc-code" id="fc-current-code">${cfg.label}</span>
+      <button class="navbar-currency-btn" id="navbar-currency-btn" type="button" aria-label="Change Currency" title="Currency: ${cfg.label} (${cfg.symbol.trim()}) - Click to change">
+        <span class="nc-flag" id="nc-current-flag"><img src="${cfg.icon}" alt="${cfg.code}" class="currency-flag-icon"></span>
+        <span class="nc-code" id="nc-current-code">${cfg.label}</span>
       </button>
       <div class="floating-currency-menu" id="floating-currency-menu">
         <div class="menu-heading">
@@ -362,7 +354,7 @@ function initFloatingCurrencyChanger() {
           <span style="color: var(--color-accent, #14335C); font-weight: 700;">HYVE</span>
         </div>
         <button class="curr-opt-item ${current === 'LKR' ? 'active' : ''}" data-currency="LKR">
-          <span class="curr-opt-flag">🇱🇰</span>
+          <span class="curr-opt-flag"><img src="https://hatscripts.github.io/circle-flags/flags/lk.svg" alt="LKR" class="currency-flag-icon"></span>
           <span class="curr-opt-details">
             <span class="curr-opt-top">LKR <span class="curr-opt-symbol">Rs.</span></span>
             <span class="curr-opt-name">Sri Lankan Rupee</span>
@@ -370,7 +362,7 @@ function initFloatingCurrencyChanger() {
           <span class="curr-opt-check">✓</span>
         </button>
         <button class="curr-opt-item ${current === 'USD' ? 'active' : ''}" data-currency="USD">
-          <span class="curr-opt-flag">🇺🇸</span>
+          <span class="curr-opt-flag"><img src="https://hatscripts.github.io/circle-flags/flags/us.svg" alt="USD" class="currency-flag-icon"></span>
           <span class="curr-opt-details">
             <span class="curr-opt-top">USD <span class="curr-opt-symbol">$</span></span>
             <span class="curr-opt-name">US Dollar</span>
@@ -378,7 +370,7 @@ function initFloatingCurrencyChanger() {
           <span class="curr-opt-check">✓</span>
         </button>
         <button class="curr-opt-item ${current === 'YEN' ? 'active' : ''}" data-currency="YEN">
-          <span class="curr-opt-flag">🇯🇵</span>
+          <span class="curr-opt-flag"><img src="https://hatscripts.github.io/circle-flags/flags/jp.svg" alt="JPY" class="currency-flag-icon"></span>
           <span class="curr-opt-details">
             <span class="curr-opt-top">YEN <span class="curr-opt-symbol">¥</span></span>
             <span class="curr-opt-name">Japanese Yen (JPY)</span>
@@ -386,7 +378,7 @@ function initFloatingCurrencyChanger() {
           <span class="curr-opt-check">✓</span>
         </button>
         <button class="curr-opt-item ${current === 'AUD' ? 'active' : ''}" data-currency="AUD">
-          <span class="curr-opt-flag">🇦🇺</span>
+          <span class="curr-opt-flag"><img src="https://hatscripts.github.io/circle-flags/flags/au.svg" alt="AUD" class="currency-flag-icon"></span>
           <span class="curr-opt-details">
             <span class="curr-opt-top">AUD <span class="curr-opt-symbol">A$</span></span>
             <span class="curr-opt-name">Australian Dollar</span>
@@ -394,7 +386,7 @@ function initFloatingCurrencyChanger() {
           <span class="curr-opt-check">✓</span>
         </button>
         <button class="curr-opt-item ${current === 'CAD' ? 'active' : ''}" data-currency="CAD">
-          <span class="curr-opt-flag">🇨🇦</span>
+          <span class="curr-opt-flag"><img src="https://hatscripts.github.io/circle-flags/flags/ca.svg" alt="CAD" class="currency-flag-icon"></span>
           <span class="curr-opt-details">
             <span class="curr-opt-top">CAD <span class="curr-opt-symbol">C$</span></span>
             <span class="curr-opt-name">Canadian Dollar</span>
@@ -402,7 +394,7 @@ function initFloatingCurrencyChanger() {
           <span class="curr-opt-check">✓</span>
         </button>
         <button class="curr-opt-item ${current === 'EUR' ? 'active' : ''}" data-currency="EUR">
-          <span class="curr-opt-flag">🇪🇺</span>
+          <span class="curr-opt-flag"><img src="https://hatscripts.github.io/circle-flags/flags/eu.svg" alt="EUR" class="currency-flag-icon"></span>
           <span class="curr-opt-details">
             <span class="curr-opt-top">EUROS <span class="curr-opt-symbol">€</span></span>
             <span class="curr-opt-name">Euro</span>
@@ -411,12 +403,18 @@ function initFloatingCurrencyChanger() {
         </button>
       </div>
     `;
-    document.body.appendChild(wrapper);
+    
+    const navLinks = document.querySelector('.nav-links');
+    if (navLinks) {
+      navLinks.appendChild(wrapper);
+    } else {
+      document.body.appendChild(wrapper);
+    }
   }
 
-  const fcBtn = wrapper.querySelector('#floating-currency-btn');
-  if (fcBtn) {
-    fcBtn.addEventListener('click', (e) => {
+  const ncBtn = wrapper.querySelector('#navbar-currency-btn');
+  if (ncBtn) {
+    ncBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       wrapper.classList.toggle('open');
     });
