@@ -294,3 +294,121 @@
   }
 }
 
+/* =========================================
+   SERVICES PAGE RESPONSIVE RULES
+   ========================================= */
+
+@media (max-width: 1024px) {
+  .services-trust-grid,
+  .process-steps-grid,
+  .services-why-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .services-trust-card:nth-child(2)::after {
+    display: none;
+  }
+  
+  .calc-controls-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .service-showcase-card,
+  .service-showcase-card.reverse {
+    grid-template-columns: 1fr;
+  }
+  
+  .service-showcase-card.reverse .service-card-media {
+    order: 1;
+  }
+  
+  .service-showcase-card.reverse .service-card-content {
+    order: 2;
+  }
+  
+  .service-card-media {
+    min-height: 320px;
+  }
+  
+  .service-card-content {
+    padding: 2.5rem 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-hero-header {
+    padding: 120px 0 50px;
+  }
+  
+  .services-quick-nav {
+    gap: 8px;
+  }
+  
+  .services-quick-pill {
+    padding: 8px 16px;
+    font-size: 0.82rem;
+  }
+  
+  .property-calc-banner {
+    padding: 3rem 1.75rem;
+  }
+  
+  .calc-banner-header h2 {
+    font-size: 2rem;
+  }
+  
+  .calc-controls-grid {
+    grid-template-columns: 1fr;
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .services-trust-strip {
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .services-trust-grid,
+  .process-steps-grid,
+  .services-why-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  
+  .services-trust-card:not(:last-child)::after {
+    display: none;
+  }
+  
+  .services-trust-card:not(:last-child) {
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 1rem;
+  }
+  
+  .service-card-title {
+    font-size: 1.65rem;
+  }
+  
+  .service-card-content {
+    padding: 2rem 1.25rem;
+  }
+  
+  .faq-question {
+    padding: 1.15rem 1.25rem;
+    font-size: 1.05rem;
+  }
+  
+  .faq-answer {
+    padding: 0 1.25rem;
+  }
+  
+  .faq-item.active .faq-answer {
+    padding: 0 1.25rem 1.25rem 1.25rem;
+  }
+}
+
+

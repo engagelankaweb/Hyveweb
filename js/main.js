@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initStaySlider();
   initPremiumTestimonials();
   initListPropertyModal();
+  initServicesAccordion();
+  initServicesEstimator();
 });
 
 function initListPropertyModal() {
@@ -68,7 +70,7 @@ function initListPropertyModal() {
   const modal = document.getElementById('listPropertyModal');
   const closeBtn = document.getElementById('closeListPropertyModal');
   const form = document.getElementById('listPropertyForm');
-  const listBtns = document.querySelectorAll('.nav-list-property');
+  const listBtns = document.querySelectorAll('.nav-list-property, .open-list-modal');
 
   listBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -710,3 +712,109 @@ function initPremiumTestimonials() {
   // Start initial autoplay
   startAutoplay();
 }
+
+// =========================================
+// SERVICES PAGE: ACCORDION & ESTIMATOR
+// =========================================
+
+function initServicesAccordion() {
+  const faqItems = document.querySelectorAll('.faq-item');
+  if (!faqItems.length) return;
+
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    if (!question) return;
+
+    question.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+      
+      // Close other open accordions
+      faqItems.forEach(otherItem => {
+        if (otherItem !== item) {
+          otherItem.classList.remove('active');
+        }
+      });
+
+      // Toggle current item
+      if (isActive) {
+        item.classList.remove('active');
+      } else {
+        item.classList.add('active');
+      }
+    });
+  });
+}
+
+function initServicesEstimator() {
+  const typeSelect = document.getElementById('calc-prop-type');
+  const goalSelect = document.getElementById('calc-prop-goal');
+  const locSelect = document.getElementById('calc-prop-loc');
+  const resultVal = document.getElementById('calc-result-val');
+  const resultLabel = document.getElementById('calc-result-label');
+  const ctaBtn = document.getElementById('calc-cta-btn');
+
+  if (!typeSelect || !goalSelect || !resultVal) return;
+
+  const updateEstimator = () => {
+    const type = typeSelect.value;
+    const goal = goalSelect.value;
+    const loc = locSelect ? locSelect.value : 'colombo';
+
+    let label = 'Estimated Return';
+    let value = 'Rs. 450,000 - 800,000';
+
+    if (goal === 'sell') {
+      label = 'Average Liquidity Window';
+      value = '35 - 55 Days to Close';
+    } else if (goal === 'long_term') {
+      label = 'Projected Monthly Rent';
+      if (type === 'Apartment') {
+        value = loc === 'prime' ? 'Rs. 350,000 - 750,000/mo' : 'Rs. 250,000 - 500,000/mo';
+      } else if (type === 'Villa') {
+        value = 'Rs. 500,000 - 1,200,000/mo';
+      } else if (type === 'Commercial') {
+        value = 'Rs. 600,000 - 2,500,000/mo';
+      } else {
+        value = 'Rs. 300,000 - 650,000/mo';
+      }
+    } else if (goal === 'airbnb') {
+      label = 'Projected Short-Term Net Yield';
+      if (type === 'Villa') {
+        value = '11.5% - 15.0% Net Annual';
+      } else if (type === 'Apartment') {
+        value = loc === 'prime' ? '9.0% - 13.5% Net Annual' : '8.0% - 11.0% Net Annual';
+      } else {
+        value = '8.5% - 12.0% Net Annual';
+      }
+    } else if (goal === 'manage') {
+      label = 'Asset Care Commitment';
+      value = '100% Turnkey / 0-Effort';
+    }
+
+    if (resultLabel) resultLabel.textContent = label;
+    if (resultVal) resultVal.textContent = value;
+  };
+
+  typeSelect.addEventListener('change', updateEstimator);
+  goalSelect.addEventListener('change', updateEstimator);
+  if (locSelect) locSelect.addEventListener('change', updateEstimator);
+
+  // Initial calculation
+  updateEstimator();
+
+  if (ctaBtn) {
+    ctaBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const modal = document.getElementById('listPropertyModal');
+      if (modal) {
+        // Pre-fill type in modal if available
+        const modalTypeSelect = modal.querySelector('select[name="property_type"]');
+        if (modalTypeSelect && typeSelect.value) {
+          modalTypeSelect.value = typeSelect.value;
+        }
+        modal.style.display = 'flex';
+      }
+    });
+  }
+}
+
