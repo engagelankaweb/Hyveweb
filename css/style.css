@@ -2430,11 +2430,11 @@ body.no-currency .currency-selector-item {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: var(--color-bg-secondary, rgba(255, 255, 255, 0.9));
-  border: 1px solid var(--color-border, #e2e8f0);
+  background: #000;
+  border: 1px solid #333;
   padding: 6px 14px;
   border-radius: 50px;
-  color: var(--color-text-main);
+  color: #fff;
   cursor: pointer;
   transition: all 0.3s ease;
   outline: none;
@@ -2442,7 +2442,7 @@ body.no-currency .currency-selector-item {
 }
 
 .navbar:not(.scrolled) .navbar-currency-btn {
-  background: rgba(255, 255, 255, 0.15);
+  background: #000;
   border-color: rgba(255, 255, 255, 0.25);
   color: #fff;
 }
@@ -2625,11 +2625,11 @@ body.no-currency .currency-selector-item {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: var(--color-bg-secondary, rgba(255, 255, 255, 0.9));
-  border: 1px solid var(--color-border, #e2e8f0);
+  background: #000;
+  border: 1px solid #333;
   padding: 6px 14px;
   border-radius: 50px;
-  color: var(--color-text-main);
+  color: #fff;
   cursor: pointer;
   transition: all 0.3s ease;
   outline: none;
@@ -2637,7 +2637,7 @@ body.no-currency .currency-selector-item {
 }
 
 .navbar:not(.scrolled) .navbar-currency-btn {
-  background: rgba(255, 255, 255, 0.15);
+  background: #000;
   border-color: rgba(255, 255, 255, 0.25);
   color: #fff;
 }
@@ -3464,4 +3464,4 @@ body.no-currency .currency-selector-item {
   font-size: 0.96rem;
   color: var(--color-text-muted);
   line-height: 1.75;
-}
+}
