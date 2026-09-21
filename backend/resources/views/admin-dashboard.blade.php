@@ -112,9 +112,9 @@
     }
 
     .badge-role-main_admin {
-      background: rgba(20, 51, 92, 0.2);
-      color: var(--color-accent);
-      border: 1px solid rgba(20, 51, 92, 0.4);
+      background: rgba(59, 130, 246, 0.15);
+      color: #93C5FD;
+      border: 1px solid rgba(59, 130, 246, 0.3);
     }
 
     .badge-role-staff {
@@ -178,14 +178,14 @@
     }
 
     .menu-item.active {
-      color: var(--color-accent);
+      color: #ffffff;
       background-color: var(--color-sidebar-active);
       font-weight: 600;
-      border-left: 3px solid var(--color-accent);
+      border-left: 3px solid var(--color-info);
     }
 
     .menu-item.active svg {
-      color: var(--color-accent);
+      color: var(--color-info);
     }
 
     .menu-item:hover svg {
@@ -526,7 +526,7 @@
 
     .btn-add-action {
       background: var(--color-accent);
-      color: #121212;
+      color: #ffffff;
       padding: 10px 18px;
       border-radius: 0;
       font-weight: 600;
