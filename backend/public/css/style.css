@@ -2430,21 +2430,30 @@ body.no-currency .currency-selector-item {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: #000;
-  border: 1px solid #333;
-  padding: 6px 14px;
-  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 12px 24px;
+  border-radius: 0;
   color: #fff;
   cursor: pointer;
   transition: all 0.3s ease;
   outline: none;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .navbar:not(.scrolled) .navbar-currency-btn {
-  background: #000;
-  border-color: rgba(255, 255, 255, 0.25);
-  color: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.navbar.scrolled .navbar-currency-btn {
+  border-color: rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.navbar.scrolled .navbar-currency-btn .nc-code {
+  color: #000;
 }
 
 .navbar-currency-btn:hover {
@@ -2462,9 +2471,12 @@ body.no-currency .currency-selector-item {
 }
 
 .navbar-currency-btn .nc-code {
-  font-size: 0.85rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 500;
   letter-spacing: 0.5px;
+  font-family: var(--font-primary);
+  color: #fff;
+  transition: color 0.3s ease;
 }
 
 /* Currency Menu Popup */
@@ -2625,21 +2637,30 @@ body.no-currency .currency-selector-item {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: #000;
-  border: 1px solid #333;
-  padding: 6px 14px;
-  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 12px 24px;
+  border-radius: 0;
   color: #fff;
   cursor: pointer;
   transition: all 0.3s ease;
   outline: none;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .navbar:not(.scrolled) .navbar-currency-btn {
-  background: #000;
-  border-color: rgba(255, 255, 255, 0.25);
-  color: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.navbar.scrolled .navbar-currency-btn {
+  border-color: rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.navbar.scrolled .navbar-currency-btn .nc-code {
+  color: #000;
 }
 
 .navbar-currency-btn:hover {
@@ -2657,9 +2678,12 @@ body.no-currency .currency-selector-item {
 }
 
 .navbar-currency-btn .nc-code {
-  font-size: 0.85rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 500;
   letter-spacing: 0.5px;
+  font-family: var(--font-primary);
+  color: #fff;
+  transition: color 0.3s ease;
 }
 
 /* Currency Menu Popup */
