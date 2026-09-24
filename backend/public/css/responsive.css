@@ -411,4 +411,66 @@
   }
 }
 
+/* =========================================
+   GLOBAL FLUID RESPONSIVENESS (Any Size)
+   ========================================= */
 
+@media (max-width: 1024px) {
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  /* Prevent any structural element from overflowing */
+  div, section, img, video, .stay-card, .container, .footer-review-card, 
+  .about-main-img, .pt-image, .service-card-media {
+    max-width: 100% !important;
+  }
+
+  /* Grid fallbacks for tablet */
+  .grid-3, .grid-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Ensure padded sections shrink */
+  .section, .about-cta-luxury, .property-calc-banner, .footer-bottom {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Force all standard grids to 1 column on mobile to prevent crowding */
+  .grid-2, .grid-3, .grid-4, .contact-grid, .properties-layout, .pd-layout, 
+  .about-overview-grid, .values-grid, .why-hyve-grid, .mv-grid, .founders-grid, 
+  .services-trust-grid, .process-steps-grid, .services-why-grid, .calc-controls-grid, 
+  .stats-counter-strip .grid-4, .footer-grid, .about-split, .premium-testimonial-block,
+  .service-showcase-card, .service-showcase-card.reverse {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Reduce large top/bottom paddings globally */
+  .section, .hero, .about-cta-luxury {
+    padding-top: var(--spacing-lg) !important;
+    padding-bottom: var(--spacing-lg) !important;
+  }
+
+  /* Remove minimum widths causing overflow */
+  .btn, .form-control, .select-wrapper {
+    min-width: 0 !important;
+    width: 100%;
+  }
+
+  h1 { font-size: 2.2rem !important; }
+  h2 { font-size: 1.8rem !important; }
+}
+
+@media (max-width: 576px) {
+  h1 { font-size: 1.8rem !important; }
+  h2 { font-size: 1.5rem !important; }
+  
+  .section, .hero, .about-cta-luxury {
+    padding-top: var(--spacing-md) !important;
+    padding-bottom: var(--spacing-md) !important;
+  }
+}
