@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HYVE Portal | Management Dashboard</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1,2,900,700,500,400,300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
   <link rel="stylesheet" href="{{ asset('css/animations.css') }}">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  
+
   <style>
     :root {
       --sidebar-width: 270px;
@@ -45,7 +46,7 @@
       color: #1e293b;
       min-height: 100vh;
       display: flex;
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Satoshi', sans-serif;
       margin: 0;
       padding: 0;
     }
@@ -63,7 +64,7 @@
       border-radius: 50%;
       width: 52px;
       height: 52px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
       cursor: pointer;
       align-items: center;
       justify-content: center;
@@ -81,17 +82,17 @@
       z-index: 101;
       display: flex;
       flex-direction: column;
-      box-shadow: 4px 0 24px rgba(0,0,0,0.06);
+      box-shadow: 4px 0 24px rgba(0, 0, 0, 0.06);
       transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .sidebar-brand {
       padding: 26px 24px;
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Satoshi', sans-serif;
       font-size: 1.75rem;
       font-weight: 700;
       color: #ffffff;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -102,7 +103,7 @@
     }
 
     .sidebar-role-badge {
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Satoshi', sans-serif;
       font-size: 0.72rem;
       font-weight: 600;
       padding: 4px 8px;
@@ -194,7 +195,7 @@
 
     .sidebar-footer {
       padding: 18px 20px;
-      border-top: 1px solid rgba(255,255,255,0.06);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
       background: rgba(0, 0, 0, 0.15);
     }
 
@@ -276,13 +277,16 @@
       .sidebar {
         transform: translateX(-100%);
       }
+
       .sidebar.open {
         transform: translateX(0);
       }
+
       .main-content {
         margin-left: 0;
         padding: 1.5rem;
       }
+
       .mobile-nav-toggle {
         display: flex;
       }
@@ -306,7 +310,7 @@
       font-weight: 700;
       margin: 0 0 4px 0;
       color: #0f172a;
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Satoshi', sans-serif;
     }
 
     .header-title p {
@@ -351,25 +355,31 @@
         grid-template-columns: repeat(2, 1fr);
       }
     }
+
     @media (max-width: 640px) {
       .stats-grid {
         grid-template-columns: 1fr;
       }
+
       .dashboard-header {
         flex-direction: column;
         align-items: stretch;
         gap: 15px;
         padding: 1rem;
       }
+
       .header-search {
         margin: 0;
       }
+
       .header-search input {
         width: 100%;
       }
+
       .header-actions {
         justify-content: flex-end;
       }
+
       .page-title {
         font-size: 1.5rem;
       }
@@ -403,11 +413,30 @@
       flex-shrink: 0;
     }
 
-    .icon-gold { background: rgba(20,51,92,0.12); color: #B89010; }
-    .icon-green { background: rgba(16,185,129,0.12); color: var(--color-success); }
-    .icon-blue { background: rgba(59,130,246,0.12); color: #2563EB; }
-    .icon-purple { background: rgba(139,92,246,0.12); color: #7C3AED; }
-    .icon-orange { background: rgba(245,158,11,0.12); color: #D97706; }
+    .icon-gold {
+      background: rgba(20, 51, 92, 0.12);
+      color: #B89010;
+    }
+
+    .icon-green {
+      background: rgba(16, 185, 129, 0.12);
+      color: var(--color-success);
+    }
+
+    .icon-blue {
+      background: rgba(59, 130, 246, 0.12);
+      color: #2563EB;
+    }
+
+    .icon-purple {
+      background: rgba(139, 92, 246, 0.12);
+      color: #7C3AED;
+    }
+
+    .icon-orange {
+      background: rgba(245, 158, 11, 0.12);
+      color: #D97706;
+    }
 
     .stat-value {
       font-size: 1.7rem;
@@ -434,8 +463,15 @@
     }
 
     @keyframes viewFadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* Dashboard Panels */
@@ -460,7 +496,7 @@
     }
 
     .panel-title {
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Satoshi', sans-serif;
       font-size: 1.45rem;
       font-weight: 700;
       color: #0f172a;
@@ -641,9 +677,20 @@
       color: #334155;
     }
 
-    .badge-buy { background: #e0f2fe; color: #0369a1; }
-    .badge-rent { background: #fef3c7; color: #b45309; }
-    .badge-short_term { background: #fae8ff; color: #86198f; }
+    .badge-buy {
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+
+    .badge-rent {
+      background: #fef3c7;
+      color: #b45309;
+    }
+
+    .badge-short_term {
+      background: #fae8ff;
+      color: #86198f;
+    }
 
     .badge-featured {
       background: linear-gradient(135deg, var(--color-accent) 0%, #B89010 100%);
@@ -738,14 +785,14 @@
       background-color: white;
       transition: .3s cubic-bezier(0.16, 1, 0.3, 1);
       border-radius: 50%;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
     }
 
-    .switch-toggle input:checked + .slider {
+    .switch-toggle input:checked+.slider {
       background-color: var(--color-success);
     }
 
-    .switch-toggle input:checked + .slider:before {
+    .switch-toggle input:checked+.slider:before {
       transform: translateX(18px);
     }
 
@@ -796,7 +843,9 @@
     }
 
     @media (max-width: 768px) {
-      .form-grid-2, .form-grid-3 {
+
+      .form-grid-2,
+      .form-grid-3 {
         grid-template-columns: 1fr;
       }
     }
@@ -818,11 +867,13 @@
       margin-bottom: 5px;
     }
 
-    .input-custom, .select-custom, .textarea-custom {
+    .input-custom,
+    .select-custom,
+    .textarea-custom {
       border: 1px solid #cbd5e1;
       border-radius: var(--radius-sm);
       padding: 11px 14px;
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Satoshi', sans-serif;
       font-size: 0.92rem;
       background: #FFFFFF;
       transition: all 0.25s ease;
@@ -831,7 +882,9 @@
       width: 100%;
     }
 
-    .input-custom:focus, .select-custom:focus, .textarea-custom:focus {
+    .input-custom:focus,
+    .select-custom:focus,
+    .textarea-custom:focus {
       outline: none;
       border-color: var(--color-accent);
       box-shadow: 0 0 0 3px rgba(20, 51, 92, 0.15);
@@ -853,7 +906,8 @@
       margin-top: 6px;
     }
 
-    .upload-drag-zone:hover, .upload-drag-zone.dragover {
+    .upload-drag-zone:hover,
+    .upload-drag-zone.dragover {
       border-color: var(--color-accent);
       background: rgba(20, 51, 92, 0.03);
     }
@@ -949,8 +1003,13 @@
     }
 
     @keyframes modalFade {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
 
     .modal-dialog {
@@ -972,8 +1031,13 @@
     }
 
     @keyframes modalSlide {
-      from { transform: translateY(20px) scale(0.98); }
-      to { transform: translateY(0) scale(1); }
+      from {
+        transform: translateY(20px) scale(0.98);
+      }
+
+      to {
+        transform: translateY(0) scale(1);
+      }
     }
 
     .modal-header {
@@ -985,7 +1049,7 @@
     }
 
     .modal-title {
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Satoshi', sans-serif;
       font-size: 1.35rem;
       font-weight: 700;
       color: #0f172a;
@@ -1041,7 +1105,7 @@
       border-radius: var(--radius-sm);
       font-size: 0.9rem;
       font-weight: 500;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
       display: flex;
       align-items: center;
       gap: 10px;
@@ -1050,8 +1114,15 @@
     }
 
     @keyframes toastIn {
-      from { transform: translateX(50px); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
+      from {
+        transform: translateX(50px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
     }
 
     .spinner-sm {
@@ -1068,42 +1139,53 @@
     .sidebar.minimized {
       width: 80px;
     }
+
     .sidebar.minimized .sidebar-brand {
       font-size: 0;
       justify-content: center;
       padding: 26px 0;
     }
+
     .sidebar.minimized .sidebar-brand .sidebar-role-badge {
       display: none;
     }
+
     .sidebar.minimized .menu-section-heading {
       display: none;
     }
+
     .sidebar.minimized .menu-item {
       font-size: 0;
       justify-content: center;
       padding: 12px 0;
     }
+
     .sidebar.minimized .menu-item svg {
       margin: 0;
     }
+
     .sidebar.minimized .sidebar-footer {
       padding: 18px 0;
       text-align: center;
     }
+
     .sidebar.minimized .sidebar-user-info {
       justify-content: center;
     }
+
     .sidebar.minimized .user-text-info {
       display: none;
     }
+
     .sidebar.minimized .btn-sidebar-logout {
       font-size: 0;
       padding: 9px 0;
     }
+
     .main-content.minimized {
       margin-left: 80px;
     }
+
     .sidebar-toggle-btn {
       background: none;
       border: none;
@@ -1117,18 +1199,21 @@
       margin-right: 15px;
       transition: background 0.2s, color 0.2s;
     }
+
     .sidebar-toggle-btn:hover {
-      background: rgba(0,0,0,0.05);
+      background: rgba(0, 0, 0, 0.05);
       color: #1e293b;
     }
-
   </style>
 </head>
+
 <body>
 
   <!-- Mobile Navigation Toggle Button -->
   <button class="mobile-nav-toggle" onclick="toggleSidebar()">
-    <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
   </button>
 
   <!-- Sidebar Navigation -->
@@ -1139,48 +1224,69 @@
         {{ $currentUser->role === 'main_admin' ? 'Main Admin' : ($currentUser->role === 'staff' ? 'Staff' : 'Agent') }}
       </span>
     </div>
-    
+
     <nav class="sidebar-menu">
       <div class="menu-section-heading">Catalog & Listings</div>
-      
+
       <button class="menu-item active" id="menu-btn-overview" onclick="switchView('overview')">
-        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
         Overview Dashboard
       </button>
 
       @if($currentUser->isMainAdmin())
         <button class="menu-item" id="menu-btn-properties" onclick="switchView('properties')">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          </svg>
           Property Management
         </button>
 
         <button class="menu-item" id="menu-btn-rentals" onclick="switchView('rentals')">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
           Stays
         </button>
 
         <button class="menu-item" id="menu-btn-add-property" onclick="switchView('add-property')">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+          </svg>
           Add New Property
         </button>
 
         <div class="menu-section-heading">Administration</div>
-        
+
         <button class="menu-item" id="menu-btn-users" onclick="switchView('users')">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
           User Management
         </button>
       @endif
 
       <div class="menu-section-heading">Settings</div>
-      
+
       <button class="menu-item" id="menu-btn-profile" onclick="openProfileModal()">
-        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
         My Profile & Security
       </button>
 
       <a href="{{ url('/') }}" target="_blank" class="menu-item" style="color: #64748b;">
-        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg>
         View Public Site
       </a>
     </nav>
@@ -1196,8 +1302,12 @@
       <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
         @csrf
       </form>
-      <button class="btn-sidebar-logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v1"/></svg>
+      <button class="btn-sidebar-logout"
+        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v1" />
+        </svg>
         Log Out
       </button>
     </div>
@@ -1205,7 +1315,7 @@
 
   <!-- Main Content Wrapper -->
   <main class="main-content">
-    
+
     <!-- Top Header -->
     <header class="dashboard-header">
       <div style="display: flex; align-items: center;">
@@ -1215,20 +1325,23 @@
           </svg>
         </button>
         <div class="header-title">
-        <h1 id="page-title-text">Management Overview</h1>
-        <p id="page-subtitle-text">Monitor portfolio metrics, listings status, and administrator controls</p>
+          <h1 id="page-title-text">Management Overview</h1>
+          <p id="page-subtitle-text">Monitor portfolio metrics, listings status, and administrator controls</p>
         </div>
       </div>
       <div class="header-actions">
         <button class="btn-header-profile" onclick="openProfileModal()">
-          <div class="user-avatar-sm" style="width: 28px; height: 28px; font-size: 0.8rem;">{{ strtoupper(substr($currentUser->name, 0, 1)) }}</div>
+          <div class="user-avatar-sm" style="width: 28px; height: 28px; font-size: 0.8rem;">
+            {{ strtoupper(substr($currentUser->name, 0, 1)) }}</div>
           <span style="font-weight: 600; font-size: 0.88rem; color: #1e293b;">{{ $currentUser->name }}</span>
         </button>
         @if($currentUser->isMainAdmin())
-        <button class="btn-add-action" onclick="switchView('add-property')">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-          New Listing
-        </button>
+          <button class="btn-add-action" onclick="switchView('add-property')">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+            New Listing
+          </button>
         @endif
       </div>
     </header>
@@ -1237,17 +1350,23 @@
     <section class="stats-grid">
       <div class="stat-card">
         <div class="stat-icon icon-gold">
-          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          </svg>
         </div>
         <div>
           <div class="stat-value" id="stats-total">{{ $stats['total'] }}</div>
           <div class="stat-label">Total Listings</div>
         </div>
       </div>
-      
+
       <div class="stat-card">
         <div class="stat-icon icon-green">
-          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
         </div>
         <div>
           <div class="stat-value" id="stats-published">{{ $stats['published'] }}</div>
@@ -1257,7 +1376,10 @@
 
       <div class="stat-card">
         <div class="stat-icon icon-purple">
-          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
         </div>
         <div>
           <div class="stat-value" id="stats-rentals">{{ $stats['short_term'] }}</div>
@@ -1267,7 +1389,10 @@
 
       <div class="stat-card">
         <div class="stat-icon icon-blue">
-          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
         </div>
         <div>
           <div class="stat-value" id="stats-users">{{ $stats['users_count'] }}</div>
@@ -1284,7 +1409,7 @@
         <div class="panel-header">
           <h2 class="panel-title">Recent Real Estate Listings</h2>
           @if($currentUser->isMainAdmin())
-          <button class="btn-secondary-custom" onclick="switchView('properties')">View Full Catalog →</button>
+            <button class="btn-secondary-custom" onclick="switchView('properties')">View Full Catalog →</button>
           @endif
         </div>
 
@@ -1296,9 +1421,9 @@
                 <th>Type & Purpose</th>
                 <th>Price / Rates</th>
                 @if($currentUser->isMainAdmin())
-                <th>Publish Status</th>
-                <th>Featured</th>
-                <th style="text-align: right;">Quick Actions</th>
+                  <th>Publish Status</th>
+                  <th>Featured</th>
+                  <th style="text-align: right;">Quick Actions</th>
                 @endif
               </tr>
             </thead>
@@ -1315,7 +1440,11 @@
                       <div>
                         <div class="prop-name">{{ $prop->title }}</div>
                         <div class="prop-address">
-                          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                          </svg>
                           {{ $prop->location }}, {{ $prop->city }}
                         </div>
                       </div>
@@ -1323,40 +1452,52 @@
                   </td>
                   <td>
                     <span class="badge badge-category">{{ $prop->type }}</span>
-                    <span class="badge badge-{{ $prop->purpose }}">{{ $prop->purpose === 'buy' ? 'For Sale' : ($prop->rental_type === 'short_term' ? 'Short Stay' : 'Long Rent') }}</span>
+                    <span
+                      class="badge badge-{{ $prop->purpose }}">{{ $prop->purpose === 'buy' ? 'For Sale' : ($prop->rental_type === 'short_term' ? 'Short Stay' : 'Long Rent') }}</span>
                   </td>
                   <td style="font-weight: 700; color: #0f172a;">
                     ${{ number_format($prop->price) }}{{ $prop->purpose === 'rent' ? ($prop->rental_type === 'short_term' ? '/night' : '/mo') : '' }}
                   </td>
                   @if($currentUser->isMainAdmin())
-                  <td>
-                    <label class="switch-toggle" title="Toggle Publish Status">
-                      <input type="checkbox" {{ $prop->is_published ? 'checked' : '' }} onchange="togglePublish({{ $prop->id }}, this)">
-                      <span class="slider"></span>
-                    </label>
-                  </td>
-                  <td>
-                    <button class="btn-action-sm {{ $prop->featured ? 'badge-featured' : '' }}" onclick="toggleFeatured({{ $prop->id }}, this)" title="Toggle Featured on Homepage">
-                      {{ $prop->featured ? '★ Featured' : '☆ Standard' }}
-                    </button>
-                  </td>
-                  <td>
-                    <div class="table-actions">
-                      <button class="btn-action-sm btn-action-edit" onclick="openEditModal({{ $prop->id }})">
-                        <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-                        Edit
+                    <td>
+                      <label class="switch-toggle" title="Toggle Publish Status">
+                        <input type="checkbox" {{ $prop->is_published ? 'checked' : '' }}
+                          onchange="togglePublish({{ $prop->id }}, this)">
+                        <span class="slider"></span>
+                      </label>
+                    </td>
+                    <td>
+                      <button class="btn-action-sm {{ $prop->featured ? 'badge-featured' : '' }}"
+                        onclick="toggleFeatured({{ $prop->id }}, this)" title="Toggle Featured on Homepage">
+                        {{ $prop->featured ? '★ Featured' : '☆ Standard' }}
                       </button>
-                      <button class="btn-action-sm btn-action-delete" onclick="deleteProperty({{ $prop->id }})">
-                        <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                        Delete
-                      </button>
-                    </div>
-                  </td>
+                    </td>
+                    <td>
+                      <div class="table-actions">
+                        <button class="btn-action-sm btn-action-edit" onclick="openEditModal({{ $prop->id }})">
+                          <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                          </svg>
+                          Edit
+                        </button>
+                        <button class="btn-action-sm btn-action-delete" onclick="deleteProperty({{ $prop->id }})">
+                          <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                          </svg>
+                          Delete
+                        </button>
+                      </div>
+                    </td>
                   @endif
                 </tr>
               @empty
                 <tr>
-                  <td colspan="{{ $currentUser->isMainAdmin() ? 6 : 3 }}" style="text-align: center; color: #64748b; padding: 3rem;">No property listings available.</td>
+                  <td colspan="{{ $currentUser->isMainAdmin() ? 6 : 3 }}"
+                    style="text-align: center; color: #64748b; padding: 3rem;">No property listings available.</td>
                 </tr>
               @endforelse
             </tbody>
@@ -1366,708 +1507,784 @@
     </section>
 
     @if($currentUser->isMainAdmin())
-    <!-- ============================================== -->
-    <!-- VIEW 2: PROPERTY MANAGEMENT DASHBOARD -->
-    <!-- ============================================== -->
-    <section class="view-panel" id="view-panel-properties">
-      <div class="dashboard-panel-card">
-        <div class="panel-header">
-          <div>
-            <h2 class="panel-title">Property Catalog Management</h2>
-            <p style="margin: 4px 0 0; color: #64748b; font-size: 0.88rem;">Add, edit, unpublish, or delete real estate listings</p>
+      <!-- ============================================== -->
+      <!-- VIEW 2: PROPERTY MANAGEMENT DASHBOARD -->
+      <!-- ============================================== -->
+      <section class="view-panel" id="view-panel-properties">
+        <div class="dashboard-panel-card">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">Property Catalog Management</h2>
+              <p style="margin: 4px 0 0; color: #64748b; font-size: 0.88rem;">Add, edit, unpublish, or delete real estate
+                listings</p>
+            </div>
+            <button class="btn-add-action" onclick="switchView('add-property')">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+              </svg>
+              Add New Property
+            </button>
           </div>
-          <button class="btn-add-action" onclick="switchView('add-property')">
-            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-            Add New Property
-          </button>
-        </div>
 
-        <!-- Filter Controls -->
-        <div class="table-filter-bar">
-          <div class="search-wrapper">
-            <svg class="search-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-            <input type="text" id="prop-search" class="search-input" oninput="filterPropertiesTable()">
+          <!-- Filter Controls -->
+          <div class="table-filter-bar">
+            <div class="search-wrapper">
+              <svg class="search-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <input type="text" id="prop-search" class="search-input" oninput="filterPropertiesTable()">
+            </div>
+
+            <select id="prop-filter-city" class="filter-select" onchange="filterPropertiesTable()">
+              <option value="">All Cities</option>
+              <option value="Los Angeles">Los Angeles</option>
+              <option value="New York">New York</option>
+              <option value="Miami">Miami</option>
+              <option value="Austin">Austin</option>
+              <option value="Chicago">Chicago</option>
+              <option value="San Francisco">San Francisco</option>
+              <option value="Seattle">Seattle</option>
+              <option value="Boston">Boston</option>
+              <option value="Phoenix">Phoenix</option>
+              <option value="Aspen">Aspen</option>
+            </select>
+
+            <select id="prop-filter-type" class="filter-select" onchange="filterPropertiesTable()">
+              <option value="">All Categories</option>
+              <option value="Villa">Villa</option>
+              <option value="House">House</option>
+              <option value="Apartment">Apartment</option>
+              <option value="Condo">Condo</option>
+              <option value="Commercial">Commercial</option>
+            </select>
+
+            <select id="prop-filter-purpose" class="filter-select" onchange="filterPropertiesTable()">
+              <option value="">All Purposes</option>
+              <option value="buy">For Sale</option>
+              <option value="rent">For Rent</option>
+            </select>
+
+            <select id="prop-filter-status" class="filter-select" onchange="filterPropertiesTable()">
+              <option value="">All Statuses</option>
+              <option value="published">Published Only</option>
+              <option value="draft">Draft / Unpublished</option>
+            </select>
           </div>
-          
-          <select id="prop-filter-city" class="filter-select" onchange="filterPropertiesTable()">
-            <option value="">All Cities</option>
-            <option value="Los Angeles">Los Angeles</option>
-            <option value="New York">New York</option>
-            <option value="Miami">Miami</option>
-            <option value="Austin">Austin</option>
-            <option value="Chicago">Chicago</option>
-            <option value="San Francisco">San Francisco</option>
-            <option value="Seattle">Seattle</option>
-            <option value="Boston">Boston</option>
-            <option value="Phoenix">Phoenix</option>
-            <option value="Aspen">Aspen</option>
-          </select>
 
-          <select id="prop-filter-type" class="filter-select" onchange="filterPropertiesTable()">
-            <option value="">All Categories</option>
-            <option value="Villa">Villa</option>
-            <option value="House">House</option>
-            <option value="Apartment">Apartment</option>
-            <option value="Condo">Condo</option>
-            <option value="Commercial">Commercial</option>
-          </select>
-
-          <select id="prop-filter-purpose" class="filter-select" onchange="filterPropertiesTable()">
-            <option value="">All Purposes</option>
-            <option value="buy">For Sale</option>
-            <option value="rent">For Rent</option>
-          </select>
-
-          <select id="prop-filter-status" class="filter-select" onchange="filterPropertiesTable()">
-            <option value="">All Statuses</option>
-            <option value="published">Published Only</option>
-            <option value="draft">Draft / Unpublished</option>
-          </select>
-        </div>
-
-        <!-- Table Listing -->
-        <div style="overflow-x: auto;">
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>Property Listing</th>
-                <th>Category</th>
-                <th>Price</th>
-                <th>Specifications</th>
-                <th>Status</th>
-                <th>External Link</th>
-                <th style="text-align: right;">Actions</th>
-              </tr>
-            </thead>
-            <tbody id="properties-table-body">
-              @foreach($properties as $prop)
-                <tr id="prop-row-{{ $prop->id }}" data-city="{{ $prop->city }}" data-type="{{ $prop->type }}" data-purpose="{{ $prop->purpose }}" data-status="{{ $prop->is_published ? 'published' : 'draft' }}">
-                  <td>
-                    <div class="prop-info-cell">
-                      @if(is_array($prop->images) && count($prop->images) > 0)
-                        <img class="prop-thumbnail" src="{{ asset($prop->images[0]) }}" alt="{{ $prop->title }}">
-                      @else
-                        <div class="prop-thumbnail"></div>
-                      @endif
-                      <div>
-                        <div class="prop-name">{{ $prop->title }}</div>
-                        <div class="prop-address">
-                          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                          {{ $prop->location }}, {{ $prop->city }}
+          <!-- Table Listing -->
+          <div style="overflow-x: auto;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Property Listing</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Specifications</th>
+                  <th>Status</th>
+                  <th>External Link</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="properties-table-body">
+                @foreach($properties as $prop)
+                  <tr id="prop-row-{{ $prop->id }}" data-city="{{ $prop->city }}" data-type="{{ $prop->type }}"
+                    data-purpose="{{ $prop->purpose }}" data-status="{{ $prop->is_published ? 'published' : 'draft' }}">
+                    <td>
+                      <div class="prop-info-cell">
+                        @if(is_array($prop->images) && count($prop->images) > 0)
+                          <img class="prop-thumbnail" src="{{ asset($prop->images[0]) }}" alt="{{ $prop->title }}">
+                        @else
+                          <div class="prop-thumbnail"></div>
+                        @endif
+                        <div>
+                          <div class="prop-name">{{ $prop->title }}</div>
+                          <div class="prop-address">
+                            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor"
+                              stroke-width="2">
+                              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                              <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            {{ $prop->location }}, {{ $prop->city }}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </td>
-                  <td>
-                    <span class="badge badge-category">{{ $prop->type }}</span>
-                    <span class="badge badge-{{ $prop->purpose }}">{{ $prop->purpose === 'buy' ? 'For Sale' : 'Rent' }}</span>
-                  </td>
-                  <td style="font-weight: 700; color: #0f172a;">
-                    ${{ number_format($prop->price) }}{{ $prop->purpose === 'rent' ? '/mo' : '' }}
-                  </td>
-                  <td style="color: #64748b; font-size: 0.85rem;">
-                    <strong>{{ $prop->bedrooms }}</strong> bd &bull; 
-                    <strong>{{ $prop->bathrooms }}</strong> ba &bull; 
-                    <strong>{{ $prop->area }}</strong> sqft
-                  </td>
-                  <td>
-                    <div style="display: flex; align-items: center; gap: 8px;">
-                      <label class="switch-toggle" title="Live Publish / Draft Switch">
-                        <input type="checkbox" {{ $prop->is_published ? 'checked' : '' }} onchange="togglePublish({{ $prop->id }}, this)">
+                    </td>
+                    <td>
+                      <span class="badge badge-category">{{ $prop->type }}</span>
+                      <span
+                        class="badge badge-{{ $prop->purpose }}">{{ $prop->purpose === 'buy' ? 'For Sale' : 'Rent' }}</span>
+                    </td>
+                    <td style="font-weight: 700; color: #0f172a;">
+                      ${{ number_format($prop->price) }}{{ $prop->purpose === 'rent' ? '/mo' : '' }}
+                    </td>
+                    <td style="color: #64748b; font-size: 0.85rem;">
+                      <strong>{{ $prop->bedrooms }}</strong> bd &bull;
+                      <strong>{{ $prop->bathrooms }}</strong> ba &bull;
+                      <strong>{{ $prop->area }}</strong> sqft
+                    </td>
+                    <td>
+                      <div style="display: flex; align-items: center; gap: 8px;">
+                        <label class="switch-toggle" title="Live Publish / Draft Switch">
+                          <input type="checkbox" {{ $prop->is_published ? 'checked' : '' }}
+                            onchange="togglePublish({{ $prop->id }}, this)">
+                          <span class="slider"></span>
+                        </label>
+                        <span class="badge badge-{{ $prop->is_published ? 'published' : 'draft' }}"
+                          id="prop-badge-status-{{ $prop->id }}">
+                          {{ $prop->is_published ? 'Published' : 'Draft' }}
+                        </span>
+                      </div>
+                    </td>
+                    <td>
+                      @if($prop->external_url)
+                        <a href="{{ $prop->external_url }}" target="_blank" class="btn-action-sm"
+                          style="color: #2563eb; border-color: #bfdbfe;">
+                          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                          Virtual Tour
+                        </a>
+                      @else
+                        <span style="color: #94a3b8; font-size: 0.8rem;">None</span>
+                      @endif
+                    </td>
+                    <td>
+                      <div class="table-actions">
+                        <button class="btn-action-sm btn-action-edit" onclick="openEditModal({{ $prop->id }})">
+                          <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                          </svg>
+                          Edit
+                        </button>
+                        <button class="btn-action-sm btn-action-delete" onclick="deleteProperty({{ $prop->id }})">
+                          <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                          </svg>
+                          Remove
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- VIEW 3: SHORT TERM RENTALS DASHBOARD -->
+      <!-- ============================================== -->
+      <section class="view-panel" id="view-panel-rentals">
+        <div class="dashboard-panel-card">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">Stays & Vacation Rentals</h2>
+              <p style="margin: 4px 0 0; color: #64748b; font-size: 0.88rem;">Manage nightly rates, guest capacities, min
+                stays, and booking URLs</p>
+            </div>
+            <button class="btn-add-action" onclick="openAddShortRentalModal()">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+              </svg>
+              Add Stay
+            </button>
+          </div>
+
+          <div style="overflow-x: auto;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Stay Property</th>
+                  <th>Nightly Rate</th>
+                  <th>Capacity</th>
+                  <th>Min Stay</th>
+                  <th>Check-in / Out</th>
+                  <th>Booking Partner URL</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                @forelse($shortTermRentals as $rental)
+                  <tr id="rental-row-{{ $rental->id }}">
+                    <td>
+                      <div class="prop-info-cell">
+                        @if(is_array($rental->images) && count($rental->images) > 0)
+                          <img class="prop-thumbnail" src="{{ asset($rental->images[0]) }}" alt="{{ $rental->title }}">
+                        @else
+                          <div class="prop-thumbnail"></div>
+                        @endif
+                        <div>
+                          <div class="prop-name">{{ $rental->title }}</div>
+                          <div class="prop-address">{{ $rental->location }}, {{ $rental->city }}</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td style="font-weight: 700; color: #0f172a;">
+                      ${{ number_format($rental->nightly_rate ?: $rental->price) }}<span
+                        style="font-size: 0.8rem; font-weight: 500; color: #64748b;">/night</span>
+                    </td>
+                    <td>
+                      <span style="font-weight: 600;">{{ $rental->max_guests ?: ($rental->bedrooms * 2) }}</span> Guests
+                    </td>
+                    <td>
+                      {{ $rental->min_stay ?: 1 }} nights min
+                    </td>
+                    <td style="font-size: 0.82rem; color: #64748b;">
+                      {{ $rental->check_in_time ?: '3:00 PM' }} / {{ $rental->check_out_time ?: '11:00 AM' }}
+                    </td>
+                    <td>
+                      @if($rental->external_booking_url)
+                        <a href="{{ $rental->external_booking_url }}" target="_blank" class="btn-action-sm"
+                          style="color: #9333ea; border-color: #f3e8ff;">
+                          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                          Airbnb / Booking
+                        </a>
+                      @else
+                        <span style="color: #94a3b8; font-size: 0.8rem;">Direct Book</span>
+                      @endif
+                    </td>
+                    <td>
+                      <label class="switch-toggle">
+                        <input type="checkbox" {{ $rental->is_published ? 'checked' : '' }}
+                          onchange="togglePublish({{ $rental->id }}, this)">
                         <span class="slider"></span>
                       </label>
-                      <span class="badge badge-{{ $prop->is_published ? 'published' : 'draft' }}" id="prop-badge-status-{{ $prop->id }}">
-                        {{ $prop->is_published ? 'Published' : 'Draft' }}
-                      </span>
-                    </div>
-                  </td>
-                  <td>
-                    @if($prop->external_url)
-                      <a href="{{ $prop->external_url }}" target="_blank" class="btn-action-sm" style="color: #2563eb; border-color: #bfdbfe;">
-                        <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                        Virtual Tour
-                      </a>
-                    @else
-                      <span style="color: #94a3b8; font-size: 0.8rem;">None</span>
-                    @endif
-                  </td>
-                  <td>
-                    <div class="table-actions">
-                      <button class="btn-action-sm btn-action-edit" onclick="openEditModal({{ $prop->id }})">
-                        <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-                        Edit
-                      </button>
-                      <button class="btn-action-sm btn-action-delete" onclick="deleteProperty({{ $prop->id }})">
-                        <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                        Remove
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              @endforeach
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================== -->
-    <!-- VIEW 3: SHORT TERM RENTALS DASHBOARD -->
-    <!-- ============================================== -->
-    <section class="view-panel" id="view-panel-rentals">
-      <div class="dashboard-panel-card">
-        <div class="panel-header">
-          <div>
-            <h2 class="panel-title">Stays & Vacation Rentals</h2>
-            <p style="margin: 4px 0 0; color: #64748b; font-size: 0.88rem;">Manage nightly rates, guest capacities, min stays, and booking URLs</p>
-          </div>
-          <button class="btn-add-action" onclick="openAddShortRentalModal()">
-            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-            Add Stay
-          </button>
-        </div>
-
-        <div style="overflow-x: auto;">
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>Stay Property</th>
-                <th>Nightly Rate</th>
-                <th>Capacity</th>
-                <th>Min Stay</th>
-                <th>Check-in / Out</th>
-                <th>Booking Partner URL</th>
-                <th>Status</th>
-                <th style="text-align: right;">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              @forelse($shortTermRentals as $rental)
-                <tr id="rental-row-{{ $rental->id }}">
-                  <td>
-                    <div class="prop-info-cell">
-                      @if(is_array($rental->images) && count($rental->images) > 0)
-                        <img class="prop-thumbnail" src="{{ asset($rental->images[0]) }}" alt="{{ $rental->title }}">
-                      @else
-                        <div class="prop-thumbnail"></div>
-                      @endif
-                      <div>
-                        <div class="prop-name">{{ $rental->title }}</div>
-                        <div class="prop-address">{{ $rental->location }}, {{ $rental->city }}</div>
+                    </td>
+                    <td>
+                      <div class="table-actions">
+                        <button class="btn-action-sm btn-action-edit"
+                          onclick="openEditModal({{ $rental->id }})">Edit</button>
+                        <button class="btn-action-sm btn-action-delete"
+                          onclick="deleteProperty({{ $rental->id }})">Remove</button>
                       </div>
-                    </div>
-                  </td>
-                  <td style="font-weight: 700; color: #0f172a;">
-                    ${{ number_format($rental->nightly_rate ?: $rental->price) }}<span style="font-size: 0.8rem; font-weight: 500; color: #64748b;">/night</span>
-                  </td>
-                  <td>
-                    <span style="font-weight: 600;">{{ $rental->max_guests ?: ($rental->bedrooms * 2) }}</span> Guests
-                  </td>
-                  <td>
-                    {{ $rental->min_stay ?: 1 }} nights min
-                  </td>
-                  <td style="font-size: 0.82rem; color: #64748b;">
-                    {{ $rental->check_in_time ?: '3:00 PM' }} / {{ $rental->check_out_time ?: '11:00 AM' }}
-                  </td>
-                  <td>
-                    @if($rental->external_booking_url)
-                      <a href="{{ $rental->external_booking_url }}" target="_blank" class="btn-action-sm" style="color: #9333ea; border-color: #f3e8ff;">
-                        <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                        Airbnb / Booking
-                      </a>
-                    @else
-                      <span style="color: #94a3b8; font-size: 0.8rem;">Direct Book</span>
-                    @endif
-                  </td>
-                  <td>
-                    <label class="switch-toggle">
-                      <input type="checkbox" {{ $rental->is_published ? 'checked' : '' }} onchange="togglePublish({{ $rental->id }}, this)">
-                      <span class="slider"></span>
-                    </label>
-                  </td>
-                  <td>
-                    <div class="table-actions">
-                      <button class="btn-action-sm btn-action-edit" onclick="openEditModal({{ $rental->id }})">Edit</button>
-                      <button class="btn-action-sm btn-action-delete" onclick="deleteProperty({{ $rental->id }})">Remove</button>
-                    </div>
-                  </td>
-                </tr>
-              @empty
-                <tr>
-                  <td colspan="8" style="text-align: center; color: #64748b; padding: 3rem;">
-                    No stays configured yet. Click "Add Stay" to create vacation listings.
-                  </td>
-                </tr>
-              @endforelse
-            </tbody>
-          </table>
+                    </td>
+                  </tr>
+                @empty
+                  <tr>
+                    <td colspan="8" style="text-align: center; color: #64748b; padding: 3rem;">
+                      No stays configured yet. Click "Add Stay" to create vacation listings.
+                    </td>
+                  </tr>
+                @endforelse
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ============================================== -->
-    <!-- VIEW 4: ADD PROPERTY VIEW -->
-    <!-- ============================================== -->
-    <section class="view-panel" id="view-panel-add-property">
-      <div class="dashboard-panel-card" style="max-width: 900px; margin: 0 auto 2rem;">
-        <div class="panel-header">
-          <div>
-            <h2 class="panel-title">Create New Listing</h2>
-            <p style="margin: 4px 0 0; color: #64748b; font-size: 0.88rem;">Publish a luxury property, long-term rental, or vacation stay</p>
-          </div>
-          <button class="btn-secondary-custom" onclick="switchView('properties')">Cancel & Return</button>
-        </div>
-
-        <form id="add-property-form" enctype="multipart/form-data">
-          <!-- Step Tabs -->
-          <div class="form-tabs">
-            <button type="button" class="form-tab-btn active" id="tab-add-btn-1" onclick="switchAddTab(1)">1. Basic Information</button>
-            <button type="button" class="form-tab-btn" id="tab-add-btn-2" onclick="switchAddTab(2)">2. Specs & Rates</button>
-            <button type="button" class="form-tab-btn" id="tab-add-btn-3" onclick="switchAddTab(3)">3. Media & External Link</button>
+      <!-- ============================================== -->
+      <!-- VIEW 4: ADD PROPERTY VIEW -->
+      <!-- ============================================== -->
+      <section class="view-panel" id="view-panel-add-property">
+        <div class="dashboard-panel-card" style="max-width: 900px; margin: 0 auto 2rem;">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">Create New Listing</h2>
+              <p style="margin: 4px 0 0; color: #64748b; font-size: 0.88rem;">Publish a luxury property, long-term rental,
+                or vacation stay</p>
+            </div>
+            <button class="btn-secondary-custom" onclick="switchView('properties')">Cancel & Return</button>
           </div>
 
-          <!-- Tab 1: Basic Info -->
-          <div class="form-tab-content active" id="tab-add-content-1">
-            <div class="form-group-custom">
-              <label class="label-custom" for="add_title">Listing Title *</label>
-              <input type="text" id="add_title" name="title" class="input-custom" required>
+          <form id="add-property-form" enctype="multipart/form-data">
+            <!-- Step Tabs -->
+            <div class="form-tabs">
+              <button type="button" class="form-tab-btn active" id="tab-add-btn-1" onclick="switchAddTab(1)">1. Basic
+                Information</button>
+              <button type="button" class="form-tab-btn" id="tab-add-btn-2" onclick="switchAddTab(2)">2. Specs &
+                Rates</button>
+              <button type="button" class="form-tab-btn" id="tab-add-btn-3" onclick="switchAddTab(3)">3. Media & External
+                Link</button>
             </div>
 
-            <div class="form-grid-2">
+            <!-- Tab 1: Basic Info -->
+            <div class="form-tab-content active" id="tab-add-content-1">
               <div class="form-group-custom">
-                <label class="label-custom" for="add_type">Property Category *</label>
-                <select id="add_type" name="type" class="select-custom" required>
-                  <option value="Villa">Villa</option>
-                  <option value="House">House</option>
-                  <option value="Apartment">Apartment</option>
-                  <option value="Condo">Condo</option>
-                  <option value="Commercial">Commercial</option>
-                </select>
+                <label class="label-custom" for="add_title">Listing Title *</label>
+                <input type="text" id="add_title" name="title" class="input-custom" required>
               </div>
 
-              <div class="form-group-custom">
-                <label class="label-custom" for="add_purpose">Listing Purpose *</label>
-                <select id="add_purpose" name="purpose" class="select-custom" required>
-                  <option value="buy">For Sale (Buy)</option>
-                  <option value="rent">For Rent (Long-Term)</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Hidden long_term for properties -->
-            <input type="hidden" id="add_rental_type" name="rental_type" value="long_term">
-
-            <div class="form-group-custom">
-              <label class="label-custom" for="add_price">Price ($ USD) *</label>
-              <input type="number" id="add_price" name="price" class="input-custom" min="0" required>
-            </div>
-
-            <div class="form-group-custom">
-              <label class="label-custom" for="add_description">Listing Narrative & Description *</label>
-              <textarea id="add_description" name="description" class="textarea-custom" required></textarea>
-            </div>
-
-            <div class="form-grid-2">
-              <div class="form-group-custom">
-                <label class="label-custom">Featured on Homepage</label>
-                <label class="switch-toggle" style="margin-top: 6px;">
-                  <input type="checkbox" name="featured" value="1">
-                  <span class="slider"></span>
-                </label>
-              </div>
-
-              <div class="form-group-custom">
-                <label class="label-custom">Publish Immediately</label>
-                <label class="switch-toggle" style="margin-top: 6px;">
-                  <input type="checkbox" name="is_published" value="1" checked>
-                  <span class="slider"></span>
-                </label>
-              </div>
-            </div>
-
-            <div class="btn-form-action-group">
-              <div></div>
-              <button type="button" class="btn-add-action" onclick="switchAddTab(2)">Continue to Specs →</button>
-            </div>
-          </div>
-
-          <!-- Tab 2: Specs & Rates -->
-          <div class="form-tab-content" id="tab-add-content-2">
-            <div class="form-grid-3">
-              <div class="form-group-custom">
-                <label class="label-custom" for="add_bedrooms">Bedrooms *</label>
-                <input type="number" id="add_bedrooms" name="bedrooms" class="input-custom" min="0" required>
-              </div>
-
-              <div class="form-group-custom">
-                <label class="label-custom" for="add_bathrooms">Bathrooms *</label>
-                <input type="number" step="0.5" id="add_bathrooms" name="bathrooms" class="input-custom" min="0" required>
-              </div>
-
-              <div class="form-group-custom">
-                <label class="label-custom" for="add_area">Area (sqft) *</label>
-                <input type="number" id="add_area" name="area" class="input-custom" min="0" required>
-              </div>
-            </div>
-
-            <div class="form-grid-2">
-              <div class="form-group-custom">
-                <label class="label-custom" for="add_yearBuilt">Year Built *</label>
-                <input type="number" id="add_yearBuilt" name="yearBuilt" class="input-custom" min="1800" max="2035" required>
-              </div>
-
-              <div class="form-group-custom">
-                <label class="label-custom" for="add_city">City *</label>
-                <input type="text" id="add_city" name="city" class="input-custom" required>
-              </div>
-            </div>
-
-            <div class="form-group-custom">
-              <label class="label-custom" for="add_location">Street Address *</label>
-              <input type="text" id="add_location" name="location" class="input-custom" required>
-            </div>
-
-
-            <div class="form-group-custom">
-              <label class="label-custom" for="add_features">Key Features (comma-separated)</label>
-              <input type="text" id="add_features" name="features" class="input-custom">
-            </div>
-
-            <div class="btn-form-action-group">
-              <button type="button" class="btn-secondary-custom" onclick="switchAddTab(1)">← Back to Basic</button>
-              <button type="button" class="btn-add-action" onclick="switchAddTab(3)">Continue to Media →</button>
-            </div>
-          </div>
-
-          <!-- Tab 3: Media & External Links -->
-          <div class="form-tab-content" id="tab-add-content-3">
-            <div class="form-group-custom">
-              <label class="label-custom">Upload Property Media Photos</label>
-              <div class="upload-drag-zone" onclick="document.getElementById('add_images').click()">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="36" height="36" style="margin: 0 auto 6px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
-                <div style="font-weight: 600; font-size: 0.92rem; color: #1e293b;">Click to browse photos or drag and drop files here</div>
-                <span style="font-size: 0.8rem; color: #94a3b8;">Supports JPEG, PNG, WEBP (Max 5MB each)</span>
-              </div>
-              <input type="file" id="add_images" name="images[]" multiple accept="image/*" style="display: none;" onchange="renderAddImagePreviews(this.files)">
-              <div class="preview-container" id="add_images_preview"></div>
-            </div>
-
-
-            <div class="form-group-custom" style="border-top: 1px solid #f1f5f9; padding-top: 1.25rem; margin-top: 1.25rem;">
-              <label class="label-custom" for="add_agent_selection">Assign Listing Agent *</label>
-              <select id="add_agent_selection" name="agent_selection" class="select-custom" required onchange="handleAddAgentChange(this.value)">
-                <option value="sarah" selected>Sarah Jenkins (Senior Partner)</option>
-                <option value="michael">Michael Chen (Urban Specialist)</option>
-                <option value="emma">Emma Davis (Family Estates)</option>
-                <option value="custom">-- Custom Listing Agent --</option>
-              </select>
-            </div>
-
-            <div id="add-custom-agent-box" style="display: none; background: #f8fafc; border: 1px solid #e2e8f0; padding: 1.25rem; border-radius: var(--radius-sm); margin-bottom: 1rem;">
               <div class="form-grid-2">
                 <div class="form-group-custom">
-                  <label class="label-custom" for="add_agent_name">Agent Full Name</label>
-                  <input type="text" id="add_agent_name" name="agent_name" class="input-custom">
+                  <label class="label-custom" for="add_type">Property Category *</label>
+                  <select id="add_type" name="type" class="select-custom" required>
+                    <option value="Villa">Villa</option>
+                    <option value="House">House</option>
+                    <option value="Apartment">Apartment</option>
+                    <option value="Condo">Condo</option>
+                    <option value="Commercial">Commercial</option>
+                  </select>
                 </div>
+
                 <div class="form-group-custom">
-                  <label class="label-custom" for="add_agent_phone">Contact Phone</label>
-                  <input type="text" id="add_agent_phone" name="agent_phone" class="input-custom">
+                  <label class="label-custom" for="add_purpose">Listing Purpose *</label>
+                  <select id="add_purpose" name="purpose" class="select-custom" required>
+                    <option value="buy">For Sale (Buy)</option>
+                    <option value="rent">For Rent (Long-Term)</option>
+                  </select>
                 </div>
+              </div>
+
+              <!-- Hidden long_term for properties -->
+              <input type="hidden" id="add_rental_type" name="rental_type" value="long_term">
+
+              <div class="form-group-custom">
+                <label class="label-custom" for="add_price">Price ($ USD) *</label>
+                <input type="number" id="add_price" name="price" class="input-custom" min="0" required>
+              </div>
+
+              <div class="form-group-custom">
+                <label class="label-custom" for="add_description">Listing Narrative & Description *</label>
+                <textarea id="add_description" name="description" class="textarea-custom" required></textarea>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group-custom">
+                  <label class="label-custom">Featured on Homepage</label>
+                  <label class="switch-toggle" style="margin-top: 6px;">
+                    <input type="checkbox" name="featured" value="1">
+                    <span class="slider"></span>
+                  </label>
+                </div>
+
+                <div class="form-group-custom">
+                  <label class="label-custom">Publish Immediately</label>
+                  <label class="switch-toggle" style="margin-top: 6px;">
+                    <input type="checkbox" name="is_published" value="1" checked>
+                    <span class="slider"></span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="btn-form-action-group">
+                <div></div>
+                <button type="button" class="btn-add-action" onclick="switchAddTab(2)">Continue to Specs →</button>
               </div>
             </div>
 
-            <div class="btn-form-action-group">
-              <button type="button" class="btn-secondary-custom" onclick="switchAddTab(2)">← Back to Specs</button>
-              <button type="submit" class="btn-add-action" id="btn-add-submit" style="padding: 12px 32px;">
-                <span class="spinner-sm" id="spinner-add-submit"></span>
-                <span>Publish Real Estate Listing</span>
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </section>
+            <!-- Tab 2: Specs & Rates -->
+            <div class="form-tab-content" id="tab-add-content-2">
+              <div class="form-grid-3">
+                <div class="form-group-custom">
+                  <label class="label-custom" for="add_bedrooms">Bedrooms *</label>
+                  <input type="number" id="add_bedrooms" name="bedrooms" class="input-custom" min="0" required>
+                </div>
 
-    <!-- ============================================== -->
-    <!-- VIEW X: ADD SHORT TERM RENTAL VIEW -->
-    <!-- ============================================== -->
-    <section class="view-panel" id="view-panel-add-short-rental">
-      <div class="dashboard-panel-card" style="max-width: 900px; margin: 0 auto 2rem;">
-        <div class="panel-header">
-          <div>
-            <h2 class="panel-title">Create New Stay</h2>
-            <p style="margin: 4px 0 0; color: #64748b; font-size: 0.88rem;">Publish a vacation stay with nightly rates</p>
-          </div>
-          <button class="btn-secondary-custom" onclick="switchView('rentals')">Cancel & Return</button>
-        </div>
+                <div class="form-group-custom">
+                  <label class="label-custom" for="add_bathrooms">Bathrooms *</label>
+                  <input type="number" step="0.5" id="add_bathrooms" name="bathrooms" class="input-custom" min="0"
+                    required>
+                </div>
 
-        <form id="add-short-rental-form" enctype="multipart/form-data">
-          <!-- Hidden fields for rentals -->
-          <input type="hidden" name="purpose" value="rent">
-          <input type="hidden" name="rental_type" value="short_term">
+                <div class="form-group-custom">
+                  <label class="label-custom" for="add_area">Area (sqft) *</label>
+                  <input type="number" id="add_area" name="area" class="input-custom" min="0" required>
+                </div>
+              </div>
 
-          <!-- Step Tabs -->
-          <div class="form-tabs">
-            <button type="button" class="form-tab-btn active" id="tab-rental-btn-1" onclick="switchRentalTab(1)">1. Basic Information</button>
-            <button type="button" class="form-tab-btn" id="tab-rental-btn-2" onclick="switchRentalTab(2)">2. Specs & Rates</button>
-            <button type="button" class="form-tab-btn" id="tab-rental-btn-3" onclick="switchRentalTab(3)">3. Media & Links</button>
-          </div>
+              <div class="form-grid-2">
+                <div class="form-group-custom">
+                  <label class="label-custom" for="add_yearBuilt">Year Built *</label>
+                  <input type="number" id="add_yearBuilt" name="yearBuilt" class="input-custom" min="1800" max="2035"
+                    required>
+                </div>
 
-          <!-- Tab 1: Basic Info -->
-          <div class="form-tab-content active" id="tab-rental-content-1">
-            <div class="form-group-custom">
-              <label class="label-custom" for="rental_title">Listing Title *</label>
-              <input type="text" id="rental_title" name="title" class="input-custom" required>
-            </div>
+                <div class="form-group-custom">
+                  <label class="label-custom" for="add_city">City *</label>
+                  <input type="text" id="add_city" name="city" class="input-custom" required>
+                </div>
+              </div>
 
-            <div class="form-grid-2">
               <div class="form-group-custom">
-                <label class="label-custom" for="rental_type_select">Property Category *</label>
-                <select id="rental_type_select" name="type" class="select-custom" required>
-                  <option value="Villa">Villa</option>
-                  <option value="House">House</option>
-                  <option value="Apartment">Apartment</option>
-                  <option value="Condo">Condo</option>
-                  <option value="Cabin">Cabin</option>
+                <label class="label-custom" for="add_location">Street Address *</label>
+                <input type="text" id="add_location" name="location" class="input-custom" required>
+              </div>
+
+
+              <div class="form-group-custom">
+                <label class="label-custom" for="add_features">Key Features (comma-separated)</label>
+                <input type="text" id="add_features" name="features" class="input-custom">
+              </div>
+
+              <div class="btn-form-action-group">
+                <button type="button" class="btn-secondary-custom" onclick="switchAddTab(1)">← Back to Basic</button>
+                <button type="button" class="btn-add-action" onclick="switchAddTab(3)">Continue to Media →</button>
+              </div>
+            </div>
+
+            <!-- Tab 3: Media & External Links -->
+            <div class="form-tab-content" id="tab-add-content-3">
+              <div class="form-group-custom">
+                <label class="label-custom">Upload Property Media Photos</label>
+                <div class="upload-drag-zone" onclick="document.getElementById('add_images').click()">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="36" height="36"
+                    style="margin: 0 auto 6px;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                  </svg>
+                  <div style="font-weight: 600; font-size: 0.92rem; color: #1e293b;">Click to browse photos or drag and
+                    drop files here</div>
+                  <span style="font-size: 0.8rem; color: #94a3b8;">Supports JPEG, PNG, WEBP (Max 5MB each)</span>
+                </div>
+                <input type="file" id="add_images" name="images[]" multiple accept="image/*" style="display: none;"
+                  onchange="renderAddImagePreviews(this.files)">
+                <div class="preview-container" id="add_images_preview"></div>
+              </div>
+
+
+              <div class="form-group-custom"
+                style="border-top: 1px solid #f1f5f9; padding-top: 1.25rem; margin-top: 1.25rem;">
+                <label class="label-custom" for="add_agent_selection">Assign Listing Agent *</label>
+                <select id="add_agent_selection" name="agent_selection" class="select-custom" required
+                  onchange="handleAddAgentChange(this.value)">
+                  <option value="sarah" selected>Sarah Jenkins (Senior Partner)</option>
+                  <option value="michael">Michael Chen (Urban Specialist)</option>
+                  <option value="emma">Emma Davis (Family Estates)</option>
+                  <option value="custom">-- Custom Listing Agent --</option>
                 </select>
               </div>
 
-              <div class="form-group-custom">
-                <label class="label-custom" for="rental_nightly_rate">Nightly Rate ($ USD) *</label>
-                <input type="number" id="rental_nightly_rate" name="nightly_rate" class="input-custom" min="0" required oninput="document.getElementById('rental_price').value = this.value">
-              </div>
-            </div>
-
-            <div class="form-group-custom" style="display: none;">
-              <input type="number" id="rental_price" name="price" value="0">
-            </div>
-
-            <div class="form-group-custom">
-              <label class="label-custom" for="rental_description">Listing Narrative & Description *</label>
-              <textarea id="rental_description" name="description" class="textarea-custom" required></textarea>
-            </div>
-
-            <div class="form-grid-2">
-              <div class="form-group-custom">
-                <label class="label-custom">Featured on Homepage</label>
-                <label class="switch-toggle" style="margin-top: 6px;">
-                  <input type="checkbox" name="featured" value="1">
-                  <span class="slider"></span>
-                </label>
+              <div id="add-custom-agent-box"
+                style="display: none; background: #f8fafc; border: 1px solid #e2e8f0; padding: 1.25rem; border-radius: var(--radius-sm); margin-bottom: 1rem;">
+                <div class="form-grid-2">
+                  <div class="form-group-custom">
+                    <label class="label-custom" for="add_agent_name">Agent Full Name</label>
+                    <input type="text" id="add_agent_name" name="agent_name" class="input-custom">
+                  </div>
+                  <div class="form-group-custom">
+                    <label class="label-custom" for="add_agent_phone">Contact Phone</label>
+                    <input type="text" id="add_agent_phone" name="agent_phone" class="input-custom">
+                  </div>
+                </div>
               </div>
 
-              <div class="form-group-custom">
-                <label class="label-custom">Publish Immediately</label>
-                <label class="switch-toggle" style="margin-top: 6px;">
-                  <input type="checkbox" name="is_published" value="1" checked>
-                  <span class="slider"></span>
-                </label>
+              <div class="btn-form-action-group">
+                <button type="button" class="btn-secondary-custom" onclick="switchAddTab(2)">← Back to Specs</button>
+                <button type="submit" class="btn-add-action" id="btn-add-submit" style="padding: 12px 32px;">
+                  <span class="spinner-sm" id="spinner-add-submit"></span>
+                  <span>Publish Real Estate Listing</span>
+                </button>
               </div>
             </div>
+          </form>
+        </div>
+      </section>
 
-            <div class="btn-form-action-group">
-              <div></div>
-              <button type="button" class="btn-add-action" onclick="switchRentalTab(2)">Continue to Specs →</button>
+      <!-- ============================================== -->
+      <!-- VIEW X: ADD SHORT TERM RENTAL VIEW -->
+      <!-- ============================================== -->
+      <section class="view-panel" id="view-panel-add-short-rental">
+        <div class="dashboard-panel-card" style="max-width: 900px; margin: 0 auto 2rem;">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">Create New Stay</h2>
+              <p style="margin: 4px 0 0; color: #64748b; font-size: 0.88rem;">Publish a vacation stay with nightly rates
+              </p>
             </div>
+            <button class="btn-secondary-custom" onclick="switchView('rentals')">Cancel & Return</button>
           </div>
 
-          <!-- Tab 2: Specs & Rates -->
-          <div class="form-tab-content" id="tab-rental-content-2">
-            <div class="form-grid-3">
-              <div class="form-group-custom">
-                <label class="label-custom" for="rental_bedrooms">Bedrooms *</label>
-                <input type="number" id="rental_bedrooms" name="bedrooms" class="input-custom" min="0" required>
-              </div>
+          <form id="add-short-rental-form" enctype="multipart/form-data">
+            <!-- Hidden fields for rentals -->
+            <input type="hidden" name="purpose" value="rent">
+            <input type="hidden" name="rental_type" value="short_term">
 
-              <div class="form-group-custom">
-                <label class="label-custom" for="rental_bathrooms">Bathrooms *</label>
-                <input type="number" step="0.5" id="rental_bathrooms" name="bathrooms" class="input-custom" min="0" required>
-              </div>
-
-              <div class="form-group-custom">
-                <label class="label-custom" for="rental_area">Area (sqft) *</label>
-                <input type="number" id="rental_area" name="area" class="input-custom" min="0" required>
-              </div>
+            <!-- Step Tabs -->
+            <div class="form-tabs">
+              <button type="button" class="form-tab-btn active" id="tab-rental-btn-1" onclick="switchRentalTab(1)">1.
+                Basic Information</button>
+              <button type="button" class="form-tab-btn" id="tab-rental-btn-2" onclick="switchRentalTab(2)">2. Specs &
+                Rates</button>
+              <button type="button" class="form-tab-btn" id="tab-rental-btn-3" onclick="switchRentalTab(3)">3. Media &
+                Links</button>
             </div>
 
-            <div class="form-grid-3">
+            <!-- Tab 1: Basic Info -->
+            <div class="form-tab-content active" id="tab-rental-content-1">
               <div class="form-group-custom">
-                <label class="label-custom" for="rental_max_guests">Max Guests</label>
-                <input type="number" id="rental_max_guests" name="max_guests" class="input-custom" min="1">
+                <label class="label-custom" for="rental_title">Listing Title *</label>
+                <input type="text" id="rental_title" name="title" class="input-custom" required>
               </div>
 
-              <div class="form-group-custom">
-                <label class="label-custom" for="rental_min_stay">Min Stay (Nights)</label>
-                <input type="number" id="rental_min_stay" name="min_stay" class="input-custom" min="1">
-              </div>
-
-              <div class="form-group-custom">
-                <label class="label-custom" for="rental_yearBuilt">Year Built *</label>
-                <input type="number" id="rental_yearBuilt" name="yearBuilt" class="input-custom" min="1800" max="2035" required>
-              </div>
-            </div>
-
-            <div class="form-grid-2">
-              <div class="form-group-custom">
-                <label class="label-custom" for="rental_check_in_time">Check-in Time</label>
-                <input type="text" id="rental_check_in_time" name="check_in_time" placeholder="e.g. 3:00 PM" class="input-custom">
-              </div>
-
-              <div class="form-group-custom">
-                <label class="label-custom" for="rental_check_out_time">Check-out Time</label>
-                <input type="text" id="rental_check_out_time" name="check_out_time" placeholder="e.g. 11:00 AM" class="input-custom">
-              </div>
-            </div>
-
-            <div class="form-grid-2">
-              <div class="form-group-custom">
-                <label class="label-custom" for="rental_city">City *</label>
-                <input type="text" id="rental_city" name="city" class="input-custom" required>
-              </div>
-
-              <div class="form-group-custom">
-                <label class="label-custom" for="rental_location">Street Address *</label>
-                <input type="text" id="rental_location" name="location" class="input-custom" required>
-              </div>
-            </div>
-
-            <div class="form-group-custom">
-              <label class="label-custom" for="rental_features">Key Features (comma-separated)</label>
-              <input type="text" id="rental_features" name="features" class="input-custom">
-            </div>
-
-            <div class="btn-form-action-group">
-              <button type="button" class="btn-secondary-custom" onclick="switchRentalTab(1)">← Back to Basic</button>
-              <button type="button" class="btn-add-action" onclick="switchRentalTab(3)">Continue to Media →</button>
-            </div>
-          </div>
-
-          <!-- Tab 3: Media & Links -->
-          <div class="form-tab-content" id="tab-rental-content-3">
-            <div class="form-group-custom">
-              <label class="label-custom">Upload Property Media Photos</label>
-              <div class="upload-drag-zone" onclick="document.getElementById('rental_images').click()">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="36" height="36" style="margin: 0 auto 6px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
-                <div style="font-weight: 600; font-size: 0.92rem; color: #1e293b;">Click to browse photos or drag and drop files here</div>
-                <span style="font-size: 0.8rem; color: #94a3b8;">Supports JPEG, PNG, WEBP (Max 5MB each)</span>
-              </div>
-              <input type="file" id="rental_images" name="images[]" multiple accept="image/*" style="display: none;" onchange="renderRentalImagePreviews(this.files)">
-              <div class="preview-container" id="rental_images_preview"></div>
-            </div>
-
-            <div class="form-group-custom">
-              <label class="label-custom" for="rental_external_booking_url">Booking Partner URL (e.g. Airbnb, Booking.com)</label>
-              <input type="url" id="rental_external_booking_url" name="external_booking_url" class="input-custom" placeholder="https://">
-            </div>
-
-            <div class="form-group-custom" style="border-top: 1px solid #f1f5f9; padding-top: 1.25rem; margin-top: 1.25rem;">
-              <label class="label-custom" for="rental_agent_selection">Assign Listing Agent *</label>
-              <select id="rental_agent_selection" name="agent_selection" class="select-custom" required onchange="handleRentalAgentChange(this.value)">
-                <option value="sarah" selected>Sarah Jenkins (Senior Partner)</option>
-                <option value="michael">Michael Chen (Urban Specialist)</option>
-                <option value="emma">Emma Davis (Family Estates)</option>
-                <option value="custom">-- Custom Listing Agent --</option>
-              </select>
-            </div>
-
-            <div id="rental-custom-agent-box" style="display: none; background: #f8fafc; border: 1px solid #e2e8f0; padding: 1.25rem; border-radius: var(--radius-sm); margin-bottom: 1rem;">
               <div class="form-grid-2">
                 <div class="form-group-custom">
-                  <label class="label-custom" for="rental_agent_name">Agent Full Name</label>
-                  <input type="text" id="rental_agent_name" name="agent_name" class="input-custom">
+                  <label class="label-custom" for="rental_type_select">Property Category *</label>
+                  <select id="rental_type_select" name="type" class="select-custom" required>
+                    <option value="Villa">Villa</option>
+                    <option value="House">House</option>
+                    <option value="Apartment">Apartment</option>
+                    <option value="Condo">Condo</option>
+                    <option value="Cabin">Cabin</option>
+                  </select>
                 </div>
+
                 <div class="form-group-custom">
-                  <label class="label-custom" for="rental_agent_phone">Contact Phone</label>
-                  <input type="text" id="rental_agent_phone" name="agent_phone" class="input-custom">
+                  <label class="label-custom" for="rental_nightly_rate">Nightly Rate ($ USD) *</label>
+                  <input type="number" id="rental_nightly_rate" name="nightly_rate" class="input-custom" min="0" required
+                    oninput="document.getElementById('rental_price').value = this.value">
                 </div>
+              </div>
+
+              <div class="form-group-custom" style="display: none;">
+                <input type="number" id="rental_price" name="price" value="0">
+              </div>
+
+              <div class="form-group-custom">
+                <label class="label-custom" for="rental_description">Listing Narrative & Description *</label>
+                <textarea id="rental_description" name="description" class="textarea-custom" required></textarea>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group-custom">
+                  <label class="label-custom">Featured on Homepage</label>
+                  <label class="switch-toggle" style="margin-top: 6px;">
+                    <input type="checkbox" name="featured" value="1">
+                    <span class="slider"></span>
+                  </label>
+                </div>
+
+                <div class="form-group-custom">
+                  <label class="label-custom">Publish Immediately</label>
+                  <label class="switch-toggle" style="margin-top: 6px;">
+                    <input type="checkbox" name="is_published" value="1" checked>
+                    <span class="slider"></span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="btn-form-action-group">
+                <div></div>
+                <button type="button" class="btn-add-action" onclick="switchRentalTab(2)">Continue to Specs →</button>
               </div>
             </div>
 
-            <div class="btn-form-action-group">
-              <button type="button" class="btn-secondary-custom" onclick="switchRentalTab(2)">← Back to Specs</button>
-              <button type="submit" class="btn-add-action" id="btn-rental-submit" style="padding: 12px 32px;">
-                <span class="spinner-sm" id="spinner-rental-submit"></span>
-                <span>Publish Vacation Stay</span>
-              </button>
+            <!-- Tab 2: Specs & Rates -->
+            <div class="form-tab-content" id="tab-rental-content-2">
+              <div class="form-grid-3">
+                <div class="form-group-custom">
+                  <label class="label-custom" for="rental_bedrooms">Bedrooms *</label>
+                  <input type="number" id="rental_bedrooms" name="bedrooms" class="input-custom" min="0" required>
+                </div>
+
+                <div class="form-group-custom">
+                  <label class="label-custom" for="rental_bathrooms">Bathrooms *</label>
+                  <input type="number" step="0.5" id="rental_bathrooms" name="bathrooms" class="input-custom" min="0"
+                    required>
+                </div>
+
+                <div class="form-group-custom">
+                  <label class="label-custom" for="rental_area">Area (sqft) *</label>
+                  <input type="number" id="rental_area" name="area" class="input-custom" min="0" required>
+                </div>
+              </div>
+
+              <div class="form-grid-3">
+                <div class="form-group-custom">
+                  <label class="label-custom" for="rental_max_guests">Max Guests</label>
+                  <input type="number" id="rental_max_guests" name="max_guests" class="input-custom" min="1">
+                </div>
+
+                <div class="form-group-custom">
+                  <label class="label-custom" for="rental_min_stay">Min Stay (Nights)</label>
+                  <input type="number" id="rental_min_stay" name="min_stay" class="input-custom" min="1">
+                </div>
+
+                <div class="form-group-custom">
+                  <label class="label-custom" for="rental_yearBuilt">Year Built *</label>
+                  <input type="number" id="rental_yearBuilt" name="yearBuilt" class="input-custom" min="1800" max="2035"
+                    required>
+                </div>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group-custom">
+                  <label class="label-custom" for="rental_check_in_time">Check-in Time</label>
+                  <input type="text" id="rental_check_in_time" name="check_in_time" placeholder="e.g. 3:00 PM"
+                    class="input-custom">
+                </div>
+
+                <div class="form-group-custom">
+                  <label class="label-custom" for="rental_check_out_time">Check-out Time</label>
+                  <input type="text" id="rental_check_out_time" name="check_out_time" placeholder="e.g. 11:00 AM"
+                    class="input-custom">
+                </div>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group-custom">
+                  <label class="label-custom" for="rental_city">City *</label>
+                  <input type="text" id="rental_city" name="city" class="input-custom" required>
+                </div>
+
+                <div class="form-group-custom">
+                  <label class="label-custom" for="rental_location">Street Address *</label>
+                  <input type="text" id="rental_location" name="location" class="input-custom" required>
+                </div>
+              </div>
+
+              <div class="form-group-custom">
+                <label class="label-custom" for="rental_features">Key Features (comma-separated)</label>
+                <input type="text" id="rental_features" name="features" class="input-custom">
+              </div>
+
+              <div class="btn-form-action-group">
+                <button type="button" class="btn-secondary-custom" onclick="switchRentalTab(1)">← Back to Basic</button>
+                <button type="button" class="btn-add-action" onclick="switchRentalTab(3)">Continue to Media →</button>
+              </div>
             </div>
-          </div>
-        </form>
-      </div>
-    </section>
+
+            <!-- Tab 3: Media & Links -->
+            <div class="form-tab-content" id="tab-rental-content-3">
+              <div class="form-group-custom">
+                <label class="label-custom">Upload Property Media Photos</label>
+                <div class="upload-drag-zone" onclick="document.getElementById('rental_images').click()">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="36" height="36"
+                    style="margin: 0 auto 6px;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                  </svg>
+                  <div style="font-weight: 600; font-size: 0.92rem; color: #1e293b;">Click to browse photos or drag and
+                    drop files here</div>
+                  <span style="font-size: 0.8rem; color: #94a3b8;">Supports JPEG, PNG, WEBP (Max 5MB each)</span>
+                </div>
+                <input type="file" id="rental_images" name="images[]" multiple accept="image/*" style="display: none;"
+                  onchange="renderRentalImagePreviews(this.files)">
+                <div class="preview-container" id="rental_images_preview"></div>
+              </div>
+
+              <div class="form-group-custom">
+                <label class="label-custom" for="rental_external_booking_url">Booking Partner URL (e.g. Airbnb,
+                  Booking.com)</label>
+                <input type="url" id="rental_external_booking_url" name="external_booking_url" class="input-custom"
+                  placeholder="https://">
+              </div>
+
+              <div class="form-group-custom"
+                style="border-top: 1px solid #f1f5f9; padding-top: 1.25rem; margin-top: 1.25rem;">
+                <label class="label-custom" for="rental_agent_selection">Assign Listing Agent *</label>
+                <select id="rental_agent_selection" name="agent_selection" class="select-custom" required
+                  onchange="handleRentalAgentChange(this.value)">
+                  <option value="sarah" selected>Sarah Jenkins (Senior Partner)</option>
+                  <option value="michael">Michael Chen (Urban Specialist)</option>
+                  <option value="emma">Emma Davis (Family Estates)</option>
+                  <option value="custom">-- Custom Listing Agent --</option>
+                </select>
+              </div>
+
+              <div id="rental-custom-agent-box"
+                style="display: none; background: #f8fafc; border: 1px solid #e2e8f0; padding: 1.25rem; border-radius: var(--radius-sm); margin-bottom: 1rem;">
+                <div class="form-grid-2">
+                  <div class="form-group-custom">
+                    <label class="label-custom" for="rental_agent_name">Agent Full Name</label>
+                    <input type="text" id="rental_agent_name" name="agent_name" class="input-custom">
+                  </div>
+                  <div class="form-group-custom">
+                    <label class="label-custom" for="rental_agent_phone">Contact Phone</label>
+                    <input type="text" id="rental_agent_phone" name="agent_phone" class="input-custom">
+                  </div>
+                </div>
+              </div>
+
+              <div class="btn-form-action-group">
+                <button type="button" class="btn-secondary-custom" onclick="switchRentalTab(2)">← Back to Specs</button>
+                <button type="submit" class="btn-add-action" id="btn-rental-submit" style="padding: 12px 32px;">
+                  <span class="spinner-sm" id="spinner-rental-submit"></span>
+                  <span>Publish Vacation Stay</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
     @endif
 
     <!-- ============================================== -->
     <!-- VIEW 5: USER MANAGEMENT (MAIN ADMIN ONLY) -->
     <!-- ============================================== -->
     @if($currentUser->isMainAdmin())
-    <section class="view-panel" id="view-panel-users">
-      <div class="dashboard-panel-card">
-        <div class="panel-header">
-          <div>
-            <h2 class="panel-title">Administrator & Staff User Roster</h2>
-            <p style="margin: 4px 0 0; color: #64748b; font-size: 0.88rem;">Manage administrator accounts, roles, access levels, and active statuses</p>
+      <section class="view-panel" id="view-panel-users">
+        <div class="dashboard-panel-card">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">Administrator & Staff User Roster</h2>
+              <p style="margin: 4px 0 0; color: #64748b; font-size: 0.88rem;">Manage administrator accounts, roles, access
+                levels, and active statuses</p>
+            </div>
+            <button class="btn-add-action" onclick="openAddUserModal()">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+              </svg>
+              Add New User
+            </button>
           </div>
-          <button class="btn-add-action" onclick="openAddUserModal()">
-            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
-            Add New User
-          </button>
-        </div>
 
-        <div style="overflow-x: auto;">
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>User Account</th>
-                <th>Role & Access</th>
-                <th>Phone</th>
-                <th>Account Status</th>
-                <th>Created Date</th>
-                <th style="text-align: right;">Actions</th>
-              </tr>
-            </thead>
-            <tbody id="users-table-body">
-              @foreach($users as $u)
-                <tr id="user-row-{{ $u->id }}">
-                  <td>
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                      <div class="user-avatar-sm">{{ strtoupper(substr($u->name, 0, 1)) }}</div>
-                      <div>
-                        <div style="font-weight: 600; color: #0f172a;">{{ $u->name }}</div>
-                        <div style="font-size: 0.82rem; color: #64748b;">{{ $u->email }}</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <span class="sidebar-role-badge badge-role-{{ $u->role }}">
-                      {{ $u->role === 'main_admin' ? 'Main Admin' : ($u->role === 'staff' ? 'Staff / Manager' : 'Listing Agent') }}
-                    </span>
-                  </td>
-                  <td style="color: #64748b;">{{ $u->phone ?: '—' }}</td>
-                  <td>
-                    <button class="btn-action-sm {{ $u->status === 'active' ? 'badge-active' : 'badge-inactive' }}" onclick="toggleUserStatus({{ $u->id }})" title="Click to toggle Active/Inactive">
-                      {{ ucfirst($u->status) }}
-                    </button>
-                  </td>
-                  <td style="color: #64748b; font-size: 0.85rem;">{{ $u->created_at ? $u->created_at->format('M d, Y') : '—' }}</td>
-                  <td>
-                    <div class="table-actions">
-                      <button class="btn-action-sm btn-action-edit" onclick="openEditUserModal({{ $u->id }})">
-                        Edit
-                      </button>
-                      @if($u->id !== $currentUser->id)
-                        <button class="btn-action-sm btn-action-delete" onclick="deleteUser({{ $u->id }})">
-                          Delete
-                        </button>
-                      @endif
-                    </div>
-                  </td>
+          <div style="overflow-x: auto;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>User Account</th>
+                  <th>Role & Access</th>
+                  <th>Phone</th>
+                  <th>Account Status</th>
+                  <th>Created Date</th>
+                  <th style="text-align: right;">Actions</th>
                 </tr>
-              @endforeach
-            </tbody>
-          </table>
+              </thead>
+              <tbody id="users-table-body">
+                @foreach($users as $u)
+                  <tr id="user-row-{{ $u->id }}">
+                    <td>
+                      <div style="display: flex; align-items: center; gap: 12px;">
+                        <div class="user-avatar-sm">{{ strtoupper(substr($u->name, 0, 1)) }}</div>
+                        <div>
+                          <div style="font-weight: 600; color: #0f172a;">{{ $u->name }}</div>
+                          <div style="font-size: 0.82rem; color: #64748b;">{{ $u->email }}</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <span class="sidebar-role-badge badge-role-{{ $u->role }}">
+                        {{ $u->role === 'main_admin' ? 'Main Admin' : ($u->role === 'staff' ? 'Staff / Manager' : 'Listing Agent') }}
+                      </span>
+                    </td>
+                    <td style="color: #64748b;">{{ $u->phone ?: '—' }}</td>
+                    <td>
+                      <button class="btn-action-sm {{ $u->status === 'active' ? 'badge-active' : 'badge-inactive' }}"
+                        onclick="toggleUserStatus({{ $u->id }})" title="Click to toggle Active/Inactive">
+                        {{ ucfirst($u->status) }}
+                      </button>
+                    </td>
+                    <td style="color: #64748b; font-size: 0.85rem;">
+                      {{ $u->created_at ? $u->created_at->format('M d, Y') : '—' }}</td>
+                    <td>
+                      <div class="table-actions">
+                        <button class="btn-action-sm btn-action-edit" onclick="openEditUserModal({{ $u->id }})">
+                          Edit
+                        </button>
+                        @if($u->id !== $currentUser->id)
+                          <button class="btn-action-sm btn-action-delete" onclick="deleteUser({{ $u->id }})">
+                            Delete
+                          </button>
+                        @endif
+                      </div>
+                    </td>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
     @endif
 
   </main>
@@ -2083,13 +2300,16 @@
       </div>
       <form id="edit-property-form" enctype="multipart/form-data">
         <input type="hidden" id="edit_prop_id" name="id">
-        
+
         <div class="modal-body">
           <!-- Step Tabs -->
           <div class="form-tabs">
-            <button type="button" class="form-tab-btn active" id="tab-edit-btn-1" onclick="switchEditTab(1)">1. General</button>
-            <button type="button" class="form-tab-btn" id="tab-edit-btn-2" onclick="switchEditTab(2)">2. Specs & Rates</button>
-            <button type="button" class="form-tab-btn" id="tab-edit-btn-3" onclick="switchEditTab(3)">3. Photos & Links</button>
+            <button type="button" class="form-tab-btn active" id="tab-edit-btn-1" onclick="switchEditTab(1)">1.
+              General</button>
+            <button type="button" class="form-tab-btn" id="tab-edit-btn-2" onclick="switchEditTab(2)">2. Specs &
+              Rates</button>
+            <button type="button" class="form-tab-btn" id="tab-edit-btn-3" onclick="switchEditTab(3)">3. Photos &
+              Links</button>
           </div>
 
           <!-- Edit Tab 1 -->
@@ -2113,7 +2333,8 @@
 
               <div class="form-group-custom">
                 <label class="label-custom" for="edit_purpose">Purpose *</label>
-                <select id="edit_purpose" name="purpose" class="select-custom" required onchange="handleEditPurposeChange(this.value)">
+                <select id="edit_purpose" name="purpose" class="select-custom" required
+                  onchange="handleEditPurposeChange(this.value)">
                   <option value="buy">For Sale (Buy)</option>
                   <option value="rent">For Rent</option>
                 </select>
@@ -2122,7 +2343,8 @@
 
             <div class="form-group-custom" id="edit-rental-type-container" style="display: none;">
               <label class="label-custom" for="edit_rental_type">Rental Format</label>
-              <select id="edit_rental_type" name="rental_type" class="select-custom" onchange="handleEditRentalTypeChange(this.value)">
+              <select id="edit_rental_type" name="rental_type" class="select-custom"
+                onchange="handleEditRentalTypeChange(this.value)">
                 <option value="long_term">Long-Term Residential Rental</option>
                 <option value="short_term">Short-Term Vacation / Nightly Stay</option>
               </select>
@@ -2174,7 +2396,8 @@
 
               <div class="form-group-custom">
                 <label class="label-custom" for="edit_bathrooms">Bathrooms *</label>
-                <input type="number" step="0.5" id="edit_bathrooms" name="bathrooms" class="input-custom" min="0" required>
+                <input type="number" step="0.5" id="edit_bathrooms" name="bathrooms" class="input-custom" min="0"
+                  required>
               </div>
 
               <div class="form-group-custom">
@@ -2186,7 +2409,8 @@
             <div class="form-grid-2">
               <div class="form-group-custom">
                 <label class="label-custom" for="edit_yearBuilt">Year Built *</label>
-                <input type="number" id="edit_yearBuilt" name="yearBuilt" class="input-custom" min="1800" max="2035" required>
+                <input type="number" id="edit_yearBuilt" name="yearBuilt" class="input-custom" min="1800" max="2035"
+                  required>
               </div>
 
               <div class="form-group-custom">
@@ -2248,63 +2472,65 @@
   <!-- MODAL: ADD / EDIT USER (MAIN ADMIN) -->
   <!-- ============================================== -->
   @if($currentUser->isMainAdmin())
-  <div class="modal-overlay" id="user-modal">
-    <div class="modal-dialog sm">
-      <div class="modal-header">
-        <h3 class="modal-title" id="user-modal-title">Add Administrator User</h3>
-        <button class="modal-close-btn" onclick="closeUserModal()">&times;</button>
+    <div class="modal-overlay" id="user-modal">
+      <div class="modal-dialog sm">
+        <div class="modal-header">
+          <h3 class="modal-title" id="user-modal-title">Add Administrator User</h3>
+          <button class="modal-close-btn" onclick="closeUserModal()">&times;</button>
+        </div>
+        <form id="user-form">
+          <input type="hidden" id="user_form_id" name="id">
+          <div class="modal-body">
+            <div class="form-group-custom">
+              <label class="label-custom" for="modal_user_name">Full Name *</label>
+              <input type="text" id="modal_user_name" name="name" class="input-custom" required>
+            </div>
+
+            <div class="form-group-custom">
+              <label class="label-custom" for="modal_user_email">Email Address *</label>
+              <input type="email" id="modal_user_email" name="email" class="input-custom" required>
+            </div>
+
+            <div class="form-group-custom">
+              <label class="label-custom" for="modal_user_role">Portal Role *</label>
+              <select id="modal_user_role" name="role" class="select-custom" required>
+                <option value="staff">Staff / Operations Manager</option>
+                <option value="agent">Listing Agent</option>
+                <option value="main_admin">Main Administrator</option>
+              </select>
+            </div>
+
+            <div class="form-group-custom">
+              <label class="label-custom" for="modal_user_phone">Phone Number</label>
+              <input type="text" id="modal_user_phone" name="phone" class="input-custom">
+            </div>
+
+            <div class="form-group-custom">
+              <label class="label-custom" for="modal_user_status">Account Status</label>
+              <select id="modal_user_status" name="status" class="select-custom">
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
+            </div>
+
+            <div class="form-group-custom">
+              <label class="label-custom" for="modal_user_password" id="modal_user_password_label">Password *</label>
+              <input type="password" id="modal_user_password" name="password" class="input-custom">
+              <span id="modal_user_password_hint"
+                style="font-size: 0.75rem; color: #64748b; margin-top: 4px; display: none;">Leave blank to keep existing
+                password.</span>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-secondary-custom" onclick="closeUserModal()">Cancel</button>
+            <button type="submit" class="btn-add-action" id="btn-user-submit">
+              <span class="spinner-sm" id="spinner-user-submit"></span>
+              <span>Save User Account</span>
+            </button>
+          </div>
+        </form>
       </div>
-      <form id="user-form">
-        <input type="hidden" id="user_form_id" name="id">
-        <div class="modal-body">
-          <div class="form-group-custom">
-            <label class="label-custom" for="modal_user_name">Full Name *</label>
-            <input type="text" id="modal_user_name" name="name" class="input-custom" required>
-          </div>
-
-          <div class="form-group-custom">
-            <label class="label-custom" for="modal_user_email">Email Address *</label>
-            <input type="email" id="modal_user_email" name="email" class="input-custom" required>
-          </div>
-
-          <div class="form-group-custom">
-            <label class="label-custom" for="modal_user_role">Portal Role *</label>
-            <select id="modal_user_role" name="role" class="select-custom" required>
-              <option value="staff">Staff / Operations Manager</option>
-              <option value="agent">Listing Agent</option>
-              <option value="main_admin">Main Administrator</option>
-            </select>
-          </div>
-
-          <div class="form-group-custom">
-            <label class="label-custom" for="modal_user_phone">Phone Number</label>
-            <input type="text" id="modal_user_phone" name="phone" class="input-custom">
-          </div>
-
-          <div class="form-group-custom">
-            <label class="label-custom" for="modal_user_status">Account Status</label>
-            <select id="modal_user_status" name="status" class="select-custom">
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
-            </select>
-          </div>
-
-          <div class="form-group-custom">
-            <label class="label-custom" for="modal_user_password" id="modal_user_password_label">Password *</label>
-            <input type="password" id="modal_user_password" name="password" class="input-custom">
-            <span id="modal_user_password_hint" style="font-size: 0.75rem; color: #64748b; margin-top: 4px; display: none;">Leave blank to keep existing password.</span>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn-secondary-custom" onclick="closeUserModal()">Cancel</button>
-          <button type="submit" class="btn-add-action" id="btn-user-submit">
-            <span class="spinner-sm" id="spinner-user-submit"></span>
-            <span>Save User Account</span>
-          </button>
-        </div>
-      </form>
     </div>
-  </div>
   @endif
 
   <!-- ============================================== -->
@@ -2320,12 +2546,14 @@
         <div class="modal-body">
           <div class="form-group-custom">
             <label class="label-custom" for="profile_name">Full Name *</label>
-            <input type="text" id="profile_name" name="name" class="input-custom" value="{{ $currentUser->name }}" required>
+            <input type="text" id="profile_name" name="name" class="input-custom" value="{{ $currentUser->name }}"
+              required>
           </div>
 
           <div class="form-group-custom">
             <label class="label-custom">Email Address (Read-only)</label>
-            <input type="email" class="input-custom" value="{{ $currentUser->email }}" disabled style="background: #f1f5f9;">
+            <input type="email" class="input-custom" value="{{ $currentUser->email }}" disabled
+              style="background: #f1f5f9;">
           </div>
 
           <div class="form-group-custom">
@@ -2334,7 +2562,8 @@
           </div>
 
           <div style="border-top: 1px solid #f1f5f9; margin-top: 1.2rem; padding-top: 1rem;">
-            <div style="font-weight: 700; font-size: 0.9rem; color: #0f172a; margin-bottom: 0.8rem;">Change Password</div>
+            <div style="font-weight: 700; font-size: 0.9rem; color: #0f172a; margin-bottom: 0.8rem;">Change Password
+            </div>
             <div class="form-group-custom">
               <label class="label-custom" for="profile_current_password">Current Password</label>
               <input type="password" id="profile_current_password" name="current_password" class="input-custom">
@@ -2345,7 +2574,8 @@
             </div>
             <div class="form-group-custom">
               <label class="label-custom" for="profile_new_password_confirmation">Confirm New Password</label>
-              <input type="password" id="profile_new_password_confirmation" name="new_password_confirmation" class="input-custom">
+              <input type="password" id="profile_new_password_confirmation" name="new_password_confirmation"
+                class="input-custom">
             </div>
           </div>
         </div>
@@ -2889,135 +3119,135 @@
     // USER MANAGEMENT JS (MAIN ADMIN ONLY)
     // ==========================================
     @if($currentUser->isMainAdmin())
-    function openAddUserModal() {
-      document.getElementById('user-form').reset();
-      document.getElementById('user_form_id').value = '';
-      document.getElementById('user-modal-title').textContent = 'Add New Administrator / Staff';
-      document.getElementById('modal_user_password').required = true;
-      document.getElementById('modal_user_password_hint').style.display = 'none';
-      document.getElementById('user-modal').classList.add('open');
-    }
-
-    async function openEditUserModal(id) {
-      try {
-        const res = await fetch(`{{ url('/admin/users') }}/${id}`);
-        const data = await res.json();
-        if (!res.ok || !data.success) {
-          showToast('Failed to load user details.');
-          return;
-        }
-
-        const u = data.user;
-        document.getElementById('user_form_id').value = u.id;
-        document.getElementById('modal_user_name').value = u.name;
-        document.getElementById('modal_user_email').value = u.email;
-        document.getElementById('modal_user_role').value = u.role;
-        document.getElementById('modal_user_phone').value = u.phone || '';
-        document.getElementById('modal_user_status').value = u.status;
-        document.getElementById('modal_user_password').value = '';
-        document.getElementById('modal_user_password').required = false;
-        document.getElementById('modal_user_password_hint').style.display = 'block';
-
-        document.getElementById('user-modal-title').textContent = `Edit User: ${u.name}`;
+      function openAddUserModal() {
+        document.getElementById('user-form').reset();
+        document.getElementById('user_form_id').value = '';
+        document.getElementById('user-modal-title').textContent = 'Add New Administrator / Staff';
+        document.getElementById('modal_user_password').required = true;
+        document.getElementById('modal_user_password_hint').style.display = 'none';
         document.getElementById('user-modal').classList.add('open');
-      } catch (err) {
-        showToast('Error loading user.');
       }
-    }
 
-    function closeUserModal() {
-      document.getElementById('user-modal').classList.remove('open');
-    }
+      async function openEditUserModal(id) {
+        try {
+          const res = await fetch(`{{ url('/admin/users') }}/${id}`);
+          const data = await res.json();
+          if (!res.ok || !data.success) {
+            showToast('Failed to load user details.');
+            return;
+          }
 
-    document.getElementById('user-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const id = document.getElementById('user_form_id').value;
-      const btn = document.getElementById('btn-user-submit');
-      const spinner = document.getElementById('spinner-user-submit');
+          const u = data.user;
+          document.getElementById('user_form_id').value = u.id;
+          document.getElementById('modal_user_name').value = u.name;
+          document.getElementById('modal_user_email').value = u.email;
+          document.getElementById('modal_user_role').value = u.role;
+          document.getElementById('modal_user_phone').value = u.phone || '';
+          document.getElementById('modal_user_status').value = u.status;
+          document.getElementById('modal_user_password').value = '';
+          document.getElementById('modal_user_password').required = false;
+          document.getElementById('modal_user_password_hint').style.display = 'block';
 
-      btn.disabled = true;
-      spinner.style.display = 'inline-block';
+          document.getElementById('user-modal-title').textContent = `Edit User: ${u.name}`;
+          document.getElementById('user-modal').classList.add('open');
+        } catch (err) {
+          showToast('Error loading user.');
+        }
+      }
 
-      const formData = new FormData(document.getElementById('user-form'));
-      const url = id ? `{{ url('/admin/users') }}/${id}` : `{{ url('/admin/users') }}`;
+      function closeUserModal() {
+        document.getElementById('user-modal').classList.remove('open');
+      }
 
-      try {
-        const res = await fetch(url, {
-          method: 'POST',
-          headers: {
-            'X-CSRF-TOKEN': CSRF_TOKEN,
-            'Accept': 'application/json'
-          },
-          body: formData
-        });
+      document.getElementById('user-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const id = document.getElementById('user_form_id').value;
+        const btn = document.getElementById('btn-user-submit');
+        const spinner = document.getElementById('spinner-user-submit');
 
-        const data = await res.json();
-        if (res.ok && data.success) {
-          showToast(data.message);
-          closeUserModal();
-          setTimeout(() => window.location.reload(), 700);
-        } else {
-          showToast(data.message || 'Error processing user request.');
+        btn.disabled = true;
+        spinner.style.display = 'inline-block';
+
+        const formData = new FormData(document.getElementById('user-form'));
+        const url = id ? `{{ url('/admin/users') }}/${id}` : `{{ url('/admin/users') }}`;
+
+        try {
+          const res = await fetch(url, {
+            method: 'POST',
+            headers: {
+              'X-CSRF-TOKEN': CSRF_TOKEN,
+              'Accept': 'application/json'
+            },
+            body: formData
+          });
+
+          const data = await res.json();
+          if (res.ok && data.success) {
+            showToast(data.message);
+            closeUserModal();
+            setTimeout(() => window.location.reload(), 700);
+          } else {
+            showToast(data.message || 'Error processing user request.');
+            btn.disabled = false;
+            spinner.style.display = 'none';
+          }
+        } catch (err) {
+          showToast('Server error on user form submit.');
           btn.disabled = false;
           spinner.style.display = 'none';
         }
-      } catch (err) {
-        showToast('Server error on user form submit.');
-        btn.disabled = false;
-        spinner.style.display = 'none';
-      }
-    });
+      });
 
-    async function toggleUserStatus(id) {
-      try {
-        const res = await fetch(`{{ url('/admin/users') }}/${id}/toggle-status`, {
-          method: 'POST',
-          headers: {
-            'X-CSRF-TOKEN': CSRF_TOKEN,
-            'Accept': 'application/json'
+      async function toggleUserStatus(id) {
+        try {
+          const res = await fetch(`{{ url('/admin/users') }}/${id}/toggle-status`, {
+            method: 'POST',
+            headers: {
+              'X-CSRF-TOKEN': CSRF_TOKEN,
+              'Accept': 'application/json'
+            }
+          });
+          const data = await res.json();
+          if (res.ok && data.success) {
+            showToast(data.message);
+            setTimeout(() => window.location.reload(), 600);
+          } else {
+            showToast(data.message || 'Failed to toggle status.');
           }
-        });
-        const data = await res.json();
-        if (res.ok && data.success) {
-          showToast(data.message);
-          setTimeout(() => window.location.reload(), 600);
-        } else {
-          showToast(data.message || 'Failed to toggle status.');
+        } catch (err) {
+          showToast('Error changing user status.');
         }
-      } catch (err) {
-        showToast('Error changing user status.');
       }
-    }
 
-    async function deleteUser(id) {
-      if (!confirm('Are you sure you want to permanently delete this user account?')) return;
+      async function deleteUser(id) {
+        if (!confirm('Are you sure you want to permanently delete this user account?')) return;
 
-      try {
-        const res = await fetch(`{{ url('/admin/users') }}/${id}`, {
-          method: 'DELETE',
-          headers: {
-            'X-CSRF-TOKEN': CSRF_TOKEN,
-            'Accept': 'application/json'
+        try {
+          const res = await fetch(`{{ url('/admin/users') }}/${id}`, {
+            method: 'DELETE',
+            headers: {
+              'X-CSRF-TOKEN': CSRF_TOKEN,
+              'Accept': 'application/json'
+            }
+          });
+          const data = await res.json();
+          if (res.ok && data.success) {
+            showToast(data.message);
+            const row = document.getElementById(`user-row-${id}`);
+            if (row) row.remove();
+          } else {
+            showToast(data.message || 'Failed to delete user.');
           }
-        });
-        const data = await res.json();
-        if (res.ok && data.success) {
-          showToast(data.message);
-          const row = document.getElementById(`user-row-${id}`);
-          if (row) row.remove();
-        } else {
-          showToast(data.message || 'Failed to delete user.');
+        } catch (err) {
+          showToast('Error deleting user.');
         }
-      } catch (err) {
-        showToast('Error deleting user.');
       }
-    }
     @endif
 
-    // Profile Modal
-    function openProfileModal() {
-      document.getElementById('profile-modal').classList.add('open');
-    }
+      // Profile Modal
+      function openProfileModal() {
+        document.getElementById('profile-modal').classList.add('open');
+      }
     function closeProfileModal() {
       document.getElementById('profile-modal').classList.remove('open');
     }
@@ -3053,22 +3283,22 @@
     const sidebarToggle = document.getElementById('sidebar-toggle');
     const sidebar = document.querySelector('.sidebar');
     const mainContent = document.querySelector('.main-content');
-    
-    if(sidebarToggle) {
+
+    if (sidebarToggle) {
       sidebarToggle.addEventListener('click', () => {
         sidebar.classList.toggle('minimized');
         mainContent.classList.toggle('minimized');
-        
+
         // Save state to localStorage
-        if(sidebar.classList.contains('minimized')) {
+        if (sidebar.classList.contains('minimized')) {
           localStorage.setItem('sidebarMinimized', 'true');
         } else {
           localStorage.setItem('sidebarMinimized', 'false');
         }
       });
-      
+
       // Load saved state
-      if(localStorage.getItem('sidebarMinimized') === 'true') {
+      if (localStorage.getItem('sidebarMinimized') === 'true') {
         sidebar.classList.add('minimized');
         mainContent.classList.add('minimized');
       }
@@ -3076,4 +3306,5 @@
 
   </script>
 </body>
+
 </html>

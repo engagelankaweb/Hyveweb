@@ -3,6 +3,7 @@
 // =========================================
 
 document.addEventListener('DOMContentLoaded', () => {
+  initIntroAnimation();
   initCurrencySelector();
   initNavbar();
   initMobileMenu();
@@ -14,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initListPropertyModal();
   initServicesAccordion();
   initServicesEstimator();
+  initHeroSearch();
 });
 
 function initListPropertyModal() {
@@ -343,7 +345,8 @@ function initFloatingCurrencyChanger() {
 
   if (!wrapper) {
     wrapper = document.createElement('li');
-    wrapper.className = 'navbar-currency-wrapper';
+    const isLightMode = !!document.querySelector('.navbar .light-mode');
+    wrapper.className = isLightMode ? 'navbar-currency-wrapper light-mode' : 'navbar-currency-wrapper';
     wrapper.id = 'navbar-currency-wrapper';
     wrapper.innerHTML = `
       <button class="navbar-currency-btn" id="navbar-currency-btn" type="button" aria-label="Change Currency" title="Currency: ${cfg.label} (${cfg.symbol.trim()}) - Click to change">
@@ -466,6 +469,67 @@ window.isFavorite = function(id) {
   return favorites.includes(id);
 };
 
+// =========================================
+// LUXURY INTRO ANIMATION OVERLAY
+// =========================================
+function initIntroAnimation() {
+  const overlay = document.getElementById('intro-overlay');
+  if (!overlay) return;
+
+  // Reduced motion preference
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    overlay.remove();
+    return;
+  }
+
+  let isCompleted = false;
+
+  function completeIntro() {
+    if (isCompleted) return;
+    isCompleted = true;
+    overlay.classList.add('fade-out');
+    setTimeout(() => {
+      overlay.remove();
+    }, 600);
+    window.removeEventListener('keydown', onKey);
+    window.removeEventListener('click', onClickSkip);
+    window.removeEventListener('touchstart', onClickSkip);
+    window.removeEventListener('wheel', onClickSkip);
+  }
+
+  function onClickSkip() {
+    completeIntro();
+  }
+
+  function onKey(e) {
+    if (e.key === 'Escape' || e.key === ' ' || e.key === 'Enter') {
+      completeIntro();
+    }
+  }
+
+  window.addEventListener('click', onClickSkip, { once: true });
+  window.addEventListener('touchstart', onClickSkip, { once: true, passive: true });
+  window.addEventListener('wheel', onClickSkip, { once: true, passive: true });
+  window.addEventListener('keydown', onKey);
+
+  // Step 1: 350ms - Circle image emerges smoothly behind/around the central logo
+  setTimeout(() => {
+    if (isCompleted) return;
+    overlay.classList.add('intro-step-circle');
+  }, 350);
+
+  // Step 2: 950ms - Circle expands organically outward to fill viewport, logo fades
+  setTimeout(() => {
+    if (isCompleted) return;
+    overlay.classList.add('intro-step-expand');
+  }, 950);
+
+  // Step 3: 2200ms - Smoothly fade out overlay to seamlessly reveal the homepage hero
+  setTimeout(() => {
+    completeIntro();
+  }, 2200);
+}
+
 // Hero Slideshow
 function initHeroSlideshow() {
   const slides = document.querySelectorAll('.hero-slide');
@@ -512,16 +576,16 @@ function initStaySlider() {
         </div>
         <div class="stay-info">
           <span class="stay-location text-xs uppercase" style="color: #e67e22; font-weight: 500; letter-spacing: 0.5px; font-size: 0.85rem; margin-bottom: 8px; display: block;">${property.city || property.location || 'LOCATION'}</span>
-          <h3 class="stay-title" style="font-family: 'Roboto', sans-serif; font-weight: 500; font-size: 1.5rem; margin-bottom: 12px; color: #000;">${property.title}</h3>
+          <h3 class="stay-title" style="font-family: var(--font-secondary); font-weight: 500; font-size: 1.5rem; margin-bottom: 12px; color: #000;">${property.title}</h3>
           <div style="color: #666; font-size: 0.8rem; display: flex; align-items: center; gap: 6px; font-weight: 500; text-transform: uppercase; margin-bottom: 16px;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
             ${property.location}
           </div>
-          <p style="color: #666; font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
+          <p style="color: var(--color-text-main); font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
             ${property.description || ''}
           </p>
 
-          <a href="property-details.html?id=${property.id}" class="btn-text" style="font-weight: 600; font-size: 0.9rem; color: #234551; margin-top: auto; align-self: center; text-decoration: none;">View More</a>
+          <a href="property-details.html?id=${property.id}" class="btn-text" style="font-weight: 600; font-size: 0.9rem; color: var(--color-accent); margin-top: auto; align-self: center; text-decoration: none;">View More</a>
         </div>
       </div>
     `;
@@ -816,5 +880,91 @@ function initServicesEstimator() {
       }
     });
   }
+}
+
+// =========================================
+// LUXURY HERO SEARCH FILTER CONTROLLER
+// =========================================
+function initHeroSearch() {
+  const tabs = document.querySelectorAll('.hero-search-tabs .search-tab');
+  const form = document.getElementById('hero-search-form');
+  const purposeInput = document.getElementById('h-purpose');
+  const btnText = document.getElementById('hero-btn-text');
+  const locationInput = document.getElementById('h-location');
+  const typeSelect = document.getElementById('h-type');
+  const bedsSelect = document.getElementById('h-beds');
+  const bedsLabel = document.getElementById('h-beds-label');
+  const quickTags = document.querySelectorAll('.quicktag-btn');
+
+  if (!form) return;
+
+  // Handle Tab Switching (Buy / Rent / Stays)
+  tabs.forEach(tab => {
+    tab.addEventListener('click', (e) => {
+      e.preventDefault();
+      tabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+
+      const mode = tab.dataset.mode;
+      if (mode === 'stays') {
+        form.action = 'short-term-rentals.html';
+        if (purposeInput) purposeInput.value = 'short_term';
+        if (btnText) btnText.textContent = 'Find Stays';
+        if (locationInput) locationInput.placeholder = 'Where do you want to stay?';
+        if (bedsLabel) bedsLabel.textContent = 'Guests / Beds';
+        if (bedsSelect) {
+          bedsSelect.options[0].text = 'Any Guests';
+          bedsSelect.options[1].text = '1 Guest / Bed';
+          bedsSelect.options[2].text = '2 Guests / Beds';
+          bedsSelect.options[3].text = '3 Guests / Beds';
+          bedsSelect.options[4].text = '4+ Guests / Beds';
+        }
+      } else {
+        form.action = 'properties.html';
+        if (purposeInput) purposeInput.value = mode; // 'buy' or 'rent'
+        if (btnText) btnText.textContent = mode === 'rent' ? 'Search Rentals' : 'Search Properties';
+        if (locationInput) locationInput.placeholder = 'City or neighborhood...';
+        if (bedsLabel) bedsLabel.textContent = 'Bedrooms';
+        if (bedsSelect) {
+          bedsSelect.options[0].text = 'Any Beds';
+          bedsSelect.options[1].text = '1 Bed';
+          bedsSelect.options[2].text = '2 Beds';
+          bedsSelect.options[3].text = '3 Beds';
+          bedsSelect.options[4].text = '4+ Beds';
+        }
+      }
+    });
+  });
+
+  // Clicking anywhere on a segment focuses its child input/select
+  document.querySelectorAll('.search-field-segment').forEach(segment => {
+    segment.addEventListener('click', (e) => {
+      if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'SELECT' && e.target.tagName !== 'OPTION') {
+        const input = segment.querySelector('input, select');
+        if (input) input.focus();
+      }
+    });
+  });
+
+  // Popular Quick Discovery Tags
+  quickTags.forEach(tag => {
+    tag.addEventListener('click', (e) => {
+      e.preventDefault();
+      const loc = tag.dataset.searchLocation;
+      const type = tag.dataset.searchType;
+      if (loc && locationInput) {
+        locationInput.value = loc;
+        locationInput.focus();
+      }
+      if (type && typeSelect) {
+        typeSelect.value = type;
+        typeSelect.focus();
+      }
+    });
+  });
 }
 

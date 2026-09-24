@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Portal Login | HYVE Real Estate</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1,2,900,700,500,400,300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
   <link rel="stylesheet" href="{{ asset('css/animations.css') }}">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-    <style>
+  <style>
     :root {
       --color-accent: #14335C;
       --color-accent-hover: #E5C158;
@@ -30,7 +31,7 @@
       padding: 1.5rem;
       position: relative;
       overflow-x: hidden;
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Satoshi', sans-serif;
     }
 
     body::before {
@@ -72,6 +73,7 @@
         opacity: 0;
         transform: translateY(24px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
@@ -84,16 +86,17 @@
     }
 
     .login-logo {
-      font-family: 'Roboto', sans-serif;
-      font-size: 2.4rem;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      color: #0F172A;
-      margin-bottom: 0.4rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 0.75rem;
     }
 
-    .login-logo span {
-      color: var(--color-accent);
+    .login-logo-img {
+      height: 48px;
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
     }
 
     .login-subtitle {
@@ -137,7 +140,7 @@
       border-radius: var(--radius-sm);
       padding: 12px 14px;
       color: #1E293B;
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Satoshi', sans-serif;
       font-size: 0.95rem;
       transition: all 0.3s ease;
       box-sizing: border-box;
@@ -176,7 +179,7 @@
       border: none;
       border-radius: 0;
       padding: 14px;
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Satoshi', sans-serif;
       font-weight: 700;
       font-size: 0.98rem;
       cursor: pointer;
@@ -212,7 +215,9 @@
     }
 
     @keyframes spin {
-      to { transform: rotate(360deg); }
+      to {
+        transform: rotate(360deg);
+      }
     }
 
     /* Quick demo test accounts */
@@ -288,38 +293,47 @@
       .login-container {
         padding: 2rem 1.5rem;
       }
+
       .login-logo {
         font-size: 2rem;
       }
     }
   </style>
 </head>
+
 <body>
 
   <div class="login-container">
     <div class="login-header">
-      <div class="login-logo">HYVE<span>.</span></div>
+      <div class="login-logo">
+        <img src="{{ asset('images/Logo/blue.png') }}" alt="HYVE Real Estate" class="login-logo-img">
+      </div>
       <div class="login-subtitle">Administrator & Staff Portal</div>
     </div>
 
     @if(session('error'))
       <div class="alert-error">
-        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
         <span>{{ session('error') }}</span>
       </div>
     @endif
 
     <form id="login-form" action="{{ url('/admin/login') }}" method="POST">
       @csrf
-      
+
       <div class="form-group">
         <label for="email" class="form-label">Email Address</label>
-        <input type="email" id="email" name="email" class="form-control" placeholder="admin@hyve.com" value="{{ old('email') }}" required autofocus autocomplete="email">
+        <input type="email" id="email" name="email" class="form-control" placeholder="admin@hyve.com"
+          value="{{ old('email') }}" required autofocus autocomplete="email">
       </div>
 
       <div class="form-group">
         <label for="password" class="form-label">Password</label>
-        <input type="password" id="password" name="password" class="form-control" placeholder="••••••••" required autocomplete="current-password">
+        <input type="password" id="password" name="password" class="form-control" placeholder="••••••••" required
+          autocomplete="current-password">
       </div>
 
       <label class="form-check">
@@ -376,4 +390,5 @@
     });
   </script>
 </body>
+
 </html>

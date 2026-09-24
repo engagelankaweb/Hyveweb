@@ -10,12 +10,26 @@
   
   h1 { font-size: 3rem; }
   .hero h1 { font-size: 4rem; }
-  h2 { font-size: 2.25rem; }
+  h2,
+  .section-title,
+  .section-title-luxury,
+  .about-cta-luxury h2,
+  .calc-banner-header h2,
+  .stay-section h2 {
+    font-size: 2.25rem !important;
+  }
   
   .grid-4 { grid-template-columns: repeat(2, 1fr); }
   
-  .hero-search {
-    width: 90%;
+  .hero-search,
+  .hero-search-wrapper {
+    width: 94%;
+    max-width: 960px;
+  }
+
+  .footer-nav-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem 2rem;
   }
 }
 
@@ -36,8 +50,15 @@
 
   h1 { font-size: 2.5rem; }
   .hero h1 { font-size: 3rem; }
-  h2 { font-size: 2rem; }
-  .stay-section h2 { font-size: 2rem !important; margin-bottom: 15px !important; }
+  h2,
+  .section-title,
+  .section-title-luxury,
+  .about-cta-luxury h2,
+  .calc-banner-header h2,
+  .stay-section h2 {
+    font-size: 2rem !important;
+  }
+  .stay-section h2 { margin-bottom: 15px !important; }
   .stay-section p { font-size: 1rem !important; }
   .stay-nav-btn { display: flex !important; width: 36px; height: 36px; }
   .stay-nav-prev { left: 5px !important; }
@@ -53,6 +74,12 @@
   .agent-card-large { position: static; margin-top: var(--spacing-lg); }
 
   /* Navbar */
+  .logo-img {
+    height: 32px;
+  }
+  .footer-logo-img {
+    height: 36px;
+  }
   .mobile-menu-btn {
     display: block;
     z-index: 1001;
@@ -62,30 +89,85 @@
     position: fixed;
     top: 0;
     right: -100%;
-    width: 80%;
-    max-width: 300px;
+    width: 85%;
+    max-width: 320px;
     height: 100vh;
     background-color: var(--color-bg-secondary);
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding: var(--spacing-xl) var(--spacing-md);
-    transition: right 0.3s ease;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    justify-content: flex-start;
+    align-items: stretch;
+    padding: 85px 24px 30px;
+    gap: 0;
+    transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: -5px 0 25px rgba(0,0,0,0.12);
+    overflow-y: auto;
+    z-index: 1000;
   }
   
   .nav-links.active {
     right: 0;
   }
+
+  .nav-links > li {
+    width: 100%;
+  }
   
   .nav-link {
     color: var(--color-text-main) !important; /* Override light mode */
-    font-size: 1.25rem;
-    margin-bottom: var(--spacing-sm);
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 10px 0;
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    margin-bottom: 0;
   }
   
   .navbar:not(.scrolled) .nav-link.light-mode {
     color: var(--color-text-main);
+  }
+
+  .nav-links > li:has(.nav-list-property),
+  .nav-links > li:nth-child(6) {
+    margin-left: 0 !important;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    display: block;
+  }
+
+  .nav-links > li:has(.nav-list-property)::before,
+  .nav-links > li:nth-child(6)::before {
+    display: none !important;
+  }
+
+  .nav-links .btn {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    padding: 10px 18px;
+    margin-top: 6px;
+    font-size: 0.88rem;
+  }
+
+  .nav-links > li:has(.btn) + li:has(.btn),
+  .nav-links > li:has(.btn) + li.navbar-currency-wrapper,
+  .nav-links > li:nth-child(6) + li,
+  .nav-links > li:nth-child(7) + li {
+    margin-left: 0 !important;
+  }
+
+  .navbar-currency-wrapper {
+    width: 100%;
+    margin-left: 0 !important;
+    margin-top: 10px;
+  }
+
+  .navbar-currency-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 9px 16px;
   }
 
   /* Hamburger Animation */
@@ -103,14 +185,58 @@
     background-color: var(--color-text-main);
   }
 
-  /* Hero */
-  .hero-search-fields {
+  /* Hero Search Responsive */
+  .hero-search-wrapper {
+    width: calc(100% - 24px);
+    max-width: 540px;
+  }
+
+  .hero-search-tabs {
+    margin-bottom: 8px;
+    padding: 4px;
+    gap: 4px;
+  }
+
+  .hero-search-tabs .search-tab {
+    padding: 7px 16px;
+    font-size: 0.85rem;
+  }
+
+  .hero-search-card {
+    padding: 14px;
+    border-radius: 20px;
+    gap: 8px;
+  }
+
+  .hero-search-form {
     flex-direction: column;
     align-items: stretch;
+    gap: 8px;
   }
-  
-  .hero-search-fields .btn {
+
+  .search-field-segment {
+    padding: 10px 12px;
+    background: #F8FAFC;
+    border: 1px solid #F1F5F9;
+  }
+
+  .search-divider {
+    display: none;
+  }
+
+  .search-action-segment {
     width: 100%;
+    margin-top: 4px;
+  }
+
+  .hero-search-btn {
+    width: 100%;
+    height: 48px;
+    border-radius: 12px;
+  }
+
+  .hero-search-quicktags {
+    display: none;
   }
 
   /* Grid Layouts */
@@ -143,13 +269,19 @@
     height: 50px;
   }
   
-  .footer-grid {
+  .footer-nav-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 2.5rem;
+    gap: 2.25rem 1.5rem;
   }
 
-  .footer-newsletter-col {
+  .footer-col-contact {
     grid-column: span 2;
+  }
+
+  .footer-meta-row {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 1.5rem;
   }
 }
 
@@ -157,7 +289,14 @@
   h1 { font-size: 2rem; }
   .hero h1 { font-size: 2.25rem; }
   
-  .stay-section h2 { font-size: 1.75rem !important; }
+  h2,
+  .section-title,
+  .section-title-luxury,
+  .about-cta-luxury h2,
+  .calc-banner-header h2,
+  .stay-section h2 {
+    font-size: 1.75rem !important;
+  }
   .stay-section p { font-size: 0.95rem !important; }
   .pt-content { padding: 1.5rem 1rem; }
   .pt-slide h3 { font-size: 1.15rem; }
@@ -171,31 +310,13 @@
     min-height: 600px;
   }
   
-  .footer-grid {
+  .footer-nav-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
 
-  .footer-newsletter-col {
+  .footer-col-contact {
     grid-column: span 1;
-  }
-
-  .footer-review-card {
-    max-width: 100%;
-  }
-
-  .footer-subscribe-form {
-    flex-direction: column;
-  }
-
-  .footer-btn-subscribe {
-    width: 100%;
-  }
-
-  .footer-bottom {
-    flex-direction: column;
-    text-align: center;
-    gap: 0.75rem;
   }
 
   .floating-whatsapp-btn {
@@ -241,12 +362,6 @@
   .about-cta-luxury {
     padding: 3.5rem 1.5rem;
   }
-  .about-cta-luxury h2 {
-    font-size: 2.2rem;
-  }
-  .section-title-luxury {
-    font-size: 2.2rem;
-  }
   .stats-counter-strip .grid-4 {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
@@ -270,9 +385,6 @@
   .about-stat-card:not(:last-child) {
     border-bottom: 1px solid var(--color-border);
     padding-bottom: 1.5rem;
-  }
-  .about-cta-luxury h2 {
-    font-size: 1.85rem;
   }
   .about-stat-val {
     font-size: 2.3rem;
