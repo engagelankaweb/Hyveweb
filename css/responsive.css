@@ -60,10 +60,10 @@
   }
   .stay-section h2 { margin-bottom: 15px !important; }
   .stay-section p { font-size: 1rem !important; }
-  .stay-nav-btn { display: flex !important; width: 36px; height: 36px; }
-  .stay-nav-prev { left: 5px !important; }
-  .stay-nav-next { right: 5px !important; }
-  .stay-card { width: 85vw !important; max-width: 320px !important; }
+  .stay-nav-btn { display: none !important; } /* Hide arrows on mobile and rely on swipe/dots */
+  .stay-slider-container { overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 10px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .stay-slider-container::-webkit-scrollbar { display: none; }
+  .stay-card { width: 85vw !important; max-width: none !important; scroll-snap-align: center; flex: 0 0 85vw; }
   .stay-image { height: 200px !important; }
   .stay-slider-track { gap: 15px !important; }
 
@@ -195,11 +195,16 @@
     margin-bottom: 8px;
     padding: 4px;
     gap: 4px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .hero-search-tabs .search-tab {
     padding: 7px 16px;
     font-size: 0.85rem;
+    flex: 1 1 auto;
+    text-align: center;
+    justify-content: center;
   }
 
   .hero-search-card {
@@ -324,6 +329,13 @@
     right: 16px;
     padding: 8px 14px;
     font-size: 0.88rem;
+  }
+  
+  #back-to-top {
+    bottom: 70px;
+    right: 16px;
+    width: 38px;
+    height: 38px;
   }
   
   .stats-grid {
@@ -457,11 +469,15 @@
   
   .services-quick-nav {
     gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   
   .services-quick-pill {
     padding: 8px 16px;
     font-size: 0.82rem;
+    flex: 1 1 auto;
+    text-align: center;
   }
   
   .property-calc-banner {
