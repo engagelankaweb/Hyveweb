@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="View details of premium real estate Colombo properties, managed by HYVE, experts in property management Sri Lanka.">
+  <meta name="keywords" content="real estate Colombo, property management Sri Lanka, short term rental Colombo, HYVE, Colombo, property management">
+  <title>Property Details | HYVE Real Estate Colombo</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1,2,900,700,500,400,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar scrolled">
+    <div class="container">
+      <a href="index.html" class="logo" aria-label="HYVE Home">
+        <img src="images/Logo/blue.png" alt="HYVE Real Estate" class="logo-img">
+      </a>
+      <button class="mobile-menu-btn" aria-label="Toggle Menu">
+        <span class="hamburger"></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="properties.html" class="nav-link active">Real Estate</a></li>
+        <li><a href="short-term-rentals.html" class="nav-link">Stays</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="#" class="btn btn-alt nav-list-property">List Property</a></li>
+        <li><a href="contact.html" class="btn btn-primary">Contact Us</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div style="padding-top: 100px;" id="property-details-container">
+    <div class="container section">
+      
+      <!-- Header -->
+      <div class="pd-header reveal-hidden">
+        <div>
+          <div style="display: flex; gap: 12px; margin-bottom: 12px; align-items: center;">
+            <span class="property-badge" style="position: static;" id="pd-type">Type</span>
+            <span class="property-type" style="position: static; background: var(--color-bg-secondary); color: var(--color-text-main); border: 1px solid var(--color-border);" id="pd-status">For Sale</span>
+          </div>
+          <h1 id="pd-title">Property Title</h1>
+          <p id="pd-location" style="font-size: 1.1rem; color: var(--color-text-muted);">Location</p>
+        </div>
+        <div style="text-align: right;">
+          <div id="pd-price" style="font-size: 2.5rem; font-weight: 700; color: var(--color-accent); font-family: var(--font-secondary);">Price</div>
+          <div style="margin-top: 12px; display: flex; gap: 8px; justify-content: flex-end;">
+            <button id="pd-fav-btn" class="btn btn-outline" style="padding: 10px 16px; display: flex; align-items: center; gap: 8px;">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+              Save
+            </button>
+            <button class="btn btn-outline" style="padding: 10px 16px; display: flex; align-items: center; gap: 8px;" onclick="window.print()">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+              Print
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gallery -->
+      <div class="reveal-hidden delay-100">
+        <div class="gallery-container">
+          <img src="" alt="Modern two bedroom apartment for rent in Colombo" class="gallery-main" id="main-gallery-image">
+          <div class="gallery-controls">
+            <button class="gallery-btn" id="gallery-prev">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+            <button class="gallery-btn" id="gallery-next">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+          </div>
+        </div>
+        <div class="thumbnails" id="gallery-thumbnails">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Layout Grid -->
+      <div class="grid pd-layout gap-lg">
+        
+        <!-- Details -->
+        <div class="reveal-hidden delay-200">
+          <div class="pd-stats-grid">
+            <div class="pd-stat-item">
+              <span id="pd-beds">0</span>
+              <small>Bedrooms</small>
+            </div>
+            <div class="pd-stat-item">
+              <span id="pd-baths">0</span>
+              <small>Bathrooms</small>
+            </div>
+            <div class="pd-stat-item">
+              <span id="pd-area">0</span>
+              <small>Square Feet</small>
+            </div>
+            <div class="pd-stat-item">
+              <span id="pd-year">0</span>
+              <small>Year Built</small>
+            </div>
+          </div>
+
+          <h3 style="margin-top: var(--spacing-md); border-bottom: 1px solid var(--color-border); padding-bottom: 8px;">Description</h3>
+          <p id="pd-description" style="margin-top: 16px; font-size: 1.05rem; line-height: 1.8;"></p>
+
+          <h3 style="margin-top: var(--spacing-md); border-bottom: 1px solid var(--color-border); padding-bottom: 8px;">Features & Amenities</h3>
+          <ul id="pd-features" style="margin-top: 16px; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; color: var(--color-text-muted);">
+            <!-- Populated by JS -->
+          </ul>
+        </div>
+
+        <!-- Sidebar (Contact Form) -->
+        <div class="reveal-hidden delay-300">
+          <div class="agent-card-large">
+            <div class="agent-profile">
+              <img src="" alt="HYVE Real Estate Colombo Agent for Property Management" id="agent-image">
+              <div>
+                <h4 style="margin: 0;" id="agent-name">Agent Name</h4>
+                <p style="margin: 0; font-size: 0.9rem;" id="agent-phone">Phone</p>
+                <a href="#" style="color: var(--color-accent); font-size: 0.9rem;">View Profile</a>
+              </div>
+            </div>
+            
+            <h4 style="margin-bottom: 16px;">Contact Agent</h4>
+            <form onsubmit="event.preventDefault(); showToast('Message sent! An agent will contact you shortly.'); this.reset();">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Your Name" required>
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control" placeholder="Your Email" required>
+              </div>
+              <div class="form-group">
+                <input type="tel" class="form-control" placeholder="Your Phone">
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" rows="4" placeholder="I am interested in this property..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-nav-grid">
+        <!-- 1. Company -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Company</h4>
+          <ul class="footer-col-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="agents.html">Careers & Agents</a></li>
+            <li><a href="contact.html#faqs">FAQs</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- 2. Products / Real Estate -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Properties</h4>
+          <ul class="footer-col-links">
+            <li><a href="properties.html">All Properties</a></li>
+            <li><a href="properties.html?type=Villa">Luxury Villas</a></li>
+            <li><a href="properties.html?type=Apartment">Apartments</a></li>
+            <li><a href="properties.html?type=Commercial">Commercial</a></li>
+            <li><a href="short-term-rentals.html">Short-Term Stays</a></li>
+          </ul>
+        </div>
+
+        <!-- 3. Resources -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Resources</h4>
+          <ul class="footer-col-links">
+            <li><a href="services.html">Services & Advisory</a></li>
+            <li><a href="services.html#guides">Neighborhood Guides</a></li>
+            <li><a href="services.html#valuation">Property Valuation</a></li>
+            <li><a href="services.html#insights">Market Insights</a></li>
+          </ul>
+        </div>
+
+        <!-- 4. Legal -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Legal</h4>
+          <ul class="footer-col-links">
+            <li><a href="contact.html#privacy">Privacy Policy</a></li>
+            <li><a href="about.html#trust">Security & Trust</a></li>
+            <li><a href="contact.html#terms">Terms of Use</a></li>
+            <li><a href="contact.html#acceptance">Acceptance Policy</a></li>
+            <li><a href="contact.html#cookies">Cookie Preferences</a></li>
+          </ul>
+        </div>
+
+        <!-- 5. Contact -->
+        <div class="footer-col footer-col-contact">
+          <h4 class="footer-col-title">Contact</h4>
+          <ul class="footer-col-links">
+            <li><a href="mailto:info@hyve.lk">info@hyve.lk</a></li>
+            <li><a href="tel:+94767628254">+94 76 762 8254</a></li>
+            <li><a href="tel:+94112345678">+94 11 234 5678</a></li>
+            <li><span style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Colombo 03, Sri Lanka</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="footer-divider"></div>
+
+      <!-- Middle Meta Row -->
+      <div class="footer-meta-row">
+        <div class="footer-meta-left">
+          <p class="footer-address">HYVE HQ, 121B Galle Road, Colombo 03, Sri Lanka.</p>
+          <p class="footer-copyright">&copy; 2026 HYVE (Pvt.) Ltd. All rights reserved. &bull; Developed by <a href="https://engagelanka.com" target="_blank" rel="noopener">EngageLanka</a></p>
+        </div>
+
+        <div class="footer-social-group">
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-social-circle" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.25c-.9 0-1.63.73-1.63 1.63s.73 1.63 1.63 1.63 1.63-.73 1.63-1.63-.73-1.63-1.63-1.63Z"/></svg>
+          </a>
+          <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="footer-social-circle" aria-label="X (Twitter)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://instagram.com/hyve.lk" target="_blank" rel="noopener noreferrer" class="footer-social-circle" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="footer-social-circle" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Giant Cropped Watermark -->
+    <div class="footer-watermark-wrap" aria-hidden="true">
+      <div class="footer-watermark">HYVE</div>
+    </div>
+  </footer>
+
+  
+
+  <!-- Utilities -->
+  <button id="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="js/properties.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/gallery.js"></script>
+</body>
+</html>
+
