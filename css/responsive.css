@@ -1,4 +1,4 @@
-/* =========================================
+﻿/* =========================================
    RESPONSIVE STYLES
    ========================================= */
 
@@ -198,11 +198,16 @@
     gap: 0.75rem;
   }
 
-  .floating-whatsapp-btn {
+  .floating-whatsapp {
+    width: 52px;
+    height: 52px;
     bottom: 16px;
     right: 16px;
-    padding: 8px 14px;
-    font-size: 0.88rem;
+  }
+
+  .floating-whatsapp::before,
+  .floating-whatsapp::after {
+    display: none;
   }
   
   .stats-grid {
