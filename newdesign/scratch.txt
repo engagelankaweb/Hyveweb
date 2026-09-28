@@ -1,0 +1,605 @@
+const propertiesData = [
+    {
+        "id": 22,
+        "title": "Secluded Mountain Cabin",
+        "location": "Aspen, CO",
+        "city": "Aspen",
+        "type": "House",
+        "purpose": "rent",
+        "rental_type": "short_term",
+        "price": 8000,
+        "nightly_rate": 650,
+        "bedrooms": 4,
+        "bathrooms": 3,
+        "max_guests": 8,
+        "min_stay": 4,
+        "check_in_time": "4:00 PM",
+        "check_out_time": "10:00 AM",
+        "area": 3200,
+        "yearBuilt": 2015,
+        "description": "A cozy and luxurious mountain cabin with ski-in/ski-out access and a private hot tub.",
+        "external_url": null,
+        "external_booking_url": "https://vrbo.com/rooms/333333",
+        "features": [
+            "Ski-in/Ski-out",
+            "Hot Tub",
+            "Fireplace"
+        ],
+        "images": [
+            "assets/images/hero_property_1786339547369.png"
+        ],
+        "agent": {
+            "name": "Emma Davis",
+            "image": "assets/images/agent_office_1786339595128.png",
+            "phone": "+1 (555) 333-2222"
+        },
+        "featured": false,
+        "is_published": true
+    },
+    {
+        "id": 21,
+        "title": "Downtown Skyline Penthouse",
+        "location": "Tribeca, NY",
+        "city": "New York",
+        "type": "Apartment",
+        "purpose": "rent",
+        "rental_type": "short_term",
+        "price": 12000,
+        "nightly_rate": 950,
+        "bedrooms": 3,
+        "bathrooms": 3,
+        "max_guests": 6,
+        "min_stay": 2,
+        "check_in_time": "3:00 PM",
+        "check_out_time": "12:00 PM",
+        "area": 2800,
+        "yearBuilt": 2018,
+        "description": "Breathtaking city views from this luxury penthouse. Perfect for executive stays or weekend getaways.",
+        "external_url": null,
+        "external_booking_url": "https://airbnb.com/rooms/222222",
+        "features": [
+            "Skyline Views",
+            "Private Elevator",
+            "Rooftop Deck"
+        ],
+        "images": [
+            "assets/images/penthouse_interior_1786339582396.png"
+        ],
+        "agent": {
+            "name": "Michael Chen",
+            "image": "assets/images/agent_office_1786339595128.png",
+            "phone": "+1 (555) 987-6543"
+        },
+        "featured": true,
+        "is_published": true
+    },
+    {
+        "id": 20,
+        "title": "Oceanfront Luxury Villa",
+        "location": "South Beach, FL",
+        "city": "Miami",
+        "type": "Villa",
+        "purpose": "rent",
+        "rental_type": "short_term",
+        "price": 15000,
+        "nightly_rate": 1200,
+        "bedrooms": 5,
+        "bathrooms": 5.5,
+        "max_guests": 10,
+        "min_stay": 3,
+        "check_in_time": "4:00 PM",
+        "check_out_time": "11:00 AM",
+        "area": 4500,
+        "yearBuilt": 2022,
+        "description": "Experience the ultimate vacation in this stunning oceanfront villa featuring a private infinity pool and direct beach access.",
+        "external_url": null,
+        "external_booking_url": "https://airbnb.com/rooms/111111",
+        "features": [
+            "Infinity Pool",
+            "Beach Access",
+            "Smart Home"
+        ],
+        "images": [
+            "assets/images/luxury_villa_1786339560928.png",
+            "assets/images/hero_property_1786339547369.png"
+        ],
+        "agent": {
+            "name": "Sarah Jenkins",
+            "image": "assets/images/agent_office_1786339595128.png",
+            "phone": "+1 (555) 123-4567"
+        },
+        "featured": true,
+        "is_published": true
+    },
+    {
+        "id": 16,
+        "title": "jenkosf",
+        "location": "ergewgreg",
+        "city": "eire",
+        "type": "Villa",
+        "purpose": "buy",
+        "rental_type": null,
+        "price": 3214,
+        "nightly_rate": null,
+        "bedrooms": 32,
+        "bathrooms": 23,
+        "max_guests": null,
+        "min_stay": null,
+        "check_in_time": null,
+        "check_out_time": null,
+        "area": 2323,
+        "yearBuilt": 2022,
+        "description": "vervesvses",
+        "external_url": null,
+        "external_booking_url": null,
+        "features": [
+            "gerwggwr"
+        ],
+        "images": [
+            "uploads/1786688954_6a7eb5bad93b6.jpg"
+        ],
+        "agent": {
+            "name": "Sarah Jenkins",
+            "image": "assets/images/agent_office_1786339595128.png",
+            "phone": "+1 (555) 123-4567"
+        },
+        "featured": true,
+        "is_published": true
+    },
+    {
+        "id": 15,
+        "title": "Sprawling Ranch",
+        "location": "Scottsdale, AZ",
+        "city": "Phoenix",
+        "type": "House",
+        "purpose": "buy",
+        "rental_type": null,
+        "price": 3500000,
+        "nightly_rate": null,
+        "bedrooms": 5,
+        "bathrooms": 4,
+        "max_guests": null,
+        "min_stay": null,
+        "check_in_time": null,
+        "check_out_time": null,
+        "area": 6000,
+        "yearBuilt": 2005,
+        "description": "Single-story ranch home on 2 acres of land. Features a massive outdoor entertaining area with pool and desert views.",
+        "external_url": null,
+        "external_booking_url": null,
+        "features": [
+            "2 Acres",
+            "Pool",
+            "Outdoor Kitchen",
+            "Guest Casita"
+        ],
+        "images": [
+            "assets/images/luxury_villa_1786339560928.png"
+        ],
+        "agent": {
+            "name": "Emma Davis",
+            "image": "assets/images/agent_office_1786339595128.png",
+            "phone": "+1 (555) 333-2222"
+        },
+        "featured": false,
+        "is_published": true
+    },
+    {
+        "id": 14,
+        "title": "Seaside Apartment",
+        "location": "Santa Monica, CA",
+        "city": "Los Angeles",
+        "type": "Apartment",
+        "purpose": "rent",
+        "rental_type": null,
+        "price": 7200,
+        "nightly_rate": null,
+        "bedrooms": 2,
+        "bathrooms": 2,
+        "max_guests": null,
+        "min_stay": null,
+        "check_in_time": null,
+        "check_out_time": null,
+        "area": 1600,
+        "yearBuilt": 2014,
+        "description": "Steps from the beach, this bright apartment offers ocean breezes and sunset views from a private balcony.",
+        "external_url": null,
+        "external_booking_url": null,
+        "features": [
+            "Ocean View",
+            "Balcony",
+            "Gated Parking"
+        ],
+        "images": [
+            "assets/images/penthouse_interior_1786339582396.png"
+        ],
+        "agent": {
+            "name": "Michael Chen",
+            "image": "assets/images/agent_office_1786339595128.png",
+            "phone": "+1 (555) 987-6543"
+        },
+        "featured": false,
+        "is_published": true
+    },
+    {
+        "id": 13,
+        "title": "Historic Townhouse",
+        "location": "Beacon Hill, MA",
+        "city": "Boston",
+        "type": "House",
+        "purpose": "buy",
+        "rental_type": null,
+        "price": 4100000,
+        "nightly_rate": null,
+        "bedrooms": 4,
+        "bathrooms": 3.5,
+        "max_guests": null,
+        "min_stay": null,
+        "check_in_time": null,
+        "check_out_time": null,
+        "area": 3100,
+        "yearBuilt": 1890,
+        "description": "Beautifully preserved historic townhouse with modern updates. Features original crown molding, fireplaces, and a private courtyard.",
+        "external_url": null,
+        "external_booking_url": null,
+        "features": [
+            "Historic Details",
+            "Private Courtyard",
+            "Fireplaces"
+        ],
+        "images": [
+            "assets/images/luxury_villa_1786339560928.png"
+        ],
+        "agent": {
+            "name": "Sarah Jenkins",
+            "image": "assets/images/agent_office_1786339595128.png",
+            "phone": "+1 (555) 123-4567"
+        },
+        "featured": false,
+        "is_published": true
+    },
+    {
+        "id": 11,
+        "title": "Mountain View Estate",
+        "location": "Aspen, CO",
+        "city": "Aspen",
+        "type": "Villa",
+        "purpose": "buy",
+        "rental_type": null,
+        "price": 18500000,
+        "nightly_rate": null,
+        "bedrooms": 6,
+        "bathrooms": 8,
+        "max_guests": null,
+        "min_stay": null,
+        "check_in_time": null,
+        "check_out_time": null,
+        "area": 11000,
+        "yearBuilt": 2021,
+        "description": "Ski-in/ski-out luxury estate with breathtaking mountain views. Includes an indoor pool, spa, and massive stone fireplaces.",
+        "external_url": null,
+        "external_booking_url": null,
+        "features": [
+            "Ski-in/Ski-out",
+            "Indoor Pool",
+            "Home Spa",
+            "Wine Room"
+        ],
+        "images": [
+            "assets/images/hero_property_1786339547369.png"
+        ],
+        "agent": {
+            "name": "Michael Chen",
+            "image": "assets/images/agent_office_1786339595128.png",
+            "phone": "+1 (555) 987-6543"
+        },
+        "featured": true,
+        "is_published": true
+    },
+    {
+        "id": 8,
+        "title": "Executive Office Space",
+        "location": "Financial District, SF",
+        "city": "San Francisco",
+        "type": "Commercial",
+        "purpose": "rent",
+        "rental_type": null,
+        "price": 15000,
+        "nightly_rate": null,
+        "bedrooms": 0,
+        "bathrooms": 4,
+        "max_guests": null,
+        "min_stay": null,
+        "check_in_time": null,
+        "check_out_time": null,
+        "area": 5000,
+        "yearBuilt": 2010,
+        "description": "Premium office space in a Class A building. Features private offices, a large conference room, and break area with views of the bay.",
+        "external_url": null,
+        "external_booking_url": null,
+        "features": [
+            "Class A Building",
+            "Bay Views",
+            "Conference Room",
+            "24/7 Access"
+        ],
+        "images": [
+            "assets/images/agent_office_1786339595128.png"
+        ],
+        "agent": {
+            "name": "Sarah Jenkins",
+            "image": "assets/images/agent_office_1786339595128.png",
+            "phone": "+1 (555) 123-4567"
+        },
+        "featured": false,
+        "is_published": true
+    },
+    {
+        "id": 7,
+        "title": "Sleek Urban Loft",
+        "location": "SoHo, NY",
+        "city": "New York",
+        "type": "Apartment",
+        "purpose": "rent",
+        "rental_type": null,
+        "price": 8500,
+        "nightly_rate": null,
+        "bedrooms": 2,
+        "bathrooms": 2,
+        "max_guests": null,
+        "min_stay": null,
+        "check_in_time": null,
+        "check_out_time": null,
+        "area": 1800,
+        "yearBuilt": 1920,
+        "description": "Authentic SoHo loft with exposed brick, massive windows, and high ceilings. Completely renovated with high-end appliances.",
+        "external_url": null,
+        "external_booking_url": null,
+        "features": [
+            "Exposed Brick",
+            "High Ceilings",
+            "In-unit Washer/Dryer"
+        ],
+        "images": [
+            "assets/images/penthouse_interior_1786339582396.png"
+        ],
+        "agent": {
+            "name": "Michael Chen",
+            "image": "assets/images/agent_office_1786339595128.png",
+            "phone": "+1 (555) 987-6543"
+        },
+        "featured": false,
+        "is_published": true
+    },
+    {
+        "id": 6,
+        "title": "Private Garden Villa",
+        "location": "Coral Gables, FL",
+        "city": "Miami",
+        "type": "Villa",
+        "purpose": "buy",
+        "rental_type": null,
+        "price": 5200000,
+        "nightly_rate": null,
+        "bedrooms": 5,
+        "bathrooms": 5,
+        "max_guests": null,
+        "min_stay": null,
+        "check_in_time": null,
+        "check_out_time": null,
+        "area": 5100,
+        "yearBuilt": 2008,
+        "description": "Mediterranean-style villa surrounded by lush tropical landscaping. Features a resort-style pool and elegant interior finishes.",
+        "external_url": null,
+        "external_booking_url": null,
+        "features": [
+            "Tropical Garden",
+            "Resort Pool",
+            "Outdoor Dining"
+        ],
+        "images": [
+            "assets/images/luxury_villa_1786339560928.png"
+        ],
+        "agent": {
+            "name": "Emma Davis",
+            "image": "assets/images/agent_office_1786339595128.png",
+            "phone": "+1 (555) 333-2222"
+        },
+        "featured": true,
+        "is_published": true
+    },
+    {
+        "id": 5,
+        "title": "Luxury City Residence",
+        "location": "River North, Chicago",
+        "city": "Chicago",
+        "type": "Condo",
+        "purpose": "buy",
+        "rental_type": null,
+        "price": 1850000,
+        "nightly_rate": null,
+        "bedrooms": 3,
+        "bathrooms": 2.5,
+        "max_guests": null,
+        "min_stay": null,
+        "check_in_time": null,
+        "check_out_time": null,
+        "area": 2400,
+        "yearBuilt": 2015,
+        "description": "Elegant condo offering stunning river and city views. Full-service building with top-tier amenities.",
+        "external_url": null,
+        "external_booking_url": null,
+        "features": [
+            "Concierge",
+            "Pool",
+            "Gym",
+            "Balcony"
+        ],
+        "images": [
+            "assets/images/penthouse_interior_1786339582396.png"
+        ],
+        "agent": {
+            "name": "Michael Chen",
+            "image": "assets/images/agent_office_1786339595128.png",
+            "phone": "+1 (555) 987-6543"
+        },
+        "featured": true,
+        "is_published": true
+    },
+    {
+        "id": 4,
+        "title": "Contemporary Family Home",
+        "location": "Austin, TX",
+        "city": "Austin",
+        "type": "House",
+        "purpose": "buy",
+        "rental_type": null,
+        "price": 2100000,
+        "nightly_rate": null,
+        "bedrooms": 4,
+        "bathrooms": 3,
+        "max_guests": null,
+        "min_stay": null,
+        "check_in_time": null,
+        "check_out_time": null,
+        "area": 3200,
+        "yearBuilt": 2019,
+        "description": "Beautiful modern family home in a highly sought-after neighborhood. Open floor plan, large backyard, and excellent school district.",
+        "external_url": null,
+        "external_booking_url": null,
+        "features": [
+            "Large Backyard",
+            "Open Plan",
+            "Gourmet Kitchen"
+        ],
+        "images": [
+            "assets/images/hero_property_1786339547369.png"
+        ],
+        "agent": {
+            "name": "Emma Davis",
+            "image": "assets/images/agent_office_1786339595128.png",
+            "phone": "+1 (555) 333-2222"
+        },
+        "featured": false,
+        "is_published": true
+    },
+    {
+        "id": 3,
+        "title": "Ocean View Estate",
+        "location": "Malibu, CA",
+        "city": "Los Angeles",
+        "type": "House",
+        "purpose": "buy",
+        "rental_type": null,
+        "price": 15500000,
+        "nightly_rate": null,
+        "bedrooms": 6,
+        "bathrooms": 7,
+        "max_guests": null,
+        "min_stay": null,
+        "check_in_time": null,
+        "check_out_time": null,
+        "area": 9000,
+        "yearBuilt": 2020,
+        "description": "Private beachfront estate with direct access to the ocean. Incredible outdoor living spaces, guest house, and custom imported materials throughout.",
+        "external_url": null,
+        "external_booking_url": null,
+        "features": [
+            "Beach Access",
+            "Guest House",
+            "Outdoor Kitchen",
+            "Spa"
+        ],
+        "images": [
+            "assets/images/luxury_villa_1786339560928.png",
+            "assets/images/hero_property_1786339547369.png"
+        ],
+        "agent": {
+            "name": "Sarah Jenkins",
+            "image": "assets/images/agent_office_1786339595128.png",
+            "phone": "+1 (555) 123-4567"
+        },
+        "featured": true,
+        "is_published": true
+    },
+    {
+        "id": 2,
+        "title": "Downtown Penthouse",
+        "location": "Manhattan, NY",
+        "city": "New York",
+        "type": "Apartment",
+        "purpose": "buy",
+        "rental_type": null,
+        "price": 12400000,
+        "nightly_rate": null,
+        "bedrooms": 4,
+        "bathrooms": 4.5,
+        "max_guests": null,
+        "min_stay": null,
+        "check_in_time": null,
+        "check_out_time": null,
+        "area": 4200,
+        "yearBuilt": 2018,
+        "description": "Spectacular penthouse in the heart of Manhattan featuring floor-to-ceiling windows, a private rooftop terrace, and exquisite modern finishes.",
+        "external_url": null,
+        "external_booking_url": null,
+        "features": [
+            "Rooftop Terrace",
+            "Doorman",
+            "Fitness Center",
+            "City Views"
+        ],
+        "images": [
+            "assets/images/penthouse_interior_1786339582396.png",
+            "assets/images/hero_property_1786339547369.png"
+        ],
+        "agent": {
+            "name": "Michael Chen",
+            "image": "assets/images/agent_office_1786339595128.png",
+            "phone": "+1 (555) 987-6543"
+        },
+        "featured": true,
+        "is_published": true
+    },
+    {
+        "id": 1,
+        "title": "Modern Luxury Villa",
+        "location": "Beverly Hills, CA",
+        "city": "Los Angeles",
+        "type": "Villa",
+        "purpose": "buy",
+        "rental_type": null,
+        "price": 8500000,
+        "nightly_rate": null,
+        "bedrooms": 5,
+        "bathrooms": 6,
+        "max_guests": null,
+        "min_stay": null,
+        "check_in_time": null,
+        "check_out_time": null,
+        "area": 7500,
+        "yearBuilt": 2022,
+        "description": "A stunning, ultra-luxurious modern architectural home with large glass windows, an infinity pool, and panoramic views of the city. Featuring a state-of-the-art kitchen, smart home technology, and a private cinema.",
+        "external_url": null,
+        "external_booking_url": null,
+        "features": [
+            "Infinity Pool",
+            "Smart Home",
+            "Home Theater",
+            "Wine Cellar",
+            "3-Car Garage"
+        ],
+        "images": [
+            "assets/images/hero_property_1786339547369.png",
+            "assets/images/luxury_villa_1786339560928.png",
+            "assets/images/penthouse_interior_1786339582396.png"
+        ],
+        "agent": {
+            "name": "Sarah Jenkins",
+            "image": "assets/images/agent_office_1786339595128.png",
+            "phone": "+1 (555) 123-4567"
+        },
+        "featured": true,
+        "is_published": true
+    }
+];

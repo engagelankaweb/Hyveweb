@@ -1,0 +1,9 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Prevent loop if already rewritten to backend/public/
+    RewriteCond %{REQUEST_URI} !^/Hyveweb/backend/public/
+    
+    # Redirect all traffic to backend/public/
+    RewriteRule ^(.*)$ /Hyveweb/backend/public/$1 [R=301,L]
+</IfModule>

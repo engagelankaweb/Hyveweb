@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HYVE is a Colombo based real estate and property management company. We help owners buy, sell, rent and manage properties, and provide hotel-standard short term stays.">
+  <meta name="keywords" content="real estate Colombo, property management Colombo, buy sell rent Colombo, short term rentals Colombo, HYVE, Sri Lanka real estate">
+  <title>HYVE | Real Estate and Property Management You Can Trust in Colombo</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1,2,900,700,500,400,300&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="has-floating-currency">
+  <noscript>
+    <style>#intro-overlay { display: none !important; }</style>
+  </noscript>
+
+  <!-- Luxury Intro Animation Overlay -->
+  <div id="intro-overlay" class="intro-overlay" aria-hidden="true">
+    <div class="intro-curtain"></div>
+    <div class="intro-circle-media" style="background-image: url('images/Hero/breno-assis-r3WAWU5Fi5Q-unsplash.jpg');"></div>
+    <div class="intro-logo-wrap">
+      <img src="images/Logo/blue.png" alt="HYVE" class="intro-logo">
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo light-mode" aria-label="HYVE Home">
+        <img src="images/Logo/White.png" alt="HYVE Real Estate" class="logo-img logo-white">
+        <img src="images/Logo/blue.png" alt="HYVE Real Estate" class="logo-img logo-blue">
+      </a>
+      
+      <button class="mobile-menu-btn" aria-label="Toggle Menu">
+        <span class="hamburger light-mode"></span>
+      </button>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link light-mode active">Home</a></li>
+        <li><a href="properties.html" class="nav-link light-mode">Real Estate</a></li>
+        <li><a href="short-term-rentals.html" class="nav-link light-mode">Stays</a></li>
+        <li><a href="services.html" class="nav-link light-mode">Services</a></li>
+        <li><a href="about.html" class="nav-link light-mode">About</a></li>
+        <li><a href="#" class="btn btn-alt nav-list-property">List Property</a></li>
+        <li><a href="contact.html" class="btn btn-primary">Contact Us</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-slideshow" id="hero-slideshow">
+      <div class="hero-slide active" style="background-image: url('images/Hero/breno-assis-r3WAWU5Fi5Q-unsplash.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('images/Hero/etienne-beauregard-riverin-B0aCvAVSX8E-unsplash.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('images/Hero/sean-pollock-PhYq704ffdA-unsplash.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('images/Hero/tim-schmidbauer-_tEBCVrEnyo-unsplash.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('images/Hero/webaliser-_TPTXZd9mOo-unsplash.jpg');"></div>
+    </div>
+    <div class="container" style="width: 100%;">
+      <div class="hero-content reveal-hidden" data-animation="reveal-slide-up">
+        <h1>Find a Place You'll Love to Call Home</h1>
+        <p>From the first search to the final signature, and every stay in between, HYVE is with you the whole way.</p>
+        
+
+      </div>
+    </div>
+    
+    <!-- Luxury Hero Search Bar -->
+    <div class="hero-search-wrapper reveal-hidden delay-100" data-animation="reveal-slide-up">
+      <!-- Search Mode Tabs (Segmented Control) -->
+      <div class="hero-search-tabs" role="tablist" aria-label="Search Mode">
+        <button class="search-tab active" type="button" role="tab" aria-selected="true" data-mode="buy">
+          <span>Buy</span>
+        </button>
+        <button class="search-tab" type="button" role="tab" aria-selected="false" data-mode="rent">
+          <span>Rent</span>
+        </button>
+        <button class="search-tab" type="button" role="tab" aria-selected="false" data-mode="stays">
+          <span>Stays</span>
+          <span class="tab-badge">Short Term</span>
+        </button>
+      </div>
+
+      <!-- Main Search Card -->
+      <div class="hero-search-card">
+        <form id="hero-search-form" action="properties.html" method="GET" class="hero-search-form">
+          <input type="hidden" name="purpose" id="h-purpose" value="buy">
+
+          <!-- Field 1: Location -->
+          <div class="search-field-segment" id="field-location-segment">
+            <div class="search-field-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <div class="search-field-content">
+              <label class="search-field-label" for="h-location">Location</label>
+              <input type="text" name="location" id="h-location" class="search-field-input" placeholder="City or neighborhood..." autocomplete="off" list="colombo-locations">
+              <datalist id="colombo-locations">
+                <option value="Colombo 03">
+                <option value="Colombo 07">
+                <option value="Kollupitiya">
+                <option value="Havelock City">
+                <option value="Galle Face">
+                <option value="Mount Lavinia">
+                <option value="Galle">
+              </datalist>
+            </div>
+          </div>
+
+          <div class="search-divider" aria-hidden="true"></div>
+
+          <!-- Field 2: Property Type -->
+          <div class="search-field-segment" id="field-type-segment">
+            <div class="search-field-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </div>
+            <div class="search-field-content">
+              <label class="search-field-label" for="h-type">Property Type</label>
+              <select name="type" id="h-type" class="search-field-select">
+                <option value="">All Types</option>
+                <option value="Apartment">Apartment</option>
+                <option value="Villa">Luxury Villa</option>
+                <option value="House">House</option>
+                <option value="Condo">Condo</option>
+                <option value="Commercial">Commercial</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="search-divider" aria-hidden="true"></div>
+
+          <!-- Field 3: Bedrooms / Space -->
+          <div class="search-field-segment" id="field-beds-segment">
+            <div class="search-field-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 4v16"></path>
+                <path d="M2 8h18a2 2 0 0 1 2 2v10"></path>
+                <path d="M2 17h20"></path>
+                <path d="M6 8v9"></path>
+              </svg>
+            </div>
+            <div class="search-field-content">
+              <label class="search-field-label" for="h-beds" id="h-beds-label">Bedrooms</label>
+              <select name="beds" id="h-beds" class="search-field-select">
+                <option value="">Any Beds</option>
+                <option value="1">1 Bed</option>
+                <option value="2">2 Beds</option>
+                <option value="3">3 Beds</option>
+                <option value="4+">4+ Beds</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="search-action-segment">
+            <button type="submit" class="hero-search-btn" id="hero-search-submit">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <span id="hero-btn-text">Search</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Quick Suggestions / Popular Tags -->
+        <div class="hero-search-quicktags">
+          <span class="quicktags-label">Popular:</span>
+          <div class="quicktags-list">
+            <button type="button" class="quicktag-btn" data-search-location="Colombo 03">Colombo 03</button>
+            <button type="button" class="quicktag-btn" data-search-location="Colombo 07">Colombo 07</button>
+            <button type="button" class="quicktag-btn" data-search-type="Villa">Luxury Villas</button>
+            <button type="button" class="quicktag-btn" data-search-type="Apartment">Apartments</button>
+            <button type="button" class="quicktag-btn" data-search-location="Galle">Beachfront</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Welcome Section -->
+  <section class="section text-center" style="background-color: var(--color-bg-secondary); padding-top: 180px;">
+    <div class="container">
+      <h2 class="reveal-hidden" style="margin-bottom: var(--spacing-sm);">What We Do</h2>
+      <p class="reveal-hidden delay-100" style="max-width: 800px; margin: 0 auto; line-height: 1.8;">
+        HYVE is a Colombo based real estate and property management company built on trust, local knowledge and genuine care. We help owners buy, sell, rent and manage their properties, and we help guests find comfortable places to stay, all under one roof.
+      </p>
+    </div>
+  </section>
+
+  <!-- Featured Properties -->
+  <section class="section container">
+    <div class="container" style="text-align: center; max-width: 900px; margin: 0 auto; margin-bottom: 40px;">
+      <h2 class="reveal-hidden" style="margin-bottom: 24px;">
+        Featured Properties
+      </h2>
+      <p class="reveal-hidden delay-100" style="color: var(--color-text-main); font-size: 1.1rem; line-height: 1.6;">
+        Hand-picked selection of our most exclusive listings. Discover exceptional homes tailored to your lifestyle.
+      </p>
+    </div>
+    
+    <div class="grid grid-3 gap-md" id="featured-grid">
+      <!-- Injected by filters.js -->
+    </div>
+    
+    <div class="text-center" style="margin-top: 40px;">
+      <a href="properties.html" class="btn btn-outline reveal-hidden delay-200">View All Real Estate</a>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="section" style="background-color: var(--color-bg-secondary);">
+    <div class="container">
+      <div class="text-center" style="margin-bottom: var(--spacing-lg);">
+        <h2 class="reveal-hidden">Our Services</h2>
+        <p class="reveal-hidden delay-100">Everything you need under one roof.</p>
+      </div>
+      
+      <div class="grid grid-4 gap-md">
+        <div class="feature-card reveal-hidden delay-100">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          </div>
+          <h4>Real Estate Sales</h4>
+          <p>Buying or selling a home in Colombo should feel exciting, not stressful. We guide you through every step with honest advice and a clear view of the market.</p>
+        </div>
+        <div class="feature-card reveal-hidden delay-200">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          </div>
+          <h4>Long Term Rentals</h4>
+          <p>Looking for a home to rent, or a reliable tenant for your property? We match people with places that suit them, and keep the process simple for everyone involved.</p>
+        </div>
+        <div class="feature-card reveal-hidden delay-300">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+          </div>
+          <h4>Short Term Stays</h4>
+          <p>Our short term and vacation rentals are managed to a hotel standard of care, backed by a 5.0 rating and Superhost status on Airbnb.</p>
+        </div>
+        <div class="feature-card reveal-hidden delay-400">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <h4>Property Management</h4>
+          <p>Hand over the day to day and let us take care of the rest. From tenants to maintenance, we manage every property as if it were our own.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Book a Hyve Stay Section -->
+  <section class="section stay-section" style="padding-top: var(--spacing-xl); padding-bottom: var(--spacing-xl); overflow: hidden;">
+    <div class="container" style="text-align: center; max-width: 900px;">
+      <h2 style="margin-bottom: 24px;">
+        Book a HYVE Stay
+      </h2>
+      <p style="color: var(--color-text-main); font-size: 1.1rem; line-height: 1.6; margin-bottom: var(--spacing-lg);">
+        Discover our handpicked selection of exceptional properties. Whether you are looking for a serene lakefront retreat, a bustling city penthouse, or a coastal haven, our HYVE stays promise an unforgettable experience tailored to your unique lifestyle.
+      </p>
+    </div>
+      
+    <div class="container" style="position: relative;">
+      <button class="stay-nav-btn stay-nav-prev" aria-label="Previous">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      </button>
+      <button class="stay-nav-btn stay-nav-next" aria-label="Next">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </button>
+      
+      <!-- Auto Sliding Carousel -->
+      <div class="stay-slider-container">
+        <div class="stay-slider-track" id="stay-slider-track">
+          <!-- Dynamically injected via JS -->
+        </div>
+      </div>
+      
+      <!-- Overall Carousel Dots -->
+      <div id="stay-slider-dots" style="display: flex; justify-content: center; gap: 8px; margin-top: 40px; align-items: center;">
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section container">
+    <div class="about-split">
+      <div class="about-image reveal-hidden">
+        <img src="assets/images/agent_office_1786339595128.png" alt="HYVE Real Estate Office in Colombo for Property Management">
+      </div>
+      <div class="reveal-hidden delay-200">
+        <span class="eyebrow">Why Choose HYVE</span>
+        <h2>A Trusted Partner in Colombo</h2>
+        <ul style="list-style-type: none; padding-left: 0; line-height: 1.8; margin-bottom: 20px; color: var(--color-text-main);">
+          <li style="margin-bottom: 8px; padding-left: 24px; position: relative;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 0; top: 4px; width: 16px; height: 16px; color: var(--color-accent);"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Local expertise across Colombo and its suburbs
+          </li>
+          <li style="margin-bottom: 8px; padding-left: 24px; position: relative;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 0; top: 4px; width: 16px; height: 16px; color: var(--color-accent);"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Personal, hands on service from people who know the market
+          </li>
+          <li style="margin-bottom: 8px; padding-left: 24px; position: relative;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 0; top: 4px; width: 16px; height: 16px; color: var(--color-accent);"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            A trusted track record with property owners and guests alike
+          </li>
+          <li style="margin-bottom: 8px; padding-left: 24px; position: relative;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 0; top: 4px; width: 16px; height: 16px; color: var(--color-accent);"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Honest advice, with no pressure and no surprises
+          </li>
+        </ul>
+        
+        <div class="stats-grid">
+          <div class="stat-item">
+            <h4><span class="stat-number" data-target="10">0</span>+</h4>
+            <p>Years Experience</p>
+          </div>
+          <div class="stat-item">
+            <h4><span class="stat-number" data-target="1250">0</span>+</h4>
+            <p>Properties Listed</p>
+          </div>
+          <div class="stat-item">
+            <h4><span class="stat-number" data-target="850">0</span>+</h4>
+            <p>Happy Clients</p>
+          </div>
+          <div class="stat-item">
+            <h4><span class="stat-number" data-target="45">0</span>+</h4>
+            <p>Expert Agents</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Premium Testimonials Section -->
+  <section class="section" style="padding: 0; background-color: var(--color-bg-primary); margin: var(--spacing-xl) 0;">
+    <div class="container">
+      <div class="premium-testimonial-block reveal-hidden">
+        <div class="pt-image" style="background-image: url('images/Hero/tim-schmidbauer-_tEBCVrEnyo-unsplash.jpg');">
+        </div>
+        <div class="pt-content">
+          <svg class="pt-quote" viewBox="0 0 24 24" fill="currentColor">
+             <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+          </svg>
+          <span class="eyebrow" style="color: var(--color-accent); margin-bottom: 1.5rem;">Client Experience</span>
+          
+          <div class="pt-slider-container">
+            <div class="pt-slider-track" id="pt-track">
+              <!-- Slide 1 -->
+              <div class="pt-slide">
+                <h3>
+                  "Loved our month long stay with family! The place was clean, cozy and perfectly located. The host was warm and welcoming, highly recommend for families!"
+                </h3>
+                <div class="pt-author">
+                  <div class="pt-avatar">H</div>
+                  <div>
+                    <div class="pt-author-name">Happy Guest</div>
+                    <div class="pt-author-title">Family Stay in Colombo</div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Slide 2 -->
+              <div class="pt-slide">
+                <h3>
+                  "An unparalleled experience. The agents at HYVE don't just show properties; they match you with a lifestyle that feels perfectly tailored."
+                </h3>
+                <div class="pt-author">
+                  <div class="pt-avatar" style="background-color: #234551;">E</div>
+                  <div>
+                    <div class="pt-author-name">Elena Rodriguez</div>
+                    <div class="pt-author-title">Booked a City Penthouse</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 3 -->
+              <div class="pt-slide">
+                <h3>
+                  "The level of service and attention to detail from the HYVE team was unprecedented. They understood exactly what we were looking for."
+                </h3>
+                <div class="pt-author">
+                  <div class="pt-avatar" style="background-color: #8c734b;">J</div>
+                  <div>
+                    <div class="pt-author-name">James Chen</div>
+                    <div class="pt-author-title">Invested in Commercial Space</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="pt-controls">
+             <button class="pt-prev" id="pt-btn-prev" aria-label="Previous Testimonial">
+               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+             </button>
+             <button class="pt-next" id="pt-btn-next" aria-label="Next Testimonial">
+               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+             </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section reveal-hidden">
+    <div class="container">
+      <h2>Ready to Find Your Next Home?</h2>
+      <p style="margin-bottom: var(--spacing-md); font-size: 1.25rem;">Explore our latest properties and find a place that fits your lifestyle.</p>
+      <div class="flex justify-center gap-sm" style="flex-wrap: wrap;">
+        <a href="properties.html" class="btn btn-primary">Explore Real Estate</a>
+        <a href="contact.html" class="btn btn-outline" style="color: #fff; border-color: #fff;">Contact an Agent</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-nav-grid">
+        <!-- 1. Company -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Company</h4>
+          <ul class="footer-col-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="agents.html">Careers & Agents</a></li>
+            <li><a href="contact.html#faqs">FAQs</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- 2. Products / Real Estate -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Properties</h4>
+          <ul class="footer-col-links">
+            <li><a href="properties.html">All Properties</a></li>
+            <li><a href="properties.html?type=Villa">Luxury Villas</a></li>
+            <li><a href="properties.html?type=Apartment">Apartments</a></li>
+            <li><a href="properties.html?type=Commercial">Commercial</a></li>
+            <li><a href="short-term-rentals.html">Short-Term Stays</a></li>
+          </ul>
+        </div>
+
+        <!-- 3. Resources -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Resources</h4>
+          <ul class="footer-col-links">
+            <li><a href="services.html">Services & Advisory</a></li>
+            <li><a href="services.html#guides">Neighborhood Guides</a></li>
+            <li><a href="services.html#valuation">Property Valuation</a></li>
+            <li><a href="services.html#insights">Market Insights</a></li>
+          </ul>
+        </div>
+
+        <!-- 4. Legal -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Legal</h4>
+          <ul class="footer-col-links">
+            <li><a href="contact.html#privacy">Privacy Policy</a></li>
+            <li><a href="about.html#trust">Security & Trust</a></li>
+            <li><a href="contact.html#terms">Terms of Use</a></li>
+            <li><a href="contact.html#acceptance">Acceptance Policy</a></li>
+            <li><a href="contact.html#cookies">Cookie Preferences</a></li>
+          </ul>
+        </div>
+
+        <!-- 5. Contact -->
+        <div class="footer-col footer-col-contact">
+          <h4 class="footer-col-title">Contact</h4>
+          <ul class="footer-col-links">
+            <li><a href="mailto:info@hyve.lk">info@hyve.lk</a></li>
+            <li><a href="tel:+94767628254">+94 76 762 8254</a></li>
+            <li><a href="tel:+94112345678">+94 11 234 5678</a></li>
+            <li><span style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Colombo 03, Sri Lanka</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="footer-divider"></div>
+
+      <!-- Middle Meta Row -->
+      <div class="footer-meta-row">
+        <div class="footer-meta-left">
+          <p class="footer-address">HYVE HQ, 121B Galle Road, Colombo 03, Sri Lanka.</p>
+          <p class="footer-copyright">&copy; 2026 HYVE (Pvt.) Ltd. All rights reserved. &bull; Developed by <a href="https://engagelanka.com" target="_blank" rel="noopener">EngageLanka</a></p>
+        </div>
+
+        <div class="footer-social-group">
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-social-circle" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.25c-.9 0-1.63.73-1.63 1.63s.73 1.63 1.63 1.63 1.63-.73 1.63-1.63-.73-1.63-1.63-1.63Z"/></svg>
+          </a>
+          <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="footer-social-circle" aria-label="X (Twitter)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://instagram.com/hyve.lk" target="_blank" rel="noopener noreferrer" class="footer-social-circle" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="footer-social-circle" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Giant Cropped Watermark -->
+    <div class="footer-watermark-wrap" aria-hidden="true">
+      <div class="footer-watermark">HYVE</div>
+    </div>
+  </footer>
+
+
+
+  <!-- Utilities -->
+  <button id="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/properties.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/filters.js"></script>
+</body>
+</html>
+
+

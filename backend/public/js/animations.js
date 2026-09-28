@@ -1,4 +1,4 @@
-﻿// =========================================
+// =========================================
 // ANIMATIONS & SCROLL REVEALS
 // =========================================
 
@@ -24,8 +24,8 @@ function initScrollReveals() {
       }
     });
   }, {
-    threshold: 0.1, // Trigger when 10% visible
-    rootMargin: "0px 0px -50px 0px" // Trigger slightly before it comes into full view
+    threshold: 0.05, // Trigger as soon as entering view
+    rootMargin: "0px 0px 50px 0px" // Trigger 50px before it comes into view for smooth UX
   });
 
   revealElements.forEach(el => observer.observe(el));

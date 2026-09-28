@@ -1,0 +1,56 @@
+/* =========================================
+   ANIMATIONS & SCROLL REVEALS
+   ========================================= */
+
+/* Entrance Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Scroll Reveal Classes (added by JS) */
+.reveal-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.reveal-fade {
+  animation: fadeIn 0.8s ease forwards;
+  visibility: visible;
+}
+
+.reveal-slide-up {
+  animation: slideUp 0.8s ease forwards;
+  visibility: visible;
+}
+
+.reveal-slide-left {
+  animation: slideInLeft 0.8s ease forwards;
+  visibility: visible;
+}
+
+.reveal-slide-right {
+  animation: slideInRight 0.8s ease forwards;
+  visibility: visible;
+}
+
+/* Delays for staggered elements */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
