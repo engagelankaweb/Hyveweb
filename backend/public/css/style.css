@@ -552,6 +552,15 @@ p {
   align-items: center;
 }
 
+@keyframes slideUpCenter {
+  from { opacity: 0; transform: translate(-50%, calc(50% + 40px)); }
+  to { opacity: 1; transform: translate(-50%, 50%); }
+}
+
+.hero-search-wrapper.reveal-slide-up {
+  animation: slideUpCenter 0.8s ease forwards;
+}
+
 /* Floating Glassmorphic Tabs */
 .hero-search-tabs {
   display: inline-flex;
