@@ -251,6 +251,37 @@ p {
   color: #fff;
 }
 
+.logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo-img {
+  height: 38px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+  transition: opacity 0.3s ease;
+}
+
+.navbar:not(.scrolled) .logo.light-mode .logo-white {
+  display: block;
+}
+
+.navbar:not(.scrolled) .logo.light-mode .logo-blue {
+  display: none;
+}
+
+.navbar.scrolled .logo.light-mode .logo-white {
+  display: none;
+}
+
+.navbar.scrolled .logo.light-mode .logo-blue {
+  display: block;
+}
+
 .nav-links {
   display: flex;
   gap: 1rem;
