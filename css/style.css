@@ -1036,7 +1036,11 @@ p {
 .feature-icon svg {
   width: 32px;
   height: 32px;
-  fill: currentColor;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 /* About Split Section */
@@ -1487,7 +1491,7 @@ p {
 #back-to-top {
   position: fixed;
   bottom: 24px;
-  right: 24px;
+  left: 24px;
   background-color: var(--color-accent);
   color: #fff;
   width: 44px;
