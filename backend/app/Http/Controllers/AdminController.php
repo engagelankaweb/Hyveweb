@@ -212,7 +212,8 @@ class AdminController extends Controller
         $imagePaths = [];
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $file) {
-                $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+                $ext = $file->extension() ?: 'jpg';
+                $filename = time() . '_' . uniqid() . '.' . $ext;
                 $file->move($uploadPath, $filename);
                 $imagePaths[] = 'uploads/' . $filename;
             }
@@ -327,7 +328,8 @@ class AdminController extends Controller
         $newImages = [];
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $file) {
-                $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+                $ext = $file->extension() ?: 'jpg';
+                $filename = time() . '_' . uniqid() . '.' . $ext;
                 $file->move($uploadPath, $filename);
                 $newImages[] = 'uploads/' . $filename;
             }
@@ -487,7 +489,7 @@ class AdminController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
+            'password' => 'required|string|min:12',
             'role' => 'required|string|in:main_admin,staff,agent',
             'phone' => 'nullable|string|max:50',
             'status' => 'nullable|string|in:active,inactive',
@@ -549,7 +551,7 @@ class AdminController extends Controller
             'role' => 'required|string|in:main_admin,staff,agent',
             'phone' => 'nullable|string|max:50',
             'status' => 'required|string|in:active,inactive',
-            'password' => 'nullable|string|min:6',
+            'password' => 'nullable|string|min:12',
         ]);
 
         // Safety: Prevent removing the only active main_admin
@@ -649,7 +651,7 @@ class AdminController extends Controller
 
         // Prevent deleting last main admin
         if ($user->role === 'main_admin') {
-            $otherMainAdmins = User::where('role', 'main_admin')->where('id', '!=', $id)->count();
+            $otherMainAdmins = User::where('role', 'main_admin')->where('status', 'active')->where('id', '!=', $id)->count();
             if ($otherMainAdmins === 0) {
                 return response()->json([
                     'success' => false,
@@ -696,7 +698,8 @@ class AdminController extends Controller
             $agentImageName = 'assets/images/agent_office_1786339595128.png';
             if ($request->hasFile('agent_image')) {
                 $file = $request->file('agent_image');
-                $filename = 'agent_' . time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+                $ext = $file->extension() ?: 'jpg';
+                $filename = 'agent_' . time() . '_' . uniqid() . '.' . $ext;
                 $file->move($uploadPath, $filename);
                 $agentImageName = 'uploads/' . $filename;
             }

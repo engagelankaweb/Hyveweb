@@ -2,6 +2,21 @@
 // PROPERTY DETAILS & GALLERY LOGIC
 // =========================================
 
+// Security helpers (fallback if main.js not loaded first)
+const hEsc = window.hEsc || function(str) {
+  if (str === null || str === undefined) return '';
+  const d = document.createElement('div');
+  d.textContent = String(str);
+  return d.innerHTML;
+};
+const safeUrl = window.safeUrl || function(url) {
+  if (!url) return '#';
+  try {
+    const u = new URL(url);
+    return (u.protocol === 'http:' || u.protocol === 'https:') ? url : '#';
+  } catch (e) { return '#'; }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   const detailsContainer = document.getElementById('property-details-container');
   if (detailsContainer) {
@@ -64,7 +79,7 @@ function renderProperty(p) {
   if (thumbnailContainer) {
     thumbnailContainer.innerHTML = images.map((img, index) => `
       <div class="thumb ${index === 0 ? 'active' : ''}" data-index="${index}">
-        <img src="${img}" alt="Thumbnail ${index + 1}">
+        <img src="${hEsc(img)}" alt="Thumbnail ${index + 1}">
       </div>
     `).join('');
   }
@@ -73,7 +88,7 @@ function renderProperty(p) {
   document.getElementById('pd-title').textContent = p.title;
   document.getElementById('pd-location').innerHTML = `
     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-    ${p.location}
+    ${hEsc(p.location)}
   `;
   document.getElementById('pd-price').textContent = formatPrice(displayPrice) + priceLabel;
   document.getElementById('pd-type').textContent = p.type;
@@ -115,7 +130,7 @@ function renderProperty(p) {
   document.getElementById('pd-features').innerHTML = featuresList.map(f => `
     <li style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-      ${f}
+      ${hEsc(f)}
     </li>
   `).join('');
 
@@ -123,7 +138,7 @@ function renderProperty(p) {
   let externalLinksHtml = '';
   if (p.external_url) {
     externalLinksHtml += `
-      <a href="${p.external_url}" target="_blank" class="btn btn-outline" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; margin-right: 8px;">
+      <a href="${safeUrl(p.external_url)}" target="_blank" class="btn btn-outline" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; margin-right: 8px;">
         <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
         Experience 3D Virtual Tour
       </a>
@@ -131,7 +146,7 @@ function renderProperty(p) {
   }
   if (p.external_booking_url) {
     externalLinksHtml += `
-      <a href="${p.external_booking_url}" target="_blank" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 12px;">
+      <a href="${safeUrl(p.external_booking_url)}" target="_blank" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 12px;">
         <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
         Book on Airbnb / Partner
       </a>

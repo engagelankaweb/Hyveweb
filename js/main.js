@@ -2,6 +2,24 @@
 // MAIN JAVASCRIPT LOGIC
 // =========================================
 
+// ---- Security Helpers ----
+// HTML-escape to prevent XSS when inserting untrusted data into innerHTML
+window.hEsc = function(str) {
+  if (str === null || str === undefined) return '';
+  const d = document.createElement('div');
+  d.textContent = String(str);
+  return d.innerHTML;
+};
+// Validates URLs are http/https only — blocks javascript: injection in href attributes
+window.safeUrl = function(url) {
+  if (!url) return '#';
+  try {
+    const u = new URL(url);
+    return (u.protocol === 'http:' || u.protocol === 'https:') ? url : '#';
+  } catch (e) { return '#'; }
+};
+// ---- End Security Helpers ----
+
 document.addEventListener('DOMContentLoaded', () => {
   initIntroAnimation();
   initCurrencySelector();
@@ -569,21 +587,22 @@ function initStaySlider() {
   const displayProperties = stayProperties.length < 4 ? [...stayProperties, ...stayProperties] : stayProperties;
   
   displayProperties.forEach(property => {
-    const imgSrc = (property.images && property.images.length > 0) ? property.images[0] : 'assets/images/luxury_villa_1786339560928.png';
+    const rawImg = (property.images && property.images.length > 0) ? property.images[0] : 'assets/images/luxury_villa_1786339560928.png';
+    const imgSrc = hEsc(rawImg);
     cardsHtml += `
       <div class="stay-card">
         <div class="stay-image">
-          <img src="${imgSrc}" alt="${property.title}">
+          <img src="${imgSrc}" alt="${hEsc(property.title)}">
         </div>
         <div class="stay-info">
-          <span class="stay-location text-xs uppercase" style="color: #e67e22; font-weight: 500; letter-spacing: 0.5px; font-size: 0.85rem; margin-bottom: 8px; display: block;">${property.city || property.location || 'LOCATION'}</span>
-          <h3 class="stay-title" style="font-family: var(--font-secondary); font-weight: 500; font-size: 1.5rem; margin-bottom: 12px; color: #000;">${property.title}</h3>
+          <span class="stay-location text-xs uppercase" style="color: #e67e22; font-weight: 500; letter-spacing: 0.5px; font-size: 0.85rem; margin-bottom: 8px; display: block;">${hEsc(property.city || property.location || 'LOCATION')}</span>
+          <h3 class="stay-title" style="font-family: var(--font-secondary); font-weight: 500; font-size: 1.5rem; margin-bottom: 12px; color: #000;">${hEsc(property.title)}</h3>
           <div style="color: #666; font-size: 0.8rem; display: flex; align-items: center; gap: 6px; font-weight: 500; text-transform: uppercase; margin-bottom: 16px;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-            ${property.location}
+            ${hEsc(property.location)}
           </div>
           <p style="color: var(--color-text-main); font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-            ${property.description || ''}
+            ${hEsc(property.description || '')}
           </p>
 
           <a href="property-details.html?id=${property.id}" class="btn-text" style="font-weight: 600; font-size: 0.9rem; color: var(--color-accent); margin-top: auto; align-self: center; text-decoration: none;">View More</a>

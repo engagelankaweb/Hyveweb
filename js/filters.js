@@ -2,6 +2,21 @@
 // PROPERTY FILTERING & RENDERING
 // =========================================
 
+// Security helpers (fallback if main.js not loaded first)
+const hEsc = window.hEsc || function(str) {
+  if (str === null || str === undefined) return '';
+  const d = document.createElement('div');
+  d.textContent = String(str);
+  return d.innerHTML;
+};
+const safeUrl = window.safeUrl || function(url) {
+  if (!url) return '#';
+  try {
+    const u = new URL(url);
+    return (u.protocol === 'http:' || u.protocol === 'https:') ? url : '#';
+  } catch (e) { return '#'; }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   // Check if we are on a page that needs property rendering
   const propertiesGrid = document.getElementById('properties-grid');
@@ -30,7 +45,7 @@ function createPropertyCard(property) {
     priceLabel = '/mo';
   }
   
-  const imgSrc = (property.images && property.images.length > 0) ? property.images[0] : 'assets/images/luxury_villa_1786339560928.png';
+  const imgSrc = hEsc((property.images && property.images.length > 0) ? property.images[0] : 'assets/images/luxury_villa_1786339560928.png');
 
   return `
     <div class="property-card reveal-hidden" data-animation="reveal-slide-up">
@@ -39,23 +54,23 @@ function createPropertyCard(property) {
           ${property.featured ? '<span class="property-badge" style="position: static; margin: 0;">Featured</span>' : ''}
           ${isShortTerm ? '<span class="property-badge" style="position: static; margin: 0; background: #86198f;">Vacation Stay</span>' : ''}
         </div>
-        <span class="property-type">${property.type}</span>
+        <span class="property-type">${hEsc(property.type)}</span>
         <button class="fav-btn ${isFav}" onclick="event.preventDefault(); toggleFavorite(${property.id}, this)">
           <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
         </button>
         <a href="property-details.html?id=${property.id}">
-          <img src="${imgSrc}" alt="${property.title}" loading="lazy">
+          <img src="${imgSrc}" alt="${hEsc(property.title)}" loading="lazy">
         </a>
       </div>
       <div class="property-content">
         <div class="property-price">${formatPrice(displayPrice)}${priceLabel}</div>
-        <h3 class="property-title"><a href="property-details.html?id=${property.id}">${property.title}</a></h3>
+        <h3 class="property-title"><a href="property-details.html?id=${property.id}">${hEsc(property.title)}</a></h3>
         <div class="property-location">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-          ${property.location}
+          ${hEsc(property.location)}
         </div>
         <div class="property-description" style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--color-text-light, #666); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-          ${property.description || ''}
+          ${hEsc(property.description || '')}
         </div>
         <div class="property-features">
           <div class="feature">
@@ -74,7 +89,7 @@ function createPropertyCard(property) {
         <div class="property-footer" style="display: flex; gap: 8px;">
           <a href="property-details.html?id=${property.id}" class="btn btn-outline" style="flex: 1; text-align: center;">View Property</a>
           ${property.external_url ? `
-            <a href="${property.external_url}" target="_blank" class="btn btn-secondary" style="padding: 8px 12px;" title="Virtual Tour / External Listing">
+            <a href="${safeUrl(property.external_url)}" target="_blank" class="btn btn-secondary" style="padding: 8px 12px;" title="Virtual Tour / External Listing">
               <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             </a>
           ` : ''}

@@ -1,6 +1,11 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
+    # Block direct access to sensitive files
+    RewriteRule (^|/)\.env($|/) - [F,L]
+    RewriteRule (^|/)\.git($|/) - [F,L]
+    RewriteRule \.(py|diff|bak|log|md|txt|sql)$ - [F,L]
+
     # Prevent loop if already rewritten to backend/public/
     RewriteCond %{REQUEST_URI} !^/Hyveweb/backend/public/
     

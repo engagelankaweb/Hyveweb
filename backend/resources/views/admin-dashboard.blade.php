@@ -2597,10 +2597,9 @@
       const container = document.getElementById('toast-container');
       const toast = document.createElement('div');
       toast.className = 'toast-msg';
-      toast.innerHTML = `
-        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-        <span>${message}</span>
-      `;
+      // Set SVG statically (safe hardcoded HTML), then set message via textContent (XSS-safe)
+      toast.innerHTML = '<svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="toast-msg-text"></span>';
+      toast.querySelector('.toast-msg-text').textContent = message;
       container.appendChild(toast);
       setTimeout(() => {
         toast.style.opacity = '0';
