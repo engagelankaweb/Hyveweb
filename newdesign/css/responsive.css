@@ -52,6 +52,68 @@
     padding-top: 460px !important;
   }
 
+  .mobile-only {
+    display: flex !important;
+  }
+  .hidden-mobile {
+    display: none !important;
+  }
+
+  /* Grid view overrides for mobile */
+  .mobile-grid-view {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+  .mobile-grid-view .property-card {
+    display: flex;
+    flex-direction: column;
+  }
+  .mobile-grid-view .property-image-wrapper {
+    height: 140px;
+  }
+  .mobile-grid-view .property-image-wrapper img {
+    height: 100%;
+    object-fit: cover;
+  }
+  .mobile-grid-view .property-content {
+    padding: 12px 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .mobile-grid-view .property-title {
+    font-size: 0.95rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .mobile-grid-view .property-price {
+    font-size: 1.1rem;
+  }
+  .mobile-grid-view .property-description {
+    display: none !important;
+  }
+  .mobile-grid-view .property-features {
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.75rem;
+    margin-bottom: 8px;
+  }
+  .mobile-grid-view .property-features .feature {
+    width: 100%;
+  }
+  .mobile-grid-view .property-footer {
+    margin-top: auto;
+  }
+  .mobile-grid-view .property-footer .btn {
+    padding: 6px;
+    font-size: 0.8rem;
+  }
+  .mobile-grid-view .property-badge {
+    font-size: 0.65rem;
+    padding: 2px 6px;
+  }
+
   h1 { font-size: 2.5rem; }
   .hero h1 { font-size: 3rem; }
   h2,

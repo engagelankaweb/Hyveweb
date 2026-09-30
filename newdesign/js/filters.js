@@ -207,6 +207,26 @@ function initFilters(container) {
   
   window.hyveApplyFilters = applyFilters;
   applyFilters();
+
+  // View Toggles
+  const viewBtns = document.querySelectorAll('.view-btn');
+  if (viewBtns.length > 0) {
+    viewBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const view = e.currentTarget.dataset.view;
+        // update active state
+        viewBtns.forEach(b => b.classList.remove('active'));
+        e.currentTarget.classList.add('active');
+        
+        // apply class to grid
+        if (view === 'grid') {
+          container.classList.add('mobile-grid-view');
+        } else {
+          container.classList.remove('mobile-grid-view');
+        }
+      });
+    });
+  }
 }
 
 // Re-render when currency changes

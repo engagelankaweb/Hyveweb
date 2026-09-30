@@ -107,7 +107,15 @@
             Showing <strong id="results-count">0</strong> stays
           </div>
           <div class="flex items-center gap-sm">
-            <label class="form-label" style="margin: 0;">Sort By:</label>
+            <div class="view-toggles mobile-only" style="display: none;">
+              <button class="view-btn active" data-view="list" aria-label="List View">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+              </button>
+              <button class="view-btn" data-view="grid" aria-label="Grid View">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              </button>
+            </div>
+            <label class="form-label hidden-mobile" style="margin: 0;">Sort By:</label>
             <select id="sort-select" class="form-control" style="width: auto; padding: 8px 12px;">
               <option value="default">Featured</option>
               <option value="newest">Newest</option>
