@@ -112,6 +112,10 @@ p {
 
 .text-center { text-align: center; }
 
+#welcome-section {
+  padding-top: 180px;
+}
+
 .flex { display: flex; }
 .flex-col { flex-direction: column; }
 .items-center { align-items: center; }

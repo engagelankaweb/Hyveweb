@@ -15,26 +15,28 @@
 
   <style>
     :root {
-      --sidebar-width: 270px;
-      --color-primary-dark: #0f111a;
-      --color-sidebar-bg: #161824;
-      --color-sidebar-active: rgba(20, 51, 92, 0.12);
+      --sidebar-width: 280px;
+      --color-primary-dark: #0A1424;
+      --color-sidebar-bg: #0E2340;
+      --color-sidebar-active: rgba(255, 255, 255, 0.1);
       --color-accent: #14335C;
-      --color-accent-hover: #E5C158;
+      --color-accent-hover: #1E467C;
       --color-accent-glow: rgba(20, 51, 92, 0.2);
       --color-danger: #EF4444;
       --color-danger-hover: #DC2626;
       --color-success: #10B981;
       --color-warning: #F59E0B;
       --color-info: #3B82F6;
-      --color-bg-main: #f8fafc;
+      --color-bg-main: #f4f6f9;
       --color-card-bg: #ffffff;
       --color-border-light: #e2e8f0;
-      --shadow-premium: 0 10px 30px rgba(0, 0, 0, 0.04);
+      --shadow-premium: 0 10px 40px -10px rgba(20, 51, 92, 0.08);
       --shadow-dropdown: 0 15px 35px rgba(0, 0, 0, 0.12);
+      --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.04);
       --radius-sm: 8px;
-      --radius-md: 12px;
-      --radius-lg: 16px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-full: 9999px;
     }
 
     * {
@@ -73,7 +75,7 @@
     /* Sidebar Navigation */
     .sidebar {
       width: var(--sidebar-width);
-      background-color: var(--color-sidebar-bg);
+      background: linear-gradient(180deg, var(--color-sidebar-bg) 0%, #0A1424 100%);
       color: #94a3b8;
       position: fixed;
       top: 0;
@@ -98,7 +100,7 @@
       justify-content: space-between;
     }
 
-    .sidebar-brand span {
+    .sidebar-brand > div > span {
       color: var(--color-accent);
     }
 
@@ -110,6 +112,7 @@
       border-radius: 20px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      white-space: nowrap;
     }
 
     .badge-role-main_admin {
@@ -153,7 +156,8 @@
       align-items: center;
       gap: 12px;
       padding: 12px 16px;
-      border-radius: 0;
+      margin: 0 14px;
+      border-radius: var(--radius-md);
       color: #94a3b8;
       font-weight: 500;
       font-size: 0.92rem;
@@ -161,7 +165,7 @@
       transition: all 0.25s ease;
       background: transparent;
       border: none;
-      width: 100%;
+      width: calc(100% - 28px);
       text-align: left;
     }
 
@@ -182,11 +186,11 @@
       color: #ffffff;
       background-color: var(--color-sidebar-active);
       font-weight: 600;
-      border-left: 3px solid var(--color-info);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
     }
 
     .menu-item.active svg {
-      color: var(--color-info);
+      color: #ffffff;
     }
 
     .menu-item:hover svg {
@@ -244,11 +248,11 @@
       justify-content: center;
       gap: 8px;
       width: 100%;
-      background: rgba(239, 68, 68, 0.1);
-      border: 1px solid rgba(239, 68, 68, 0.2);
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.15);
       color: #f87171;
-      padding: 9px;
-      border-radius: 0;
+      padding: 10px;
+      border-radius: var(--radius-full);
       cursor: pointer;
       font-weight: 600;
       font-size: 0.85rem;
@@ -270,7 +274,7 @@
       flex-direction: column;
       padding: 2rem 2.5rem;
       transition: all 0.3s ease;
-      background: #f8fafc;
+      background: var(--color-bg-main);
     }
 
     @media (max-width: 1024px) {
@@ -284,7 +288,8 @@
 
       .main-content {
         margin-left: 0;
-        padding: 1.5rem;
+        padding: 1.5rem 1rem;
+        max-width: 100vw;
       }
 
       .mobile-nav-toggle {
@@ -298,11 +303,21 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 2rem;
-      background: var(--color-card-bg);
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
       padding: 1.5rem 2rem;
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-lg);
       box-shadow: var(--shadow-premium);
-      border: 1px solid var(--color-border-light);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .dashboard-header > div {
+      min-width: 0;
+    }
+
+    .header-title {
+      flex: 1;
+      min-width: 0;
     }
 
     .header-title h1 {
@@ -311,12 +326,17 @@
       margin: 0 0 4px 0;
       color: #0f172a;
       font-family: 'Satoshi', sans-serif;
+      white-space: normal;
+      word-wrap: break-word;
+      line-height: 1.2;
     }
 
     .header-title p {
       font-size: 0.9rem;
       color: #64748b;
       margin: 0;
+      white-space: normal;
+      word-wrap: break-word;
     }
 
     .header-actions {
@@ -329,17 +349,19 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      background: #f8fafc;
+      background: #ffffff;
       padding: 8px 16px;
-      border-radius: 40px;
+      border-radius: var(--radius-full);
       border: 1px solid #e2e8f0;
+      box-shadow: var(--shadow-sm);
       cursor: pointer;
       transition: all 0.2s ease;
     }
 
     .btn-header-profile:hover {
-      background: #f1f5f9;
+      background: #f8fafc;
       border-color: #cbd5e1;
+      box-shadow: var(--shadow-md);
     }
 
     /* Stats Grid */
@@ -365,23 +387,28 @@
         flex-direction: column;
         align-items: stretch;
         gap: 15px;
-        padding: 1rem;
-      }
-
-      .header-search {
-        margin: 0;
-      }
-
-      .header-search input {
-        width: 100%;
+        padding: 1.2rem 1rem;
       }
 
       .header-actions {
-        justify-content: flex-end;
+        justify-content: flex-start;
       }
 
-      .page-title {
-        font-size: 1.5rem;
+      .header-title h1 {
+        font-size: 1.35rem;
+      }
+
+      .dashboard-panel-card {
+        padding: 1.25rem;
+      }
+
+      .panel-title {
+        font-size: 1.2rem;
+      }
+
+      .table-filter-bar {
+        flex-direction: column;
+        align-items: stretch;
       }
     }
 
@@ -477,10 +504,10 @@
     /* Dashboard Panels */
     .dashboard-panel-card {
       background: var(--color-card-bg);
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-lg);
       box-shadow: var(--shadow-premium);
-      border: 1px solid var(--color-border-light);
-      padding: 2rem;
+      border: none;
+      padding: 2.5rem;
       margin-bottom: 2rem;
     }
 
@@ -509,9 +536,10 @@
       flex-wrap: wrap;
       gap: 0.85rem;
       margin-bottom: 1.5rem;
-      background: #f8fafc;
+      background: rgba(248, 250, 252, 0.7);
+      backdrop-filter: blur(8px);
       padding: 1rem;
-      border-radius: var(--radius-sm);
+      border-radius: var(--radius-md);
       border: 1px solid #e2e8f0;
       align-items: center;
     }
@@ -525,11 +553,12 @@
     .search-input {
       width: 100%;
       border: 1px solid #cbd5e1;
-      border-radius: var(--radius-sm);
+      border-radius: var(--radius-full);
       padding: 10px 12px 10px 38px;
       font-size: 0.9rem;
       transition: all 0.3s ease;
       background: #ffffff;
+      box-shadow: var(--shadow-inner);
     }
 
     .search-input:focus {
@@ -540,19 +569,20 @@
 
     .search-icon {
       position: absolute;
-      left: 12px;
+      left: 14px;
       top: 11px;
       color: #94a3b8;
     }
 
     .filter-select {
       border: 1px solid #cbd5e1;
-      border-radius: var(--radius-sm);
-      padding: 10px 14px;
+      border-radius: var(--radius-full);
+      padding: 10px 16px;
       font-size: 0.88rem;
       background: #ffffff;
       min-width: 140px;
       cursor: pointer;
+      box-shadow: var(--shadow-sm);
     }
 
     .filter-select:focus {
@@ -563,38 +593,40 @@
     .btn-add-action {
       background: var(--color-accent);
       color: #ffffff;
-      padding: 10px 18px;
-      border-radius: 0;
+      padding: 10px 20px;
+      border-radius: var(--radius-full);
       font-weight: 600;
       font-size: 0.88rem;
       border: none;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      transition: all 0.25s ease;
+      gap: 8px;
+      transition: all 0.3s ease;
       text-decoration: none;
     }
 
     .btn-add-action:hover {
       background: var(--color-accent-hover);
-      box-shadow: 0 4px 12px rgba(20, 51, 92, 0.25);
+      box-shadow: 0 6px 16px rgba(20, 51, 92, 0.25);
+      transform: translateY(-1px);
     }
 
     /* Table Styling */
     .data-table {
       width: 100%;
-      border-collapse: collapse;
+      border-collapse: separate;
+      border-spacing: 0;
     }
 
     .data-table th {
-      background: #f8fafc;
+      background: rgba(248, 250, 252, 0.8);
       color: #475569;
       font-weight: 600;
       font-size: 0.82rem;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      padding: 14px 18px;
+      padding: 16px 18px;
       border-bottom: 2px solid #edf2f7;
       text-align: left;
     }
@@ -604,6 +636,7 @@
       border-bottom: 1px solid #edf2f7;
       vertical-align: middle;
       font-size: 0.9rem;
+      transition: background-color 0.2s ease;
     }
 
     .data-table tr:hover {
@@ -707,14 +740,14 @@
     }
 
     .btn-action-sm {
-      padding: 6px 10px;
-      border-radius: 0;
+      padding: 6px 12px;
+      border-radius: var(--radius-full);
       font-size: 0.8rem;
       font-weight: 600;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
       transition: all 0.2s ease;
       border: 1px solid transparent;
       background: #f1f5f9;
@@ -725,6 +758,7 @@
     .btn-action-sm:hover {
       background: #e2e8f0;
       color: #0f172a;
+      transform: translateY(-1px);
     }
 
     .btn-action-edit {
@@ -1330,11 +1364,6 @@
         </div>
       </div>
       <div class="header-actions">
-        <button class="btn-header-profile" onclick="openProfileModal()">
-          <div class="user-avatar-sm" style="width: 28px; height: 28px; font-size: 0.8rem;">
-            {{ strtoupper(substr($currentUser->name, 0, 1)) }}</div>
-          <span style="font-weight: 600; font-size: 0.88rem; color: #1e293b;">{{ $currentUser->name }}</span>
-        </button>
         @if($currentUser->isMainAdmin())
           <button class="btn-add-action" onclick="switchView('add-property')">
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">

@@ -47,6 +47,10 @@
     --nav-height: 70px;
     --spacing-md: 1.5rem;
   }
+  
+  #welcome-section {
+    padding-top: 460px !important;
+  }
 
   h1 { font-size: 2.5rem; }
   .hero h1 { font-size: 3rem; }
