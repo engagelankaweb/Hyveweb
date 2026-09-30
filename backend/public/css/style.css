@@ -2416,7 +2416,7 @@ p {
 }
 
 .btn-luxury-gold {
-  background: var(--color-accent);
+  background: #D4AF37;
   color: #FFFFFF;
   padding: 14px 32px;
   font-weight: 600;
@@ -2428,9 +2428,9 @@ p {
 }
 
 .btn-luxury-gold:hover {
-  background: var(--color-accent-hover);
+  background: #C5A028;
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(20, 51, 92, 0.4);
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
 }
 
 .btn-luxury-outline {
