@@ -59,6 +59,21 @@
     display: none !important;
   }
 
+  #mobile-filter-sidebar {
+    display: none;
+    margin-bottom: 1.5rem;
+  }
+  
+  #mobile-filter-sidebar.show-filters {
+    display: block;
+  }
+
+  #featured-grid,
+  #properties-grid {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
   /* Grid view overrides for mobile */
   .mobile-grid-view {
     grid-template-columns: repeat(2, 1fr) !important;
@@ -132,6 +147,7 @@
   .stay-card { width: 85vw !important; max-width: 320px !important; }
   .stay-image { height: 200px !important; }
   .stay-slider-track { gap: 15px !important; }
+  .stay-info { align-items: center; text-align: center; }
 
   /* Property Details */
   .gallery-container { height: 300px; }

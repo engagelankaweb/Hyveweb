@@ -47,6 +47,27 @@
     --nav-height: 70px;
     --spacing-md: 1.5rem;
   }
+  .hidden-mobile {
+    display: none !important;
+  }
+  .mobile-only {
+    display: flex !important;
+  }
+
+  #mobile-filter-sidebar {
+    display: none;
+    margin-bottom: 1.5rem;
+  }
+  
+  #mobile-filter-sidebar.show-filters {
+    display: block;
+  }
+
+  #featured-grid,
+  #properties-grid {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
 
   h1 { font-size: 2.5rem; }
   .hero h1 { font-size: 3rem; }
