@@ -47,6 +47,11 @@
     --nav-height: 70px;
     --spacing-md: 1.5rem;
   }
+  
+  .container {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
   .hidden-mobile {
     display: none !important;
   }
@@ -65,8 +70,7 @@
 
   #featured-grid,
   #properties-grid {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+    /* Padding is now handled globally by .container */
   }
 
   h1 { font-size: 2.5rem; }
@@ -307,6 +311,10 @@
 }
 
 @media (max-width: 576px) {
+  .container {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
   h1 { font-size: 2rem; }
   .hero h1 { font-size: 2.25rem; }
   
