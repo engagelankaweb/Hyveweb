@@ -25,27 +25,50 @@ class UserSeeder extends Seeder
             ]
         );
 
-        // 2. Staff / Operations Manager
+        // 2. Listing Agent - Vinuka Maddumage
         User::updateOrCreate(
-            ['email' => 'staff@hyve.com'],
+            ['email' => 'vinuka@hyve.lk'],
             [
-                'name' => 'Sarah Jenkins (Staff)',
-                'password' => Hash::make('staff123'),
-                'role' => 'staff',
-                'status' => 'active',
-                'phone' => '+1 (555) 123-4567',
-            ]
-        );
-
-        // 3. Listing Agent
-        User::updateOrCreate(
-            ['email' => 'agent@hyve.com'],
-            [
-                'name' => 'Michael Chen (Agent)',
+                'name' => 'Vinuka Maddumage (Agent)',
                 'password' => Hash::make('agent123'),
                 'role' => 'agent',
                 'status' => 'active',
-                'phone' => '+1 (555) 987-6543',
+                'phone' => '+94 77 896 8321',
+            ]
+        );
+
+        // 3. Listing Agent - Rehan Wijesinghe
+        User::updateOrCreate(
+            ['email' => 'rehan@hyve.lk'],
+            [
+                'name' => 'Rehan Wijesinghe (Agent)',
+                'password' => Hash::make('agent123'),
+                'role' => 'agent',
+                'status' => 'active',
+                'phone' => '+94 76 190 8254',
+            ]
+        );
+
+        // Legacy compatibility accounts updated to Vinuka and Rehan
+        User::updateOrCreate(
+            ['email' => 'staff@hyve.com'],
+            [
+                'name' => 'Rehan Wijesinghe (Staff)',
+                'password' => Hash::make('staff123'),
+                'role' => 'staff',
+                'status' => 'active',
+                'phone' => '+94 76 190 8254',
+            ]
+        );
+
+        User::updateOrCreate(
+            ['email' => 'agent@hyve.com'],
+            [
+                'name' => 'Vinuka Maddumage (Agent)',
+                'password' => Hash::make('agent123'),
+                'role' => 'agent',
+                'status' => 'active',
+                'phone' => '+94 77 896 8321',
             ]
         );
     }

@@ -33,9 +33,9 @@ class PropertySeeder extends Seeder
                     'assets/images/penthouse_interior_1786339582396.png'
                 ]),
                 'agent' => json_encode([
-                    'name' => 'Sarah Jenkins',
+                    'name' => 'Vinuka Maddumage',
                     'image' => 'assets/images/agent_office_1786339595128.png',
-                    'phone' => '+1 (555) 123-4567'
+                    'phone' => '+94 77 896 8321'
                 ]),
                 'featured' => true,
             ],
@@ -58,9 +58,9 @@ class PropertySeeder extends Seeder
                     'assets/images/hero_property_1786339547369.png'
                 ]),
                 'agent' => json_encode([
-                    'name' => 'Michael Chen',
+                    'name' => 'Rehan Wijesinghe',
                     'image' => 'assets/images/agent_office_1786339595128.png',
-                    'phone' => '+1 (555) 987-6543'
+                    'phone' => '+94 76 190 8254'
                 ]),
                 'featured' => true,
             ],
@@ -83,9 +83,9 @@ class PropertySeeder extends Seeder
                     'assets/images/hero_property_1786339547369.png'
                 ]),
                 'agent' => json_encode([
-                    'name' => 'Sarah Jenkins',
+                    'name' => 'Vinuka Maddumage',
                     'image' => 'assets/images/agent_office_1786339595128.png',
-                    'phone' => '+1 (555) 123-4567'
+                    'phone' => '+94 77 896 8321'
                 ]),
                 'featured' => true,
             ],
@@ -107,9 +107,9 @@ class PropertySeeder extends Seeder
                     'assets/images/hero_property_1786339547369.png'
                 ]),
                 'agent' => json_encode([
-                    'name' => 'Emma Davis',
+                    'name' => 'Rehan Wijesinghe',
                     'image' => 'assets/images/agent_office_1786339595128.png',
-                    'phone' => '+1 (555) 333-2222'
+                    'phone' => '+94 76 190 8254'
                 ]),
                 'featured' => false,
             ],
@@ -131,9 +131,9 @@ class PropertySeeder extends Seeder
                     'assets/images/penthouse_interior_1786339582396.png'
                 ]),
                 'agent' => json_encode([
-                    'name' => 'Michael Chen',
+                    'name' => 'Vinuka Maddumage',
                     'image' => 'assets/images/agent_office_1786339595128.png',
-                    'phone' => '+1 (555) 987-6543'
+                    'phone' => '+94 77 896 8321'
                 ]),
                 'featured' => true,
             ],
@@ -155,9 +155,9 @@ class PropertySeeder extends Seeder
                     'assets/images/luxury_villa_1786339560928.png'
                 ]),
                 'agent' => json_encode([
-                    'name' => 'Emma Davis',
+                    'name' => 'Rehan Wijesinghe',
                     'image' => 'assets/images/agent_office_1786339595128.png',
-                    'phone' => '+1 (555) 333-2222'
+                    'phone' => '+94 76 190 8254'
                 ]),
                 'featured' => true,
             ],
@@ -179,9 +179,9 @@ class PropertySeeder extends Seeder
                     'assets/images/penthouse_interior_1786339582396.png'
                 ]),
                 'agent' => json_encode([
-                    'name' => 'Michael Chen',
+                    'name' => 'Vinuka Maddumage',
                     'image' => 'assets/images/agent_office_1786339595128.png',
-                    'phone' => '+1 (555) 987-6543'
+                    'phone' => '+94 77 896 8321'
                 ]),
                 'featured' => false,
             ],
@@ -203,9 +203,9 @@ class PropertySeeder extends Seeder
                     'assets/images/agent_office_1786339595128.png'
                 ]),
                 'agent' => json_encode([
-                    'name' => 'Sarah Jenkins',
+                    'name' => 'Rehan Wijesinghe',
                     'image' => 'assets/images/agent_office_1786339595128.png',
-                    'phone' => '+1 (555) 123-4567'
+                    'phone' => '+94 76 190 8254'
                 ]),
                 'featured' => false,
             ],
@@ -227,9 +227,9 @@ class PropertySeeder extends Seeder
                     'assets/images/hero_property_1786339547369.png'
                 ]),
                 'agent' => json_encode([
-                    'name' => 'Emma Davis',
+                    'name' => 'Vinuka Maddumage',
                     'image' => 'assets/images/agent_office_1786339595128.png',
-                    'phone' => '+1 (555) 333-2222'
+                    'phone' => '+94 77 896 8321'
                 ]),
                 'featured' => false,
             ],
@@ -251,9 +251,9 @@ class PropertySeeder extends Seeder
                     'assets/images/luxury_villa_1786339560928.png'
                 ]),
                 'agent' => json_encode([
-                    'name' => 'Sarah Jenkins',
+                    'name' => 'Rehan Wijesinghe',
                     'image' => 'assets/images/agent_office_1786339595128.png',
-                    'phone' => '+1 (555) 123-4567'
+                    'phone' => '+94 76 190 8254'
                 ]),
                 'featured' => false,
             ],
@@ -275,9 +275,9 @@ class PropertySeeder extends Seeder
                     'assets/images/hero_property_1786339547369.png'
                 ]),
                 'agent' => json_encode([
-                    'name' => 'Michael Chen',
+                    'name' => 'Vinuka Maddumage',
                     'image' => 'assets/images/agent_office_1786339595128.png',
-                    'phone' => '+1 (555) 987-6543'
+                    'phone' => '+94 77 896 8321'
                 ]),
                 'featured' => true,
             ],
@@ -299,9 +299,9 @@ class PropertySeeder extends Seeder
                     'assets/images/penthouse_interior_1786339582396.png'
                 ]),
                 'agent' => json_encode([
-                    'name' => 'Emma Davis',
+                    'name' => 'Rehan Wijesinghe',
                     'image' => 'assets/images/agent_office_1786339595128.png',
-                    'phone' => '+1 (555) 333-2222'
+                    'phone' => '+94 76 190 8254'
                 ]),
                 'featured' => false,
             ],
@@ -323,9 +323,9 @@ class PropertySeeder extends Seeder
                     'assets/images/luxury_villa_1786339560928.png'
                 ]),
                 'agent' => json_encode([
-                    'name' => 'Sarah Jenkins',
+                    'name' => 'Vinuka Maddumage',
                     'image' => 'assets/images/agent_office_1786339595128.png',
-                    'phone' => '+1 (555) 123-4567'
+                    'phone' => '+94 77 896 8321'
                 ]),
                 'featured' => false,
             ],
@@ -347,9 +347,9 @@ class PropertySeeder extends Seeder
                     'assets/images/penthouse_interior_1786339582396.png'
                 ]),
                 'agent' => json_encode([
-                    'name' => 'Michael Chen',
+                    'name' => 'Rehan Wijesinghe',
                     'image' => 'assets/images/agent_office_1786339595128.png',
-                    'phone' => '+1 (555) 987-6543'
+                    'phone' => '+94 76 190 8254'
                 ]),
                 'featured' => false,
             ],
@@ -371,9 +371,9 @@ class PropertySeeder extends Seeder
                     'assets/images/luxury_villa_1786339560928.png'
                 ]),
                 'agent' => json_encode([
-                    'name' => 'Emma Davis',
+                    'name' => 'Vinuka Maddumage',
                     'image' => 'assets/images/agent_office_1786339595128.png',
-                    'phone' => '+1 (555) 333-2222'
+                    'phone' => '+94 77 896 8321'
                 ]),
                 'featured' => false,
             ],

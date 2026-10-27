@@ -355,13 +355,13 @@
           <span><strong>Main Admin:</strong> admin@hyve.com</span>
           <span class="badge-role" style="color: #14335C;">Executive</span>
         </button>
-        <button type="button" class="demo-pill-btn" onclick="fillCredentials('staff@hyve.com', 'staff123')">
-          <span><strong>Staff:</strong> staff@hyve.com</span>
-          <span class="badge-role" style="color: #60A5FA;">Manager</span>
-        </button>
-        <button type="button" class="demo-pill-btn" onclick="fillCredentials('agent@hyve.com', 'agent123')">
-          <span><strong>Agent:</strong> agent@hyve.com</span>
+        <button type="button" class="demo-pill-btn" onclick="fillCredentials('vinuka@hyve.lk', 'agent123')">
+          <span><strong>Vinuka (Agent):</strong> vinuka@hyve.lk</span>
           <span class="badge-role" style="color: #34D399;">Agent</span>
+        </button>
+        <button type="button" class="demo-pill-btn" onclick="fillCredentials('rehan@hyve.lk', 'agent123')">
+          <span><strong>Rehan (Agent):</strong> rehan@hyve.lk</span>
+          <span class="badge-role" style="color: #60A5FA;">Agent</span>
         </button>
       </div>
     </div>

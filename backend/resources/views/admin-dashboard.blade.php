@@ -1975,9 +1975,8 @@
                 <label class="label-custom" for="add_agent_selection">Assign Listing Agent *</label>
                 <select id="add_agent_selection" name="agent_selection" class="select-custom" required
                   onchange="handleAddAgentChange(this.value)">
-                  <option value="sarah" selected>Sarah Jenkins (Senior Partner)</option>
-                  <option value="michael">Michael Chen (Urban Specialist)</option>
-                  <option value="emma">Emma Davis (Family Estates)</option>
+                  <option value="vinuka" selected>Vinuka Maddumage (Sales & Client Relations)</option>
+                  <option value="rehan">Rehan Wijesinghe (Property Management & Stays)</option>
                   <option value="custom">-- Custom Listing Agent --</option>
                 </select>
               </div>
@@ -2202,9 +2201,8 @@
                 <label class="label-custom" for="rental_agent_selection">Assign Listing Agent *</label>
                 <select id="rental_agent_selection" name="agent_selection" class="select-custom" required
                   onchange="handleRentalAgentChange(this.value)">
-                  <option value="sarah" selected>Sarah Jenkins (Senior Partner)</option>
-                  <option value="michael">Michael Chen (Urban Specialist)</option>
-                  <option value="emma">Emma Davis (Family Estates)</option>
+                  <option value="rehan" selected>Rehan Wijesinghe (Property Management & Stays)</option>
+                  <option value="vinuka">Vinuka Maddumage (Sales & Client Relations)</option>
                   <option value="custom">-- Custom Listing Agent --</option>
                 </select>
               </div>
@@ -2477,9 +2475,8 @@
               <label class="label-custom" for="edit_agent_selection">Assigned Agent</label>
               <select id="edit_agent_selection" name="agent_selection" class="select-custom">
                 <option value="keep" selected>-- Keep Current Agent --</option>
-                <option value="sarah">Sarah Jenkins</option>
-                <option value="michael">Michael Chen</option>
-                <option value="emma">Emma Davis</option>
+                <option value="vinuka">Vinuka Maddumage</option>
+                <option value="rehan">Rehan Wijesinghe</option>
                 <option value="custom">Custom Agent</option>
               </select>
             </div>

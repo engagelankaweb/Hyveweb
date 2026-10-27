@@ -62,9 +62,12 @@ class PropertyController extends Controller
             ];
         });
 
-        $jsContent = "const propertiesData = " . json_encode($propertiesArray, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . ";\n";
+        $jsContent = "var propertiesData = " . json_encode($propertiesArray, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . ";\nwindow.propertiesData = propertiesData;\n";
 
         return response($jsContent, 200)
-            ->header('Content-Type', 'application/javascript');
+            ->header('Content-Type', 'application/javascript')
+            ->header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
+            ->header('Pragma', 'no-cache')
+            ->header('Expires', '0');
     }
 }

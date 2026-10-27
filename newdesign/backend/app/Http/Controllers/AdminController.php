@@ -197,7 +197,7 @@ class AdminController extends Controller
             'features' => 'nullable|string',
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:5120',
-            'agent_selection' => 'required|string|in:sarah,michael,emma,custom',
+            'agent_selection' => 'required|string|in:vinuka,rehan,sarah,michael,emma,custom',
             'agent_name' => 'required_if:agent_selection,custom|string|max:255|nullable',
             'agent_phone' => 'required_if:agent_selection,custom|string|max:50|nullable',
             'agent_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
@@ -306,7 +306,7 @@ class AdminController extends Controller
             'existing_images' => 'nullable|array',
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:5120',
-            'agent_selection' => 'required|string|in:sarah,michael,emma,custom,keep',
+            'agent_selection' => 'required|string|in:vinuka,rehan,sarah,michael,emma,custom,keep',
             'agent_name' => 'required_if:agent_selection,custom|string|max:255|nullable',
             'agent_phone' => 'required_if:agent_selection,custom|string|max:50|nullable',
             'agent_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
@@ -673,23 +673,17 @@ class AdminController extends Controller
     {
         $selection = $request->input('agent_selection');
 
-        if ($selection === 'sarah') {
+        if ($selection === 'vinuka' || $selection === 'sarah') {
             return [
-                'name' => 'Sarah Jenkins',
+                'name' => 'Vinuka Maddumage',
                 'image' => 'assets/images/agent_office_1786339595128.png',
-                'phone' => '+1 (555) 123-4567'
+                'phone' => '+94 77 896 8321'
             ];
-        } elseif ($selection === 'michael') {
+        } elseif ($selection === 'rehan' || $selection === 'michael' || $selection === 'emma') {
             return [
-                'name' => 'Michael Chen',
+                'name' => 'Rehan Wijesinghe',
                 'image' => 'assets/images/agent_office_1786339595128.png',
-                'phone' => '+1 (555) 987-6543'
-            ];
-        } elseif ($selection === 'emma') {
-            return [
-                'name' => 'Emma Davis',
-                'image' => 'assets/images/agent_office_1786339595128.png',
-                'phone' => '+1 (555) 333-2222'
+                'phone' => '+94 76 190 8254'
             ];
         } else {
             // Custom agent
