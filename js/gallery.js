@@ -170,7 +170,7 @@ function renderProperty(p) {
     const agentName = document.getElementById('agent-name');
     if (agentName) agentName.textContent = p.agent.name || 'HYVE Real Estate';
     const agentPhone = document.getElementById('agent-phone');
-    if (agentPhone) agentPhone.textContent = p.agent.phone || '+1 (555) 019-2831';
+    if (agentPhone) agentPhone.textContent = p.agent.phone || '+94 76 762 8254';
   }
 
   window.currentPropertyDetail = p;
